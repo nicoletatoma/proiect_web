@@ -5,10 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
-using System.Web.Optimization;
-using _10717proiect.App_Start;
-
-
+using System.Web.SessionState;
 
 namespace _10717proiect
 {
@@ -19,7 +16,6 @@ namespace _10717proiect
             // Code that runs on application startup
            AreaRegistration.RegisterAllAreas();
            RouteConfig.RegisterRoutes(RouteTable.Routes);
-           BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
     }
 }
