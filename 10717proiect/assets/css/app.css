@@ -12,6 +12,7 @@ html {
   min-height: 100%; }
 
 body {
+    padding-top: 0;
   padding-bottom: 60px;
   overflow-x: hidden; }
 
