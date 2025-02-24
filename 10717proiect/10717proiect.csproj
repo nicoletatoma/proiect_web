@@ -218,6 +218,18 @@
     <Content Include="Content\assets\fonts\remixicon.symbol.svg" />
     <Content Include="Content\assets\fonts\themify.svg" />
     <Content Include="Content\assets\fonts\weathericons-regular-webfont.svg" />
+    <Content Include="Content\assets\images\10loc.jpg" />
+    <Content Include="Content\assets\images\11loc.jpg" />
+    <Content Include="Content\assets\images\12loc.jpg" />
+    <Content Include="Content\assets\images\1loc.jpg" />
+    <Content Include="Content\assets\images\2loc.jpg" />
+    <Content Include="Content\assets\images\3loc.jpg" />
+    <Content Include="Content\assets\images\4loc.jpg" />
+    <Content Include="Content\assets\images\5loc.jpg" />
+    <Content Include="Content\assets\images\6loc.jpg" />
+    <Content Include="Content\assets\images\7loc.jpg" />
+    <Content Include="Content\assets\images\8loc.jpg" />
+    <Content Include="Content\assets\images\9loc.jpg" />
     <Content Include="Content\assets\images\animat-diamond-color.gif" />
     <Content Include="Content\assets\images\animat-rocket-color.gif" />
     <Content Include="Content\assets\images\attached-files\img-1.jpg" />
@@ -655,6 +667,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Evenimente.cshtml" />
+    <Content Include="Views\Home\Locations.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

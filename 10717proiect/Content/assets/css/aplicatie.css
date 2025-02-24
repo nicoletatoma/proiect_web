@@ -200,3 +200,24 @@ header {
 .sing_up:hover {
     background-color: snow!important;
 }
+
+.custom-card {
+    text-decoration: none; /* Elimină sublinierea linkului */
+    display: block;
+    transition: transform 0.2s ease-in-out;
+}
+
+    .custom-card:hover {
+        transform: scale(1.05); /* Mărește cardul la hover */
+    }
+
+    .custom-card .card {
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease-in-out;
+    }
+
+    .custom-card:hover .card {
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+    }

@@ -1,0 +1,508 @@
+﻿
+@{
+    ViewBag.Title = "Locations";
+}
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="utf-8" />
+    <title>Minton - Responsive Admin Dashboard Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+    <meta content="Coderthemes" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="~/Content/assets/images/favicon.ico">
+
+    <!-- App css -->
+    <link rel="stylesheet" href="~/Content/assets/css/aplicatie.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Content/assets/css/app.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Content/assets/css/bootstrap.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Content/assets/css/icons.css" asp-append-version="true" />
+
+
+
+</head>
+<body>
+
+    <!-- Pre-loader -->
+    <div id="preloader">
+        <div id="status">
+            <div class="bouncingLoader"><div></div><div></div><div></div></div>
+        </div>
+    </div>
+    <!-- End Preloader-->
+    <!-- Navigation Bar-->
+    <header id="topnav">
+
+        <!-- Topbar Start -->
+        <div class="navbar-custom">
+            <div class="container-fluid">
+                <ul class="list-unstyled topnav-menu float-right mb-0">
+
+                    <li class="dropdown notification-list">
+                        <a href="~/Home/Index" class=" nav-link waves-effect waves-light">
+                            <i class="remixicon-home-5-line"></i>
+                            &nbsp Home
+                        </a>
+                    </li>
+
+                    <div class="linie-herticala"></div>
+
+
+                    <li class="dropdown notification-list">
+                        <a href="#" class=" nav-link waves-effect waves-light">
+                            <i class="remixicon-coupon-line"></i>
+                            &nbsp Evenimente
+                        </a>
+                    </li>
+
+                    <div class="linie-herticala"></div>
+
+                    <li class="dropdown notification-list">
+                        <a href="#" class="nav-link waves-effect waves-light">
+                            <i class="remixicon-map-pin-line"></i> <!-- Pictograma de locație -->
+                            &nbsp; Locații
+                        </a>
+                    </li>
+
+
+                    <div class="linie-herticala"></div>
+
+                    <li class="dropdown notification-list">
+                        <a href="#" class=" nav-link waves-effect waves-light">
+                            <i class=" remixicon-shopping-bag-3-line"></i>&nbsp Coș
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-lg">
+
+                            <!-- item-->
+                            <div class="dropdown-item noti-title">
+                                <h5 class="m-0">
+                                    <span class="float-right">
+                                        <a href="" class="text-dark">
+                                            <small>Clear All</small>
+                                        </a>
+                                    </span>Notification
+                                </h5>
+                            </div>
+
+                            <div class="slimscroll noti-scroll">
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item active">
+                                    <div class="notify-icon bg-soft-primary text-primary">
+                                        <i class="mdi mdi-comment-account-outline"></i>
+                                    </div>
+                                    <p class="notify-details">
+                                        Doug Dukes commented on Admin Dashboard
+                                        <small class="text-muted">1 min ago</small>
+                                    </p>
+                                </a>
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <div class="notify-icon">
+                                        <img src="assets/images/users/avatar-2.jpg" class="img-fluid rounded-circle" alt="" />
+                                    </div>
+                                    <p class="notify-details">Mario Drummond</p>
+                                    <p class="text-muted mb-0 user-msg">
+                                        <small>Hi, How are you? What about our next meeting</small>
+                                    </p>
+                                </a>
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <div class="notify-icon">
+                                        <img src="assets/images/users/avatar-4.jpg" class="img-fluid rounded-circle" alt="" />
+                                    </div>
+                                    <p class="notify-details">Karen Robinson</p>
+                                    <p class="text-muted mb-0 user-msg">
+                                        <small>Wow ! this admin looks good and awesome design</small>
+                                    </p>
+                                </a>
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <div class="notify-icon bg-soft-warning text-warning">
+                                        <i class="mdi mdi-account-plus"></i>
+                                    </div>
+                                    <p class="notify-details">
+                                        New user registered.
+                                        <small class="text-muted">5 hours ago</small>
+                                    </p>
+                                </a>
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <div class="notify-icon bg-info">
+                                        <i class="mdi mdi-comment-account-outline"></i>
+                                    </div>
+                                    <p class="notify-details">
+                                        Caleb Flakelar commented on Admin
+                                        <small class="text-muted">4 days ago</small>
+                                    </p>
+                                </a>
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <div class="notify-icon bg-secondary">
+                                        <i class="mdi mdi-heart"></i>
+                                    </div>
+                                    <p class="notify-details">
+                                        Carlos Crouch liked
+                                        <b>Admin</b>
+                                        <small class="text-muted">13 days ago</small>
+                                    </p>
+                                </a>
+                            </div>
+
+                            <!-- All-->
+                            <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">
+                                View all
+                                <i class="fi-arrow-right"></i>
+                            </a>
+
+                        </div>
+                    </li>
+
+                    <div class="linie-herticala final"></div>
+
+                    <li class="dropdown notification-list ">
+                        <a href="javascript:void(0);" class="nav-link right-bar-toggle waves-effect waves-light log_in">
+
+                            Log In
+                        </a>
+                    </li>
+
+                    <li class="dropdown notification-list ">
+                        <a href="#" class=" nav-link waves-effect waves-light sing_up">
+
+                            Sign Up
+                        </a>
+                    </li>
+
+
+
+                </ul>
+
+                <!-- LOGO -->
+                <div class="logo-box">
+                    <a href="~/Home/Index" class="logo text-center">
+                        <span class="logo-lg">
+                            <img class="logo_nagigatie" src="~/Content/assets/images/logo-light.png" alt="" height="110">
+                            <!-- <span class="logo-lg-text-light">Xeria</span> -->
+                        </span>
+                        <span class="logo-sm">
+                            <!-- <span class="logo-sm-text-dark">X</span> -->
+                            <img src="~/Content/assets/images/logo-sm.png" alt="" height="34">
+                        </span>
+                    </a>
+                </div>
+
+                <!-- Text dupa logo -->
+                <ul>
+                    <a class="text-after-logo" href="~/Home/Index">
+                        Ticket Express
+                    </a>
+
+                </ul>
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!-- end Topbar -->
+        <!-- end navbar-custom -->
+
+    </header>
+    <!-- End Navigation Bar-->
+    <!-- ============================================================== -->
+    <!-- Start Page Content here -->
+    <!-- ============================================================== -->
+
+    <div class="wrapper">
+        <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box">
+
+                        <h1 class="page-title">Locații</h1>
+                    </div>
+                </div>
+            </div>
+            <!-- end page title -->
+
+            <div class="row filterable-content">
+
+                <div class="col-sm-6 col-xl-3 filter-item all web illustrator">
+                    <a href="pagina_noua.html" target="_blank" class="custom-card">
+                        <div class="gal-box card shadow-sm">
+                            <img src="~/Content/assets/images/1loc.jpg" class="img-fluid" alt="work-thumbnail">
+                            <div class="gall-info p-3">
+                                <h4 class="font-16 mt-0">Teatrul Republican de Păpuși „Licurici”</h4>
+                                <div class="d-flex align-items-center">
+                                    <i class="mdi mdi-map-marker text-muted"></i>
+                                    <span class="text-muted ml-1">STR. 31 AUGUST 1989, NR.121</span>
+                                </div>
+                            </div>
+                            <div class="event-count bg-info text-white px-3 py-2 rounded-bottom">
+                                <strong>26</strong> eveniment
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xl-3 filter-item all web illustrator">
+                    <a href="pagina_noua.html" target="_blank" class="custom-card">
+                        <div class="gal-box card shadow-sm">
+                            <img src="~/Content/assets/images/2loc.jpg" class="img-fluid" alt="work-thumbnail">
+                            <div class="gall-info p-3">
+                                <h4 class="font-16 mt-0">Teatrul Dramatic Rus de Stat „A. P. Cehov”</h4>
+                                <div class="d-flex align-items-center">
+                                    <i class="mdi mdi-map-marker text-muted"></i>
+                                    <span class="text-muted ml-1">str. Vlaicu Parcalab 75, Chisinau</span>
+                                </div>
+                            </div>
+                            <div class="event-count bg-info text-white px-3 py-2 rounded-bottom">
+                                <strong>26</strong> eveniment
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xl-3 filter-item all web illustrator">
+                    <a href="pagina_noua.html" target="_blank" class="custom-card">
+                        <div class="gal-box card shadow-sm">
+                            <img src="~/Content/assets/images/3loc.jpg" class="img-fluid" alt="work-thumbnail">
+                            <div class="gall-info p-3">
+                                <h4 class="font-16 mt-0">Chișinău Arena</h4>
+                                <div class="d-flex align-items-center">
+                                    <i class="mdi mdi-map-marker text-muted"></i>
+                                    <span class="text-muted ml-1">str. Calea Orheiului 130, Stăuceni</span>
+                                </div>
+                            </div>
+                            <div class="event-count bg-info text-white px-3 py-2 rounded-bottom">
+                                <strong>26</strong> eveniment
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xl-3 filter-item all web illustrator">
+                    <a href="pagina_noua.html" target="_blank" class="custom-card">
+                        <div class="gal-box card shadow-sm">
+                            <img src="~/Content/assets/images/4loc.jpg" class="img-fluid" alt="work-thumbnail">
+                            <div class="gall-info p-3">
+                                <h4 class="font-16 mt-0">Teatrul Național „Satiricus Ion Luca Caragiale”</h4>
+                                <div class="d-flex align-items-center">
+                                    <i class="mdi mdi-map-marker text-muted"></i>
+                                    <span class="text-muted ml-1">str. Mihai Eminescu 55, Chișinău</span>
+                                </div>
+                            </div>
+                            <div class="event-count bg-info text-white px-3 py-2 rounded-bottom">
+                                <strong>26</strong> eveniment
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xl-3 filter-item all web illustrator">
+                    <a href="pagina_noua.html" target="_blank" class="custom-card">
+                        <div class="gal-box card shadow-sm">
+                            <img src="~/Content/assets/images/5loc.jpg" class="img-fluid" alt="work-thumbnail">
+                            <div class="gall-info p-3">
+                                <h4 class="font-16 mt-0">Teatrul Național de Operă şi Balet „Maria Bieșu”</h4>
+                                <div class="d-flex align-items-center">
+                                    <i class="mdi mdi-map-marker text-muted"></i>
+                                    <span class="text-muted ml-1">blv. Ștefan cel Mare și Sfînt 152, MD-2012, Chișinău</span>
+                                </div>
+                            </div>
+                            <div class="event-count bg-info text-white px-3 py-2 rounded-bottom">
+                                <strong>26</strong> eveniment
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xl-3 filter-item all web illustrator">
+                    <a href="pagina_noua.html" target="_blank" class="custom-card">
+                        <div class="gal-box card shadow-sm">
+                            <img src="~/Content/assets/images/6loc.jpg" class="img-fluid" alt="work-thumbnail">
+                            <div class="gall-info p-3">
+                                <h4 class="font-16 mt-0">Cineplex Loteanu</h4>
+                                <div class="d-flex align-items-center">
+                                    <i class="mdi mdi-map-marker text-muted"></i>
+                                    <span class="text-muted ml-1">blv. Ștefan cel Mare și Sfînt 103, MD-2012, Chișinău</span>
+                                </div>
+                            </div>
+                            <div class="event-count bg-info text-white px-3 py-2 rounded-bottom">
+                                <strong>26</strong> eveniment
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xl-3 filter-item all web illustrator">
+                    <a href="pagina_noua.html" target="_blank" class="custom-card">
+                        <div class="gal-box card shadow-sm">
+                            <img src="~/Content/assets/images/7loc.jpg" class="img-fluid" alt="work-thumbnail">
+                            <div class="gall-info p-3">
+                                <h4 class="font-16 mt-0">Cineplex Mall</h4>
+                                <div class="d-flex align-items-center">
+                                    <i class="mdi mdi-map-marker text-muted"></i>
+                                    <span class="text-muted ml-1"> Arborilor, 21 Shopping Malldova Chisinau, MD-2025</span>
+                                </div>
+                            </div>
+                            <div class="event-count bg-info text-white px-3 py-2 rounded-bottom">
+                                <strong>26</strong> eveniment
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xl-3 filter-item all web illustrator">
+                    <a href="pagina_noua.html" target="_blank" class="custom-card">
+                        <div class="gal-box card shadow-sm">
+                            <img src="~/Content/assets/images/8loc.jpg" class="img-fluid" alt="work-thumbnail">
+                            <div class="gall-info p-3">
+                                <h4 class="font-16 mt-0">IP CCA “Ginta Latină” - Teatrul Fără Nume</h4>
+                                <div class="d-flex align-items-center">
+                                    <i class="mdi mdi-map-marker text-muted"></i>
+                                    <span class="text-muted ml-1">Sfatul Țării, 18, Chișinău, RM, MD 2012</span>
+                                </div>
+                            </div>
+                            <div class="event-count bg-info text-white px-3 py-2 rounded-bottom">
+                                <strong>26</strong> eveniment
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xl-3 filter-item all web illustrator">
+                    <a href="pagina_noua.html" target="_blank" class="custom-card">
+                        <div class="gal-box card shadow-sm">
+                            <img src="~/Content/assets/images/9loc.jpg" class="img-fluid" alt="work-thumbnail">
+                            <div class="gall-info p-3">
+                                <h4 class="font-16 mt-0">Teatrul Republican „Luceafărul"</h4>
+                                <div class="d-flex align-items-center">
+                                    <i class="mdi mdi-map-marker text-muted"></i>
+                                    <span class="text-muted ml-1">str. Veronica Micle 7, Chișinău</span>
+                                </div>
+                            </div>
+                            <div class="event-count bg-info text-white px-3 py-2 rounded-bottom">
+                                <strong>26</strong> eveniment
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xl-3 filter-item all web illustrator">
+                    <a href="pagina_noua.html" target="_blank" class="custom-card">
+                        <div class="gal-box card shadow-sm">
+                            <img src="~/Content/assets/images/10loc.jpg" class="img-fluid" alt="work-thumbnail">
+                            <div class="gall-info p-3">
+                                <h4 class="font-16 mt-0">Palatul Național „Nicolae Sulac”</h4>
+                                <div class="d-flex align-items-center">
+                                    <i class="mdi mdi-map-marker text-muted"></i>
+                                    <span class="text-muted ml-1">str. Pușkin 21, Chișinău</span>
+                                </div>
+                            </div>
+                            <div class="event-count bg-info text-white px-3 py-2 rounded-bottom">
+                                <strong>26</strong> eveniment
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xl-3 filter-item all web illustrator">
+                    <a href="pagina_noua.html" target="_blank" class="custom-card">
+                        <div class="gal-box card shadow-sm">
+                            <img src="~/Content/assets/images/11loc.jpg" class="img-fluid" alt="work-thumbnail">
+                            <div class="gall-info p-3">
+                                <h4 class="font-16 mt-0">Stadionul Zimbru</h4>
+                                <div class="d-flex align-items-center">
+                                    <i class="mdi mdi-map-marker text-muted"></i>
+                                    <span class="text-muted ml-1">Bulevardul Dacia 45, Chișinău</span>
+                                </div>
+                            </div>
+                            <div class="event-count bg-info text-white px-3 py-2 rounded-bottom">
+                                <strong>26</strong> eveniment
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xl-3 filter-item all web illustrator">
+                    <a href="pagina_noua.html" target="_blank" class="custom-card">
+                        <div class="gal-box card shadow-sm">
+                            <img src="~/Content/assets/images/12loc.jpg" class="img-fluid" alt="work-thumbnail">
+                            <div class="gall-info p-3">
+                                <h4 class="font-16 mt-0">“Planeta Clounella” - Teatrul Independent pentru Copii si Tineret</h4>
+                                <div class="d-flex align-items-center">
+                                    <i class="mdi mdi-map-marker text-muted"></i>
+                                    <span class="text-muted ml-1">str. Mihai Eminescu 55, Chișinău</span>
+                                </div>
+                            </div>
+                            <div class="event-count bg-info text-white px-3 py-2 rounded-bottom">
+                                <strong>26</strong> eveniment
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div> <!-- end container -->
+        </div>
+        <div class="row justify-content-center mt-4">
+            <nav>
+                <ul class="pagination">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1"><</a>
+                    </li>
+                    <li class="page-item active">
+                        <a class="page-link" href="#">1</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="pagina2.html">2</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="pagina2.html">></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+
+        <!-- end wrapper -->
+        <!-- ============================================================== -->
+        <!-- End Page content -->
+        <!-- ============================================================== -->
+        <!-- Footer Start -->
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="text-md-center footer-links d-none d-sm-block">
+                            <a href="javascript:void(0);">About Us</a>
+                            <a href="javascript:void(0);">Help</a>
+                            <a href="javascript:void(0);">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
+        <!-- Vendor js -->
+        <script src="~/Content/assets/js/vendor.min.js"></script>
+
+        <!-- Magnific Popup-->
+        <script src="~/Content/assets/libs/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+        <!-- Gallery Init-->
+        <script src="~/Content/assets/js/pages/gallery.init.js"></script>
+
+        <!-- App js -->
+        <script src="~/Content/assets/js/app.min.js"></script>
+</body>
+
+</html>

@@ -17,5 +17,9 @@ namespace _10717proiect.Controllers
         {
             return View();
         }
+       public ActionResult Locations()
+        {
+            return View();
+        }
     }
 }
