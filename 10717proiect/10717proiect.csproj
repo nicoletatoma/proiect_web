@@ -294,6 +294,8 @@
     <Content Include="Content\assets\images\plugins\jstree.png" />
     <Content Include="Content\assets\images\plugins\loading.gif" />
     <Content Include="Content\assets\images\plugins\multiple-arrow.png" />
+    <Content Include="Content\assets\images\small\caleidoscop.jpg" />
+    <Content Include="Content\assets\images\small\carbon.jpeg" />
     <Content Include="Content\assets\images\small\img-1.jpg" />
     <Content Include="Content\assets\images\small\img-2.jpg" />
     <Content Include="Content\assets\images\small\img-3.jpg" />
@@ -301,6 +303,12 @@
     <Content Include="Content\assets\images\small\img-5.jpg" />
     <Content Include="Content\assets\images\small\img-6.jpg" />
     <Content Include="Content\assets\images\small\img-7.jpg" />
+    <Content Include="Content\assets\images\small\mademd.jpg" />
+    <Content Include="Content\assets\images\small\pescarus.jpg" />
+    <Content Include="Content\assets\images\small\puterea.jpg" />
+    <Content Include="Content\assets\images\small\tunete.jpg" />
+    <Content Include="Content\assets\images\small\varvara.jpg" />
+    <Content Include="Content\assets\images\small\womenday.jpg" />
     <Content Include="Content\assets\images\users\avatar-1.jpg" />
     <Content Include="Content\assets\images\users\avatar-10.jpg" />
     <Content Include="Content\assets\images\users\avatar-2.jpg" />
@@ -646,6 +654,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Evenimente.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

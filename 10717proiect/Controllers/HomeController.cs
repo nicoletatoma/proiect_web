@@ -13,5 +13,9 @@ namespace _10717proiect.Controllers
         {
             return View();
         }
+        public ActionResult Evenimente()
+        {
+            return View();
+        }
     }
 }

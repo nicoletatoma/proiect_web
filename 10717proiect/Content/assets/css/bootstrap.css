@@ -2089,7 +2089,7 @@ textarea.form-control {
 .btn {
   display: inline-block;
   font-weight: 400;
-  color: #6c757d;
+  color: #CFC8C8;
   text-align: center;
   vertical-align: middle;
   -webkit-user-select: none;
@@ -2111,7 +2111,7 @@ textarea.form-control {
       -webkit-transition: none;
       transition: none; } }
   .btn:hover {
-    color: #6c757d;
+    color: #CFC8C8;
     text-decoration: none; }
   .btn:focus, .btn.focus {
     outline: 0;
@@ -2119,19 +2119,24 @@ textarea.form-control {
             box-shadow: 0 0 0 0.15rem rgba(59, 115, 218, 0.25); }
   .btn.disabled, .btn:disabled {
     opacity: 0.65; }
-
+.aspect-ratio {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+}
 a.btn.disabled,
 fieldset:disabled a.btn {
   pointer-events: none; }
 
 .btn-primary {
   color: #fff;
-  background-color: #3b73da;
-  border-color: #3b73da; }
-  .btn-primary:hover {
-    color: #fff;
-    background-color: #265fc9;
-    border-color: #245abe; }
+  background-color: #CFC8C8;
+  border-color: #CFC8C8; }
+    .btn-primary:hover {
+        color: #fff;
+        background-color: #dbd6d6;
+        border-color: #CFC8C8;
+    }
   .btn-primary:focus, .btn-primary.focus {
     -webkit-box-shadow: 0 0 0 0.15rem rgba(88, 136, 224, 0.5);
             box-shadow: 0 0 0 0.15rem rgba(88, 136, 224, 0.5); }
@@ -2150,9 +2155,10 @@ fieldset:disabled a.btn {
               box-shadow: 0 0 0 0.15rem rgba(88, 136, 224, 0.5); }
 
 .btn-secondary {
-  color: #fff;
-  background-color: #6c757d;
-  border-color: #6c757d; }
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
   .btn-secondary:hover {
     color: #fff;
     background-color: #5a6268;
@@ -3843,22 +3849,48 @@ input[type="button"].btn-block {
     color: #fff; }
     .navbar-dark .navbar-text a:hover, .navbar-dark .navbar-text a:focus {
       color: #fff; }
+row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.col-md-6, .col-xl-3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Asigură alinierea corectă a conținutului */
+}
 
 .card {
-  position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  min-width: 0;
-  word-wrap: break-word;
-  background-color: #fff;
-  background-clip: border-box;
-  border: 0 solid #e7eaed;
-  border-radius: 0.25rem; }
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Asigură că cardul va ocupa toată înălțimea disponibilă */
+}
+
+    .card img {
+        object-fit: cover; /* Asigură că imaginea nu va distorsiona cardul */
+        height: 200px; /* Setează o înălțime fixă pentru imagine */
+    }
+
+.card-body {
+    flex-grow: 1; /* Permite cardului să își ajusteze dimensiunea în funcție de conținut */
+}
+.card {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid #e7eaed;
+    border-radius: 0.25rem;
+   
+}
   .card > hr {
     margin-right: 0;
     margin-left: 0; }
