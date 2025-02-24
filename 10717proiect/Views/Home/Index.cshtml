@@ -1,8 +1,374 @@
-﻿
+﻿@using System.Web.Optimization;
 @{
-    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Indexdsgfsdgdffgdfg</h2>
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="utf-8" />
+    <title>Minton - Responsive Admin Dashboard Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+    <meta content="Coderthemes" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="~/Content/assets/images/favicon.ico">
 
-<p>dasas</p>
+    <!-- App css -->
+    @Styles.Render("~/Content/assets/css/aplicatie.css")
+    @Styles.Render("~/Content/assets/css/app.css")
+    @Styles.Render("~/Content/assets/css/bootstrap.css")
+    @Styles.Render("~/Content/assets/css/icons.css")
+
+
+
+</head>
+<body>
+
+    <!-- Pre-loader -->
+    <div id="preloader">
+        <div id="status">
+            <div class="bouncingLoader"><div></div><div></div><div></div></div>
+        </div>
+    </div>
+    <!-- End Preloader-->
+    <!-- Navigation Bar-->
+    <header id="topnav">
+
+        <!-- Topbar Start -->
+        <div class="navbar-custom">
+            <div class="container-fluid">
+                <ul class="list-unstyled topnav-menu float-right mb-0">
+
+                    <li class="dropdown notification-list">
+                        <a href="~/Home/Index" class=" nav-link waves-effect waves-light">
+                            <i class="remixicon-home-5-line"></i>
+                            &nbsp Home
+                        </a>
+                    </li>
+
+                    <div class="linie-herticala"></div>
+
+
+                    <li class="dropdown notification-list">
+                        <a href="#" class=" nav-link waves-effect waves-light">
+                            <i class="remixicon-coupon-line"></i>
+                            &nbsp Evenimente
+                        </a>
+                    </li>
+
+                    <div class="linie-herticala"></div>
+
+                    <li class="dropdown notification-list">
+                        <a href="#" class=" nav-link waves-effect waves-light">
+                            <i class=" remixicon-shopping-bag-3-line"></i>&nbsp Coș
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-lg">
+
+                            <!-- item-->
+                            <div class="dropdown-item noti-title">
+                                <h5 class="m-0">
+                                    <span class="float-right">
+                                        <a href="" class="text-dark">
+                                            <small>Clear All</small>
+                                        </a>
+                                    </span>Notification
+                                </h5>
+                            </div>
+
+                            <div class="slimscroll noti-scroll">
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item active">
+                                    <div class="notify-icon bg-soft-primary text-primary">
+                                        <i class="mdi mdi-comment-account-outline"></i>
+                                    </div>
+                                    <p class="notify-details">
+                                        Doug Dukes commented on Admin Dashboard
+                                        <small class="text-muted">1 min ago</small>
+                                    </p>
+                                </a>
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <div class="notify-icon">
+                                        <img src="assets/images/users/avatar-2.jpg" class="img-fluid rounded-circle" alt="" />
+                                    </div>
+                                    <p class="notify-details">Mario Drummond</p>
+                                    <p class="text-muted mb-0 user-msg">
+                                        <small>Hi, How are you? What about our next meeting</small>
+                                    </p>
+                                </a>
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <div class="notify-icon">
+                                        <img src="assets/images/users/avatar-4.jpg" class="img-fluid rounded-circle" alt="" />
+                                    </div>
+                                    <p class="notify-details">Karen Robinson</p>
+                                    <p class="text-muted mb-0 user-msg">
+                                        <small>Wow ! this admin looks good and awesome design</small>
+                                    </p>
+                                </a>
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <div class="notify-icon bg-soft-warning text-warning">
+                                        <i class="mdi mdi-account-plus"></i>
+                                    </div>
+                                    <p class="notify-details">
+                                        New user registered.
+                                        <small class="text-muted">5 hours ago</small>
+                                    </p>
+                                </a>
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <div class="notify-icon bg-info">
+                                        <i class="mdi mdi-comment-account-outline"></i>
+                                    </div>
+                                    <p class="notify-details">
+                                        Caleb Flakelar commented on Admin
+                                        <small class="text-muted">4 days ago</small>
+                                    </p>
+                                </a>
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <div class="notify-icon bg-secondary">
+                                        <i class="mdi mdi-heart"></i>
+                                    </div>
+                                    <p class="notify-details">
+                                        Carlos Crouch liked
+                                        <b>Admin</b>
+                                        <small class="text-muted">13 days ago</small>
+                                    </p>
+                                </a>
+                            </div>
+
+                            <!-- All-->
+                            <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">
+                                View all
+                                <i class="fi-arrow-right"></i>
+                            </a>
+
+                        </div>
+                    </li>
+
+                    <div class="linie-herticala final"></div>
+
+                    <li class="dropdown notification-list ">
+                        <a href="javascript:void(0);" class="nav-link right-bar-toggle waves-effect waves-light log_in">
+
+                            Log In
+                        </a>
+                    </li>
+
+                    <li class="dropdown notification-list ">
+                        <a href="#" class=" nav-link waves-effect waves-light sing_up">
+
+                            Sign Up
+                        </a>
+                    </li>
+
+
+
+                </ul>
+
+                <!-- LOGO -->
+                <div class="logo-box">
+                    <a href="~/Home/Index" class="logo text-center">
+                        <span class="logo-lg">
+                            <img class="logo_nagigatie" src="~/Content/assets/images/logo-light.png" alt="" height="110">
+                            <!-- <span class="logo-lg-text-light">Xeria</span> -->
+                        </span>
+                        <span class="logo-sm">
+                            <!-- <span class="logo-sm-text-dark">X</span> -->
+                            <img src="~/Content/assets/images/logo-sm.png" alt="" height="34">
+                        </span>
+                    </a>
+                </div>
+
+                <!-- Text dupa logo -->
+                <ul>
+                    <a class="text-after-logo" href="~/Home/Index">
+                        Ticket Express
+                    </a>
+
+                </ul>
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!-- end Topbar -->
+        <!-- end navbar-custom -->
+
+    </header>
+    <!-- End Navigation Bar-->
+    <!-- ============================================================== -->
+    <!-- Start Page Content here -->
+    <!-- ============================================================== -->
+
+    <div class="wrapper">
+        <div class="container-fluid">
+            <div class="paginatitlu">
+                <div class="col-sm-8" id="coperta">
+                    <h1 class="text-coperta">Descoperă noi evenimente</h1>
+                    <h3 class="text-coperta-mic"> Creeazăți amintiri de neuitat</h3>
+                    <br />
+                    <ul class="dropdown notification-list buton-coperta">
+                        <a href="#" class=" waves-light">
+                            <h3 class="exploreaza">Exploreaza mai mult</h3>
+                        </a>
+                    </ul>
+                </div>
+            </div>
+            <br />
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box">
+
+                        <h1 class="page-title">Filme</h1>
+                    </div>
+                </div>
+            </div>
+            <!-- end page title -->
+            <!-- Filter -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="text-center filter-menu">
+                        <a href="javascript: void(0);" class="filter-menu-item active" data-rel="all">
+                            <i class="remixicon-home-5-line"></i>
+                            All
+                        </a>
+                        <a href="javascript: void(0);" class="filter-menu-item" data-rel="web">Web Design</a>
+                        <a href="javascript: void(0);" class="filter-menu-item" data-rel="graphic">Graphic Design</a>
+                        <a href="javascript: void(0);" class="filter-menu-item" data-rel="illustrator">Illustrator</a>
+                        <a href="javascript: void(0);" class="filter-menu-item" data-rel="photography">Photography</a>
+                    </div>
+                </div>
+            </div>
+            <!-- end row-->
+
+            <div class="row filterable-content">
+
+                <div class="col-sm-6 col-xl-3 filter-item all web illustrator">
+                    <div class="gal-box">
+                        <a href="~/Content/assets/images/carbon.jpg" class="image-popup" title="Screenshot-1">
+                            <img src="~/Content/assets/images/carbon.jpg" class="img-fluid" alt="work-thumbnail">
+                        </a>
+                        <div class="gall-info">
+                            <h4 class="font-16 mt-0">Man wearing black jacket</h4>
+                            <a href="javascript: void(0);">
+                                <img src="~/Content/assets/images/users/avatar-3.jpg" alt="user-img" class="rounded-circle" height="24" />
+                                <span class="text-muted ml-1">Justin Coke</span>
+                            </a>
+                            <a href="javascript: void(0);" class="gal-like-btn"><i class="mdi mdi-heart-outline text-muted"></i></a>
+                        </div> <!-- gallery info -->
+                    </div> <!-- end gal-box -->
+                </div> <!-- end col -->
+
+                <div class="col-sm-6 col-xl-3 filter-item all graphic photography">
+                    <div class="gal-box">
+                        <a href="~/Content/assets/images/small/img-2.jpg" class="image-popup" title="Screenshot-2">
+                            <img src="~/Content/assets/images/small/img-2.jpg" class="img-fluid" alt="work-thumbnail">
+                        </a>
+                        <div class="gall-info">
+                            <h4 class="font-16 mt-0">Snow covered mountain</h4>
+                            <a href="javascript: void(0);">
+                                <img src="~/Content/assets/images/users/avatar-2.jpg" alt="user-img" class="rounded-circle" height="24" />
+                                <span class="text-muted ml-1">Toni Sanchez</span>
+                            </a>
+                            <a href="javascript: void(0);" class="gal-like-btn"><i class="mdi mdi-heart-outline text-danger"></i></a>
+                        </div> <!-- gallery info -->
+                    </div> <!-- end gal-box -->
+                </div> <!-- end col -->
+
+                <div class="col-sm-6 col-xl-3 filter-item all web illustrator">
+                    <div class="gal-box">
+                        <a href="~/Content/assets/images/small/img-3.jpg" class="image-popup" title="Screenshot-3">
+                            <img src="~/Content/assets/images/small/img-3.jpg" class="img-fluid" alt="work-thumbnail">
+                        </a>
+                        <div class="gall-info">
+                            <h4 class="font-16 mt-0">Woman sitting on rock</h4>
+                            <a href="javascript: void(0);">
+                                <img src="~/Content/assets/images/users/avatar-4.jpg" alt="user-img" class="rounded-circle" height="24" />
+                                <span class="text-muted ml-1">Maria Crowder</span>
+                            </a>
+                            <a href="javascript: void(0);" class="gal-like-btn"><i class="mdi mdi-heart-outline text-muted"></i></a>
+                        </div> <!-- gallery info -->
+                    </div> <!-- end gal-box -->
+                </div> <!-- end col -->
+
+                <div class="col-sm-6 col-xl-3 filter-item all graphic illustrator">
+                    <div class="gal-box">
+                        <a href="~/Content/assets/images/small/img-4.jpg" class="image-popup" title="Screenshot-4">
+                            <img src="~/Content/assets/images/small/img-4.jpg" class="img-fluid" alt="work-thumbnail">
+                        </a>
+                        <div class="gall-info">
+                            <h4 class="font-16 mt-0">Smiling woman's face</h4>
+                            <a href="javascript: void(0);">
+                                <img src="~/Content/assets/images/users/avatar-5.jpg" alt="user-img" class="rounded-circle" height="24" />
+                                <span class="text-muted ml-1">Charles East</span>
+                            </a>
+                            <a href="javascript: void(0);" class="gal-like-btn"><i class="mdi mdi-heart-outline text-muted"></i></a>
+                        </div> <!-- gallery info -->
+                    </div> <!-- end gal-box -->
+                </div> <!-- end col -->
+
+                <div class="carousel">
+                    <img src="https://via.placeholder.com/300x200/FF5733/ffffff?text=Imagine+1" class="left">
+                    <img src="https://via.placeholder.com/300x200/33FF57/ffffff?text=Imagine+2" class="active">
+                    <img src="https://via.placeholder.com/300x200/3357FF/ffffff?text=Imagine+3" class="right">
+                    <img src="https://via.placeholder.com/300x200/FFD700/ffffff?text=Imagine+4" class="hidden">
+                    <img src="https://via.placeholder.com/300x200/FF1493/ffffff?text=Imagine+5" class="hidden">
+
+                    <div class="buttons">
+                        <button onclick="prevSlide()">❮</button>
+                        <button onclick="nextSlide()">❯</button>
+                    </div>
+
+
+                </div>
+                <!-- end row -->
+
+            </div> <!-- end container -->
+        </div>
+        <!-- end wrapper -->
+        <!-- ============================================================== -->
+        <!-- End Page content -->
+        <!-- ============================================================== -->
+        <!-- Footer Start -->
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="text-md-center footer-links d-none d-sm-block">
+                            <a href="javascript:void(0);">About Us</a>
+                            <a href="javascript:void(0);">Help</a>
+                            <a href="javascript:void(0);">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
+        <!-- Vendor js -->
+        <script src="~/Content/assets/js/vendor.min.js"></script>
+
+        <!-- Magnific Popup-->
+        <script src="~/Content/assets/libs/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+        <!-- Gallery Init-->
+        <script src="~/Content/assets/js/pages/gallery.init.js"></script>
+
+        <!-- App js -->
+        <script src="~/Content/assets/js/app.min.js"></script>
+
+</body>
+
+</html>
+
