@@ -301,6 +301,7 @@
     <Content Include="Content\assets\images\logo-sm-dark.png" />
     <Content Include="Content\assets\images\logo-sm.png" />
     <Content Include="Content\assets\images\Logo.png" />
+    <Content Include="Content\assets\images\Logoa.png" />
     <Content Include="Content\assets\images\megamenu-bg.png" />
     <Content Include="Content\assets\images\plugins\clear.png" />
     <Content Include="Content\assets\images\plugins\jstree.png" />
@@ -653,7 +654,9 @@
   <ItemGroup>
     <Compile Include="App_Start\BundlesConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\EvenimenteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -666,8 +669,10 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Evenimente.cshtml" />
-    <Content Include="Views\Home\Locations.cshtml" />
+    <Content Include="Views\Evenimente\Index.cshtml" />
+    <Content Include="Views\Locations\Index.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

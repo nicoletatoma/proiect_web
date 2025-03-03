@@ -6,13 +6,12 @@ using System.Web.Mvc;
 
 namespace _10717proiect.Controllers
 {
-    public class HomeController : Controller
+    public class EvenimenteController : Controller
     {
-        // GET: Home
+        // GET: Evenimente
         public ActionResult Index()
         {
             return View();
         }
-
     }
 }
