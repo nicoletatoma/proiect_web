@@ -654,6 +654,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BundlesConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\EvenimenteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
@@ -683,6 +684,16 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\10717proiect.BusinessLogic\10717proiect.BusinessLogic.csproj">
+      <Project>{473a7390-5d82-4b8a-887c-cd41e95a32f9}</Project>
+      <Name>10717proiect.BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\10717proiect.Domain\10717proiect.Domain.csproj">
+      <Project>{19f2eae6-dafa-40da-b87d-d0b55ce11748}</Project>
+      <Name>10717proiect.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
