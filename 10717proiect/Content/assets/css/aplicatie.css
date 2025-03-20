@@ -221,3 +221,8 @@ header {
     .custom-card:hover .card {
         box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
     }
+
+.bara-cautare{
+    margin-top: -5px;
+    
+}

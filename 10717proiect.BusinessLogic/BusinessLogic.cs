@@ -14,5 +14,10 @@ namespace _10717proiect.BusinessLogic
         {
             return new SessionBL();
         }
+
+        public ISearch GetSearchBL()
+        {
+            return new SearchBL();
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _10717proiect.Domain.Model.User;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,20 @@ namespace _10717proiect.BusinessLogic.Core
         internal bool ValidateSessionIdAction(string id)
         {
             return true;
+        }
+
+
+        //-----------------------------Search--------------------------------
+
+        public string UserSearchLogic(SearchEv eveniment)
+        {
+
+
+            //cautare dupa nume eveniment,    implementare ced
+
+
+
+            return "cautare-cuv";
         }
     }
 }
