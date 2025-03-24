@@ -1,4 +1,6 @@
-﻿using System;
+﻿using _10717proiect.Domain.Model.Events;
+using _10717proiect.Domain.Model.User;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,5 +15,19 @@ namespace _10717proiect.BusinessLogic.Core
         {
             return true;
         }
+
+        //---------------AUTH----------------
+        public string UserAuthLogicAction(UserLoginDTO data)
+        {
+
+            return "token-key";
+        }
+
+        //---------------EVENT----------------
+        public string EventLogicAction(EventDTO data)
+        {
+            return "event-key";
+        }
     }
+
 }

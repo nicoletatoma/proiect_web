@@ -14,5 +14,17 @@ namespace _10717proiect.BusinessLogic
         {
             return new SessionBL();
         }
+
+        //access point for AuthBL 
+        public IAuth GetAuthBL()
+        {
+            return new AuthBL();
+        }
+        
+        public IEvent GetEventBL()
+        {
+            return new EventBL();
+        }
+
     }
 }
