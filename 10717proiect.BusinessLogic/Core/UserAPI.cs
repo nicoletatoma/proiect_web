@@ -22,6 +22,11 @@ namespace _10717proiect.BusinessLogic.Core
 
             return "token-key";
         }
-
+        public bool RegisterUserAction(UserRegisterDTO data)
+        {
+         
+            Console.WriteLine($"User {data.Username} registered!");
+            return true;
+        }
     }
 }

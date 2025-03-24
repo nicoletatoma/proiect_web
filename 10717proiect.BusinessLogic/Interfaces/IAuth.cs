@@ -11,5 +11,6 @@ namespace _10717proiect.BusinessLogic.Interfaces
     public interface IAuth
     {
         string UserAuthLogic(UserLoginDTO data);
+        bool RegisterUser(UserRegisterDTO data);
     }
 }

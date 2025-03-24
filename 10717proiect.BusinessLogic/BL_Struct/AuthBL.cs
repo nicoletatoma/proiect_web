@@ -15,5 +15,9 @@ namespace _10717proiect.BusinessLogic.BL_Struct
         {
             return UserAuthLogicAction(data);
         }
+        public bool RegisterUser(UserRegisterDTO data)
+        {
+            return RegisterUserAction(data);
+        }
     }
 }
