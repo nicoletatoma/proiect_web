@@ -1655,7 +1655,7 @@ pre {
   background-color: #fff;
   background-clip: padding-box;
   border: 1px solid #ced4da;
-  border-radius: 0.2rem;
+  border-radius: 0.8rem;
   -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
   transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -2144,11 +2144,12 @@ fieldset:disabled a.btn {
     color: #fff;
     background-color: #3b73da;
     border-color: #3b73da; }
-  .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
-  .show > .btn-primary.dropdown-toggle {
-    color: #fff;
-    background-color: #245abe;
-    border-color: #2255b3; }
+     .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
+     .show > .btn-primary.dropdown-toggle {
+          color: #fff;
+          background-color: #8d8d8f;
+          border-color: #8d8d8f;
+     }
     .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
     .show > .btn-primary.dropdown-toggle:focus {
       -webkit-box-shadow: 0 0 0 0.15rem rgba(88, 136, 224, 0.5);
@@ -3100,10 +3101,11 @@ input[type="button"].btn-block {
   position: absolute;
   z-index: -1;
   opacity: 0; }
-  .custom-control-input:checked ~ .custom-control-label::before {
-    color: #3b73da;
-    border-color: #3b73da;
-    background-color: #3b73da; }
+     .custom-control-input:checked ~ .custom-control-label::before {
+          color: #8d8d8f;
+          border-color: #8d8d8f;
+          background-color: #8d8d8f;
+     }
   .custom-control-input:focus ~ .custom-control-label::before {
     -webkit-box-shadow: 0 0 0 1px #f5f6f8, 0 0 0 0.15rem rgba(59, 115, 218, 0.25);
             box-shadow: 0 0 0 1px #f5f6f8, 0 0 0 0.15rem rgba(59, 115, 218, 0.25); }
@@ -6045,7 +6047,10 @@ button.bg-purple:focus {
     -webkit-box-orient: horizontal !important;
     -webkit-box-direction: normal !important;
         -ms-flex-direction: row !important;
-            flex-direction: row !important; }
+            flex-direction: row !important; 
+            font-size: 18px;
+            padding: auto;
+  }
   .flex-sm-column {
     -webkit-box-orient: vertical !important;
     -webkit-box-direction: normal !important;
@@ -6781,7 +6786,9 @@ button.bg-purple:focus {
 
 .mt-3,
 .my-3 {
-  margin-top: 1.5rem !important; }
+  margin-top: 1.5rem !important; 
+  gap: 1em;
+}
 
 .mr-3,
 .mx-3 {
@@ -8101,7 +8108,9 @@ button.bg-purple:focus {
   text-align: right !important; }
 
 .text-center {
-  text-align: center !important; }
+  text-align: center !important; 
+  margin: auto 5px;
+}
 
 @media (min-width: 576px) {
   .text-sm-left {
@@ -8411,7 +8420,9 @@ a.text-purple:hover, a.text-purple:focus {
   font-family: "Material Design Icons"; }
 
 .btn {
-  color: #fff; }
+  color: #fff; 
+  border-radius: 1em;
+}
   .btn .mdi:before {
     margin-top: -1px; }
 

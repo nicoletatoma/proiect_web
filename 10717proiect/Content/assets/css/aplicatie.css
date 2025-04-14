@@ -12,6 +12,10 @@ header {
     background-color: rgb(255 255 255 / 38%);
 }
 
+.card-sign{
+     border-radius: 35px !important;
+}
+
 .text-after-logo {
     margin-top: 8px;
     font-size: 30px;
@@ -19,6 +23,11 @@ header {
     justify-content: flex-start;
     align-items: center;
     color: black !important;
+}
+
+.text-after-logo-sign {
+     font-size: 30px;
+     color: black !important;
 }
 
 .text-coperta {
@@ -166,7 +175,7 @@ header {
 .linie-herticala {
     display: flex;
     float: left;
-    margin-top: 10px;
+    margin-top: 15px;
     height: 25px;
     width: 1px;
     border: 1px solid black;
@@ -174,7 +183,12 @@ header {
 
 .final {
     height: 45px !important;
-    margin-top: 0px;
+    margin-top: 5px;
+}
+
+.gap{
+    gap: 1em;
+    margin:auto;
 }
 
 .log_in {
@@ -225,4 +239,24 @@ header {
 .bara-cautare{
     margin-top: -5px;
     
+}
+
+.linine-dupa-filru {
+    height: 5px;
+    width: 110%;
+    margin-left: -5%;
+    background-color: #828181;
+    border-radius: 50%;
+
+}
+
+
+.sign {
+     background-color: rgb(207 200 200);
+     border-radius: 75px;
+     
+}
+
+.text-center.w-75.m-auto.img-signin img {
+     height: 120px;
 }

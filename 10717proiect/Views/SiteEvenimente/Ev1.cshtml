@@ -1,0 +1,106 @@
+﻿@using System.Web.Optimization;
+@{
+    ViewBag.Title = "Ev1";
+    Layout = "~/Views/Shared/_EvenimentSingur.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="utf-8" />
+    <title>Minton - Responsive Admin Dashboard Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+    <meta content="Coderthemes" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="~/Content/assets/images/favicon.ico">
+
+    <!-- App css -->
+    @Styles.Render("~/Content/assets/css/aplicatie.css")
+    @Styles.Render("~/Content/assets/css/app.css")
+    @Styles.Render("~/Content/assets/css/bootstrap.css")
+    @Styles.Render("~/Content/assets/css/icons.css")
+
+
+
+</head>
+<body>
+
+    <div class="wrapper">
+        <div class="container-fluid w-auto">
+            
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box">
+
+                        <h1 class="page-title">Filme</h1>
+                    </div>
+                </div>
+            </div>
+            <!-- end page title -->
+
+
+            <div class="row">
+
+                <div class="w-100">
+                    <div class="gal-box w-100">
+
+                        <div class="row-cols-2">
+                            <div class=" col-auto w-50">
+                                <div>
+                                    <a href="~/Content/assets/images/carbon.jpg" class="image-popup" title="Screenshot-1">
+                                        <img src="~/Content/assets/images/carbon.jpg" class="img-fluid" alt="work-thumbnail">
+                                    </a>
+                                </div>
+
+                                <div class="gall-info">
+                                    <h4 class="font-16 mt-0">Man wearing black jacket</h4>
+                                    <a href="javascript: void(0);">
+                                        <img src="~/Content/assets/images/users/avatar-3.jpg" alt="user-img" class="rounded-circle" height="24" />
+                                        <span class="text-muted ml-1">Justin Coke</span>
+                                    </a>
+                                    <a href="javascript: void(0);" class="gal-like-btn"><i class="mdi mdi-heart-outline text-muted"></i></a>
+                                </div> <!-- gallery info -->
+
+                            </div>
+
+                            <div class="">
+                                <h4 class="font-16 mt-0">Man wearing black jacket</h4>
+                                <a href="javascript: void(0);">
+                                    <img src="~/Content/assets/images/users/avatar-3.jpg" alt="user-img" class="rounded-circle" height="24" />
+                                    <span class="text-muted ml-1">Justin Coke</span>
+                                </a>
+                                <a href="javascript: void(0);" class="gal-like-btn"><i class="mdi mdi-heart-outline text-muted"></i></a>
+                            </div> <!-- gallery info -->
+                        </div>
+                    </div> <!-- end gal-box -->
+                </div> <!-- end col -->
+
+
+                <!-- end row -->
+
+            </div> <!-- end container -->
+        </div>
+        <!-- end wrapper -->
+        <!-- ============================================================== -->
+        <!-- End Page content -->
+        <!-- ============================================================== -->
+
+
+
+        <!-- Vendor js -->
+        <script src="~/Content/assets/js/vendor.min.js"></script>
+
+        <!-- Magnific Popup-->
+        <script src="~/Content/assets/libs/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+        <!-- Gallery Init-->
+        <script src="~/Content/assets/js/pages/gallery.init.js"></script>
+
+        <!-- App js -->
+        <script src="~/Content/assets/js/app.min.js"></script>
+
+
+    </body>
+</html>

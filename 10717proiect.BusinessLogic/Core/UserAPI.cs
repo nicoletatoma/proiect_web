@@ -22,7 +22,7 @@ namespace _10717proiect.BusinessLogic.Core
         {
 
 
-            //cautare dupa nume eveniment,    implementare ced
+            //cautare dupa nume eveniment,    implementare cod
 
 
 

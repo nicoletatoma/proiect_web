@@ -6,14 +6,12 @@ using System.Web.Mvc;
 
 namespace _10717proiect.Controllers
 {
-    public class HomeController : Controller
+    public class SiteEvenimenteController : Controller
     {
-        // GET: Home
-        public ActionResult Index()
+        // GET: SiteEv
+        public ActionResult Ev1()
         {
-            ViewBag.Titlu = "Tiket Expres";
             return View();
         }
-
     }
 }

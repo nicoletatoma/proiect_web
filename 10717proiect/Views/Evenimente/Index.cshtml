@@ -1,13 +1,16 @@
 ﻿@using System.Web.Optimization;
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Titlu = "Evenimente Tiket Expresa";
 }
+
+@model List<_10717proiect.Models.Carduri.AdaugareCard>
 
 <!DOCTYPE html>
 <html lang="ro">
 <head>
     <meta charset="utf-8" />
-    <title>Minton - Responsive Admin Dashboard Template</title>
+    <title>@ViewBag.Titlu</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="Coderthemes" name="author" />
@@ -26,12 +29,7 @@
 </head>
 <body>
 
-    <!-- Pre-loader -->
-    <div id="preloader">
-        <div id="status">
-            <div class="bouncingLoader"><div></div><div></div><div></div></div>
-        </div>
-    </div>
+   
     <!-- End Preloader-->
     <!-- Navigation Bar-->
     @Html.Partial("_Header")
@@ -77,7 +75,7 @@
                 <form method="get" class="d-flex flex-wrap justify-content-between align-items-center p-3 bg-light rounded">
                     <!-- Filtru Tip Eveniment -->
                     <div class="d-flex flex-column flex-sm-row align-items-center gap-3">
-                        <label class="text-center"><i class="fas fa-theater-masks"></i></label>
+                        <label class="text-center text-justify"><i class="fas fa-theater-masks"></i></label>
                         <select name="eventType" class="form-control">
                             <option value="">Toate</option>
                             <option value="concerte">Concerte</option>
@@ -134,200 +132,40 @@
                 </form>
             </div>
 
+            <hr class="linine-dupa-filru" />
 
             <div class="col-md-12 mt-3">
-                <div class="row">
-                    <div class="col-md-6 col-xl-3">
-                        <!-- Simple card -->
-                        <div class="card">
-                            <img class="card-img-top img-fluid" src="~/Content/assets/images/small/carbon.jpeg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Carbon </h5>
-                                <p class="card-text">
-                                    100 lei
-                                </p>
-                                <div class="e-c-time">
-                                    <span>
-                                        23
-                                    </span>
-                                    <span class="e-c-month">
-                                        feb.
-                                    </span>
+
+               @using (Html.BeginForm("AdaugareCard", "Evenimente", FormMethod.Post, new { autocomplete = "off", @class = "row col-md-12 mt-4" }))
+                {
+
+                    foreach (var card in Model)
+                    {
+                        <div class="col-md-6 col-xl-3">
+                            <!-- Simple card -->
+                            <div class="card">
+                                <img class="card-img-top img-fluid" src="@card.ImagineURL" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">@card.NumeCard </h5>
+                                    <p class="card-text">
+                                        @card.Pret Lei
+                                    </p>
+                                    <div class="e-c-time">
+                                        <span>
+                                            @card.Data
+                                        </span>
+                                        <span class="e-c-month">
+                                            @card.Luna
+                                        </span>
+                                    </div>
+                                    <a href="#" class="btn btn-primary">Buy </a>
                                 </div>
-                                <a href="#" class="btn btn-primary">Buy </a>
                             </div>
-                        </div>
 
-                    </div><!-- end col -->
-                    <div class="col-md-6 col-xl-3">
+                        </div><!-- end col -->
+                    }
+                }
 
-                        <!-- Simple card -->
-                        <div class="card">
-                            <img class="card-img-top img-fluid" src="~/Content/assets/images/small/puterea.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Puterea Probabilitatii</h5>
-                                <p class="card-text">
-                                    50 lei
-                                </p>
-                                <div class="e-c-time">
-                                    <span>
-                                        23
-                                    </span>
-                                    <span class="e-c-month">
-                                        feb.
-                                    </span>
-                                </div>
-                                <a href="#" class="btn btn-primary">Buy</a>
-                            </div>
-                        </div>
-
-                    </div><!-- end col -->
-
-                    <div class="col-md-6 col-xl-3">
-
-                        <!-- Simple card -->
-                        <div class="card">
-                            <img class="card-img-top img-fluid" src="~/Content/assets/images/small/tunete.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Tunete</h5>
-                                <p class="card-text">
-                                    100 lei
-                                </p>
-                                <div class="e-c-time">
-                                    <span>
-                                        23
-                                    </span>
-                                    <span class="e-c-month">
-                                        feb.
-                                    </span>
-                                </div>
-                                <a href="#" class="btn btn-primary">Buy</a>
-                            </div>
-                        </div>
-
-                    </div><!-- end col -->
-
-                    <div class="col-md-6 col-xl-3">
-
-                        <!-- Simple card -->
-                        <div class="card">
-                            <img class="card-img-top img-fluid" src="~/Content/assets/images/small/mademd.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Made in Moldova</h5>
-                                <p class="card-text">
-                                    75 lei
-                                </p>
-                                <div class="e-c-time">
-                                    <span>
-                                        23
-                                    </span>
-                                    <span class="e-c-month">
-                                        feb.
-                                    </span>
-                                </div>
-                                <a href="#" class="btn btn-primary">Buy</a>
-                            </div>
-                        </div>
-
-                    </div><!-- end col -->
-
-                    <div class="col-md-6 col-xl-3">
-
-                        <!-- Simple card -->
-                        <div class="card">
-                            <img class="card-img-top img-fluid" src="~/Content/assets/images/small/Varvara.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Varvara</h5>
-                                <p class="card-text">
-                                    100 lei
-                                </p>
-                                <div class="e-c-time">
-                                    <span>
-                                        28
-                                    </span>
-                                    <span class="e-c-month">
-                                        feb.
-                                    </span>
-                                </div>
-                                <a href="#" class="btn btn-primary">Buy</a>
-                            </div>
-                        </div>
-
-                    </div><!-- end col -->
-
-                    <div class="col-md-6 col-xl-3">
-
-                        <!-- Simple card -->
-                        <div class="card">
-                            <img class="card-img-top img-fluid" src="~/Content/assets/images/small/pescarus.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Pescărușul</h5>
-                                <p class="card-text">
-                                    125 lei
-                                </p>
-                                <div class="e-c-time">
-                                    <span>
-                                        23
-                                    </span>
-                                    <span class="e-c-month">
-                                        mar.
-                                    </span>
-                                </div>
-                                <a href="#" class="btn btn-primary">Buy</a>
-                            </div>
-                        </div>
-
-                    </div><!-- end col -->
-
-                    <div class="col-md-6 col-xl-3">
-
-                        <!-- Simple card -->
-                        <div class="card">
-                            <img class="card-img-top img-fluid" src="~/Content/assets/images/small/caleidoscop.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Caleidoscop</h5>
-                                <p class="card-text">
-                                    250 lei
-                                </p>
-                                <div class="e-c-time">
-                                    <span>
-                                        15
-                                    </span>
-                                    <span class="e-c-month">
-                                        apr.
-                                    </span>
-                                </div>
-                                <a href="#" class="btn btn-primary">Buy</a>
-                            </div>
-                        </div>
-
-                    </div><!-- end col -->
-
-                    <div class="col-md-6 col-xl-3">
-
-                        <!-- Simple card -->
-                        <div class="card">
-                            <img class="card-img-top img-fluid" src="~/Content/assets/images/small/womenday.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Women's day</h5>
-                                <p class="card-text">
-                                    150 lei
-                                </p>
-                                <div class="e-c-time">
-                                    <span>
-                                        8
-                                    </span>
-                                    <span class="e-c-month">
-                                        mar.
-                                    </span>
-                                </div>
-                                <a href="#" class="btn btn-primary">Buy</a>
-                            </div>
-                        </div>
-
-                    </div><!-- end col -->
-
-                </div>
             </div>
 
 
