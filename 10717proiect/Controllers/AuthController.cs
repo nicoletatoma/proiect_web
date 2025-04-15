@@ -31,8 +31,8 @@ namespace _10717proiect.Controllers
         {
             // string session id provider
             //check id in session
-            var sId = "abcd";   
-            bool ISession = _session.ValidateSessionId(sId);
+            //var sId = "abcd";   
+            //bool ISession = _session.ValidateSessionId(sId);
             return View();
         }
 
@@ -43,6 +43,7 @@ namespace _10717proiect.Controllers
             //transmitere date în business logic
             var data = new UserLoginDTO
             {
+                LoginTime = DateTime.Now,
                 Username = login.Username,
                 Password = login.Password,
                 UserIP = "localhost"
@@ -50,6 +51,7 @@ namespace _10717proiect.Controllers
 
             string token = _auth.UserAuthLogic(data);
 
+            //set cookies key value to session
             return View();
             
         }

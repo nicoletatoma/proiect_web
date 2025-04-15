@@ -12,5 +12,6 @@ namespace _10717proiect.Domain.Model.User
         public string Username { get; set; }
         public string Password { get; set; }
         public string UserIP { get; set; }
+        public DateTime LoginTime { get; set; }
     }
 }

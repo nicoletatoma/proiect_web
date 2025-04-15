@@ -24,7 +24,7 @@ namespace _10717proiect.BusinessLogic.Core
         }
 
         //---------------EVENT----------------
-        public string EventLogicAction(EventDTO data)
+        public string UserEventLogicAction(EventDTO data)
         {
             return "event-key";
         }
