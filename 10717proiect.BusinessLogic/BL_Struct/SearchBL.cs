@@ -9,11 +9,12 @@ using System.Threading.Tasks;
 
 namespace _10717proiect.BusinessLogic.BL_Struct
 {
-    internal class SearchBL : UserAPI, ISearch
-    {
-        public string UserSearchLogic(SearchEv eveniment)
-        {
-            return UserSearchLogic(eveniment);
-        }
-    }
+     internal class SearchBL : UserAPI, ISearch
+     {
+          public string UserSearchLogic(SearchEv eveniment)
+          {
+               return base.UserSearchLogic(eveniment);
+          }
+     }
 }
+

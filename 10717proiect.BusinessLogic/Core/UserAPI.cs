@@ -9,8 +9,10 @@ namespace _10717proiect.BusinessLogic.Core
 {
     public class UserAPI
     {
-        //metodele entitatilor se termina cu action
-        internal bool ValidateSessionIdAction(string id)
+         
+
+          //metodele entitatilor se termina cu action
+          internal bool ValidateSessionIdAction(string id)
         {
             return true;
         }
@@ -22,11 +24,10 @@ namespace _10717proiect.BusinessLogic.Core
         {
 
 
-            //cautare dupa nume eveniment,    implementare cod
+               //cautare dupa nume eveniment,    implementare cod
 
 
-
-            return "cautare-cuv";
+               return "cautare-cuv";
         }
     }
 }
