@@ -1,5 +1,4 @@
-﻿using _10717proiect.Domain.Model.User;
-using _10717proiect.Domain.Model.User.Reg;
+﻿using _10717proiect.Domain.Model.User.Reg;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace _10717proiect.BusinessLogic.Interfaces
 {
-    public interface IAuth
+    public interface IUser
     {
-        string UserAuthLogic(UserLoginDTO data);
+        UserRegDataResp RegisterUserAction(UserRegDTO local);
     }
 }

@@ -54,12 +54,14 @@
     <Compile Include="BL_Struct\EventBL.cs" />
     <Compile Include="BL_Struct\AuthBL.cs" />
     <Compile Include="BL_Struct\SessionBL.cs" />
+    <Compile Include="BL_Struct\UserBL.cs" />
     <Compile Include="BusinessLogic.cs" />
     <Compile Include="Core\UserAPI.cs" />
     <Compile Include="DbContext\UserContext.cs" />
     <Compile Include="Interfaces\IAuth.cs" />
     <Compile Include="Interfaces\IEvent.cs" />
     <Compile Include="Interfaces\ISession.cs" />
+    <Compile Include="Interfaces\IUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

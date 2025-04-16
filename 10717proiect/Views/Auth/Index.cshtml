@@ -3,15 +3,29 @@
     ViewBag.Title = "Index";
 }
 
+@model _10717proiect.Models.Auth.UserDataLogin
+
+
 <h2>Index</h2>
 
-<div class="container">
-    <label for="uname"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required>
 
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
+@using(Html.BeginForm("Auth", "Auth", FormMethod.Post))
+{ 
+    <div class="container">
+        @*<label for="uname"><b>Username</b></label>*@
+        @Html.LabelFor(u => u.Username)
 
-    <button type="submit">Login</button>
-    
-</div>
+        @*<input type="text" placeholder="Enter Username" name="uname" required>*@
+        @Html.TextBoxFor(u => u.Username)
+
+        @*<label for="psw"><b>Password</b></label>*@
+        @Html.LabelFor(u => u.Password)
+
+        @*<input type="password" placeholder="Enter Password" name="psw" required>*@
+        @Html.TextBoxFor(u => u.Password)
+
+        <button type="submit">Login</button>
+
+    </div>
+
+}

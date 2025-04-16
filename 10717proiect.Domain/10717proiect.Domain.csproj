@@ -44,6 +44,8 @@
   <ItemGroup>
     <Compile Include="Enums\URole.cs" />
     <Compile Include="Model\Events\EventDTO.cs" />
+    <Compile Include="Model\User\Reg\UserRegDataResp.cs" />
+    <Compile Include="Model\User\Reg\UserRegDTO.cs" />
     <Compile Include="Model\User\UDbTable.cs" />
     <Compile Include="Model\User\UserLoginDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

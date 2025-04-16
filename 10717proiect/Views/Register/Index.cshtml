@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@model _10717proiect.Models.Reg.UserDataReg
+
+<h2>Register page</h2>
+@using (Html.BeginForm("Reg", "Register", FormMethod.Post))
+{
+
+    <div class="container">
+
+
+        @Html.LabelFor(u => u.Username)
+        @Html.TextBoxFor(u => u.Username)
+
+        @Html.LabelFor(u => u.Password)
+        @Html.TextBoxFor(u => u.Password)
+
+        @Html.LabelFor(u => u.Email)
+        @Html.TextBoxFor(u => u.Email)
+
+        @Html.LabelFor(u => u.Phone)
+        @Html.TextBoxFor(u => u.Phone)
+
+        @Html.LabelFor(u => u.Address)
+        @Html.TextBoxFor(u => u.Address)
+
+        <button type="submit">Login</button>
+    </div>
+}

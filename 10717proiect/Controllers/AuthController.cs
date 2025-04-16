@@ -33,7 +33,7 @@ namespace _10717proiect.Controllers
             //check id in session
             //var sId = "abcd";   
             //bool ISession = _session.ValidateSessionId(sId);
-            return View();
+            return View(new UserDataLogin());
         }
 
         [HttpPost]

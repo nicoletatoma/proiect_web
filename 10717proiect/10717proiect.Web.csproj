@@ -209,6 +209,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="10717proiect.csproj.user" />
     <Content Include="Content\assets\css\aplicatie.css" />
     <Content Include="Content\assets\css\app-rtl.css" />
     <Content Include="Content\assets\css\app.css" />
@@ -665,11 +666,13 @@
     <Compile Include="Controllers\EvenimenteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
+    <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Auth\UserDataLogin.cs" />
     <Compile Include="Models\Events\Event.cs" />
+    <Compile Include="Models\Reg\UserDataReg.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -684,6 +687,7 @@
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Auth\Index.cshtml" />
+    <Content Include="Views\Register\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
