@@ -797,6 +797,7 @@
     <Compile Include="App_Start\BundlesConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\CreateController.cs" />
     <Compile Include="Controllers\EvenimenteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
@@ -805,6 +806,7 @@
     </Compile>
     <Compile Include="Models\Auth\UserDataLogin.cs" />
     <Compile Include="Models\Auth\UserDataRegister.cs" />
+    <Compile Include="Models\Event\EventDataModelView.cs" />
     <Compile Include="Models\User\AuthData.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -820,6 +822,7 @@
     <Content Include="Views\Locations\Index.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Create\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

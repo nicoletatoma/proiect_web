@@ -1,0 +1,87 @@
+﻿@using System.Web.Optimization
+
+@model _10717proiect.Models.Event.EventDataModelView
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-light">
+                    <h2 class="text-center mb-0">Adaugă un eveniment nou</h2>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("CreateEvent", "Create", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="mb-3">
+                            <label for="Name" class="form-label">Numele evenimentului</label>
+                            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="Description" class="form-label">Descriere</label>
+                            @Html.TextAreaFor(model => model.Description, new { @class = "form-control", rows = "5" })
+                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="EventDate" class="form-label">Data evenimentului</label>
+                                <input type="date" name="EventDate" id="EventDate" class="form-control" required />
+                                @Html.ValidationMessageFor(model => model.EventDate, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="Location" class="form-label">Locație</label>
+                                @Html.TextBoxFor(model => model.Location, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="CategoryId" class="form-label">Categoria</label>
+                                <select name="CategoryId" id="CategoryId" class="form-select">
+                                    <option value="">Selectați categoria</option>
+                                    <option value="1">Concert</option>
+                                    <option value="2">Teatru</option>
+                                    <option value="3">Festival</option>
+                                    <option value="4">Filme</option>
+                                    <option value="5">StandUp</option>
+                                </select>
+                                @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="Price" class="form-label">Preț</label>
+                                <div class="input-group">
+                                    <input type="number" name="Price" id="Price" class="form-control" step="0.01" min="0" />
+                                    <span class="input-group-text">MDL</span>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="ImageFile" class="form-label">Imagine eveniment</label>
+                            <input type="file" name="ImageFile" id="ImageFile" class="form-control" accept="image/*" />
+                            <div class="form-text">Imaginea principală a evenimentului (format recomandat: JPG, PNG)</div>
+                        </div>
+
+                        <div class="mt-4 d-flex justify-content-between">
+                            <a href="@Url.Action("Index", "Events")" class="btn btn-31">
+                                <span class="text-container">
+                                    <span class="text">Înapoi</span>
+                                </span>
+                            </a>
+                            <button type="submit" class="btn-31 login-btn">
+                                <span class="text-container">
+                                    <span class="text">Adaugă eveniment</span>
+                                </span>
+                            </button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

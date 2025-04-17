@@ -52,12 +52,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BL_Struct\AuthBL.cs" />
+    <Compile Include="BL_Struct\EventBL.cs" />
     <Compile Include="BL_Struct\ProductBL.cs" />
     <Compile Include="BL_Struct\SessionBL.cs" />
     <Compile Include="BusinessLogic.cs" />
+    <Compile Include="Core\DbDataContext\EventContext.cs" />
     <Compile Include="Core\DbDataContext\UserContext.cs" />
+    <Compile Include="Core\EventAPI.cs" />
     <Compile Include="Core\UserAPI.cs" />
     <Compile Include="Interfaces\IAuth.cs" />
+    <Compile Include="Interfaces\IEvent.cs" />
     <Compile Include="Interfaces\IProduct.cs" />
     <Compile Include="Interfaces\ISession.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
