@@ -34,7 +34,6 @@ namespace _10717proiect.BusinessLogic.Core
                 {
                     Status = false,
                     Error = "An Usernam is already registered",
-
                 };
 
             }

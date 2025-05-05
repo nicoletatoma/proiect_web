@@ -57,7 +57,8 @@
     <Compile Include="BL_Struct\UserBL.cs" />
     <Compile Include="BusinessLogic.cs" />
     <Compile Include="Core\UserAPI.cs" />
-    <Compile Include="DbContext\UserContext.cs" />
+    <Compile Include="DBContext\EventContext.cs" />
+    <Compile Include="DBContext\UserContext.cs" />
     <Compile Include="Interfaces\IAuth.cs" />
     <Compile Include="Interfaces\IEvent.cs" />
     <Compile Include="Interfaces\ISession.cs" />
@@ -75,7 +76,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DbContext\Seed\" />
+    <Folder Include="DBContext\Seed\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

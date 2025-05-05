@@ -43,7 +43,7 @@ namespace _10717proiect.Controllers
             };
 
             UserRegDataResp resp = _user.RegisterUserAction(local);
-            return null;
+            return View(data);
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IdentityModel;
 using System.Linq;
 using System.Management.Instrumentation;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -45,6 +46,12 @@ namespace _10717proiect.Controllers
             return View();
         }
 
-        
+        [HttpPost]
+        public ActionResult FilterEvents(EventDTO filters)
+        {
+            // filters vine din JSON-ul din body
+            return Ok();
+        }
+
     }
 }

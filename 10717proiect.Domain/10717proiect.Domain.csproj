@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\URole.cs" />
+    <Compile Include="Model\Events\EDbTable.cs" />
     <Compile Include="Model\Events\EventDTO.cs" />
     <Compile Include="Model\User\Reg\UserRegDataResp.cs" />
     <Compile Include="Model\User\Reg\UserRegDTO.cs" />
