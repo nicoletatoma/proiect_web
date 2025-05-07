@@ -23,9 +23,50 @@
                                         <p class="text-muted mb-4 mt-3">Enter your email address and password to access admin panel.</p>
                                    </div>
 
-                                   <form action="#">
+                                   
 
-                                        <div class="form-group mb-3">
+
+                                        @model _10717proiect.Models.Auth.UserDataLogin
+
+                                        @using (Html.BeginForm("Auth", "Auth", FormMethod.Post))
+                                        {
+                                             <div class="container">
+
+                                                  @*<label for="uname"><b>Username</b></label>*@
+                                                  @*<input type="text" placeholder="Enter Username" name="uname" required>*@
+                                                  
+
+
+                                                       @*<label for="emailaddress">Email address</label>*@
+                                                       @Html.LabelFor(u => u.Email)
+
+
+                                                       @*<input class="form-control" type="email" id="emailaddress" required="" placeholder="Enter your email">*@
+                                                       @Html.TextBoxFor(u => u.Email)
+
+                                              
+
+
+
+
+
+                                                  
+
+                                                  @*<label for="psw"><b>Password</b></label>*@
+                                                  @Html.LabelFor(u => u.Password)
+
+                                                  @*<input type="password" placeholder="Enter Password" name="psw" required>*@
+                                                  @Html.TextBoxFor(u => u.Password)
+
+
+                                                  
+
+                                                  <button type="submit">Login</button>
+
+                                             </div>
+
+                                        }
+                                        @*<div class="form-group mb-3">
                                              <label for="emailaddress">Email address</label>
                                              <input class="form-control" type="email" id="emailaddress" required="" placeholder="Enter your email">
                                         </div>
@@ -44,9 +85,9 @@
 
                                         <div class="form-group mb-0 text-center">
                                              <button class="btn btn-primary btn-block" type="submit"> Log In </button>
-                                        </div>
+                                        </div>*@
 
-                                   </form>
+                                   
 
 
                               </div> <!-- end card-body -->

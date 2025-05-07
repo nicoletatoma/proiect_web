@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace _10717proiect.Domain.Model.User
 {
-    public class SearchEv
-    {
+    public class SearchEvenimentAction
+     {
         public string NumeEveniment { get; set; }
     }
 }

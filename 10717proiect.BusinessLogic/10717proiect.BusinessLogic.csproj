@@ -51,11 +51,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BL_Struct\AuthBL.cs" />
     <Compile Include="BL_Struct\SearchBL.cs" />
     <Compile Include="BL_Struct\SessionBL.cs" />
     <Compile Include="BusinessLogic.cs" />
     <Compile Include="Core\UserAPI.cs" />
-    <Compile Include="DbContext\SearchContext.cs" />
+    <Compile Include="DBContext\SearchContext.cs" />
+    <Compile Include="DBContext\UserContext.cs" />
+    <Compile Include="Interfaces\IAuth.cs" />
     <Compile Include="Interfaces\ISearch.cs" />
     <Compile Include="Interfaces\ISession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

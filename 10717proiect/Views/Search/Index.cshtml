@@ -1,0 +1,26 @@
+﻿@using System.Web.Optimization;
+
+@{
+     Layout = "~/Views/Shared/_Layout.cshtml";
+     ViewBag.Title = "Search";
+}
+
+@model _10717proiect.Models.Search.SearchEveniment
+
+<!DOCTYPE html>
+<html>
+<body class="boxed-layout">
+    
+@using (Html.BeginForm("Search", "Search", FormMethod.Post))
+{
+
+     @Html.LabelFor(s => s.NumeEveniment)
+
+     @Html.TextBoxFor(s => s.NumeEveniment)
+
+     <button type="submit">Search</button>
+}
+</body>
+</html>
+
+

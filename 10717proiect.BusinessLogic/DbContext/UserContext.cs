@@ -6,15 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace _10717proiect.BusinessLogic.DBContext
 {
-     public class SearchContext : DbContext
+     public class UserContext : DbContext
      {
-         public SearchContext() : base("name=TiketExpresShop")
-          {
-          }
+          public UserContext() : base("name=10717proiect") { }
 
-          public virtual DbSet<EvTable> Search { get; set; }
+          public virtual DbSet<ULogDbTable> Users { get; set; }
+
      }
 }

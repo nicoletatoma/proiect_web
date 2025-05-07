@@ -1,4 +1,5 @@
 ﻿using _10717proiect.Domain.Model.User;
+using _10717proiect.Domain.Model.User.Auth;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace _10717proiect.BusinessLogic.Interfaces
 {
-    public interface ISearch
-    {
-        string UserSearchLogic(SearchEvenimentAction eveniment);
-    }
+     public interface IAuth
+     {
+          string UserAuthLogic(UserLoginDTO data);
+     }
 }

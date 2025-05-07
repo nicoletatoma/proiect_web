@@ -215,6 +215,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="10717proiect.csproj.user" />
     <Content Include="Content\assets\css\aplicatie.css" />
     <Content Include="Content\assets\css\app-rtl.css" />
     <Content Include="Content\assets\css\app.css" />
@@ -667,7 +668,6 @@
   <ItemGroup>
     <Compile Include="App_Start\BundlesConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\EvenimenteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -677,6 +677,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Auth\UserDataLogin.cs" />
     <Compile Include="Models\Carduri\AdaugareCard.cs" />
     <Compile Include="Models\Search\SearchEveniment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -694,9 +695,10 @@
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\SiteEvenimente\Ev1.cshtml" />
     <Content Include="Views\Shared\_EvenimentSingur.cshtml" />
-    <Content Include="Views\Accounts\SignIn.cshtml" />
-    <Content Include="Views\Accounts\SignUp.cshtml" />
+    <Content Include="Views\Auth\SignIn.cshtml" />
+    <Content Include="Views\Auth\SignUp.cshtml" />
     <Content Include="Views\Shared\_Sign.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
