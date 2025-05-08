@@ -8,6 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.SessionState;
+using System.Runtime.Remoting.Messaging;
 
 namespace _10717proiect.Controllers
 {
@@ -24,6 +25,11 @@ namespace _10717proiect.Controllers
                //bool ISession = _session.ValidateSessionId(sId);
                return View(new UserDataLogin());
           }
+
+          public ActionResult SignUp()
+          {
+               return View();
+          } 
           //constructor
           public AuthController()
           {
@@ -51,12 +57,21 @@ namespace _10717proiect.Controllers
                };
 
                string token = _auth.UserAuthLogic(data);
+               Session["UserEmail"] = login.Email;
+
 
                //set cookies key value to session
                return RedirectToAction("Index", "Home"); // sau orice alt view existent
 
 
           }
+
+          public ActionResult Logout()
+          {
+               Session.Clear(); // sau Session["UserEmail"] = null;
+               return RedirectToAction("Index", "Home");
+          }
+
 
      }
 }

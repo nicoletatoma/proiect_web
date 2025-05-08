@@ -7,69 +7,86 @@
 
             
 
-            <ul class="list-unstyled topnav-menu float-right mb-0">
+             <ul class="list-unstyled topnav-menu float-right mb-0">
 
-                <li class="d-none d-sm-block" >
-                    <form class="app-search bara-cautare" action="/Search" method="post">
-                        <div class="app-search-box">
-                            <div class="input-group bara-cautare">
+                  <li class="d-none d-sm-block">
+                       <form class="app-search bara-cautare" action="/Search" method="post">
+                            <div class="app-search-box">
+                                 <div class="input-group bara-cautare">
 
-                                 <input type="text" name="NumeEveniment" class="form-control" placeholder="Search...">
-                                <div class="input-group-append">
-                                    <button class="btn" type="submit">
-                                        <i class="fe-search"></i>
-                                    </button>
-                                </div>
+                                      <input type="text" name="NumeEveniment" class="form-control" placeholder="Search...">
+                                      <div class="input-group-append">
+                                           <button class="btn" type="submit">
+                                                <i class="fe-search"></i>
+                                           </button>
+                                      </div>
+                                 </div>
                             </div>
-                        </div>
-                    </form>
-                </li>
+                       </form>
+                  </li>
 
-                <li class="dropdown notification-list">
-                    <a href="~/Home/Index" class=" nav-link waves-effect waves-light">
-                        <i class="remixicon-home-5-line"></i>
-                        &nbsp Home
-                    </a>
-                </li>
+                  <li class="dropdown notification-list">
+                       <a href="~/Home/Index" class=" nav-link waves-effect waves-light">
+                            <i class="remixicon-home-5-line"></i>
+                            &nbsp Home
+                       </a>
+                  </li>
 
-                <div class="linie-herticala"></div>
-
-
-                <li class="dropdown notification-list">
-                    <a href="~/Evenimente/Index" class=" nav-link waves-effect waves-light">
-                        <i class="remixicon-coupon-line"></i>
-                        &nbsp Evenimente
-                    </a>
-                </li>
-
-                <div class="linie-herticala"></div>
-
-                <li class="dropdown notification-list">
-                    <a href="#" class=" nav-link waves-effect waves-light">
-                        <i class=" remixicon-shopping-bag-3-line"></i>&nbsp Coș
-                    </a>
-                    
-                </li>
-
-                <div class="linie-herticala final"></div>
-
-                <li class="dropdown notification-list ">
-                    <a href="~/Auth/SignIn" class="nav-link waves-effect waves-light log_in">
-
-                        Log In
-                    </a>
-                </li>
-
-                <li class="dropdown notification-list ">
-                    <a href="~/Auth/SignUp" class=" nav-link waves-effect waves-light sing_up">
-
-                        Sign Up
-                    </a>
-                </li>
+                  <div class="linie-herticala"></div>
 
 
+                  <li class="dropdown notification-list">
+                       <a href="~/Evenimente/Index" class=" nav-link waves-effect waves-light">
+                            <i class="remixicon-coupon-line"></i>
+                            &nbsp Evenimente
+                       </a>
+                  </li>
 
-            </ul>
+                  <div class="linie-herticala"></div>
+
+                  <li class="dropdown notification-list">
+                       <a href="#" class=" nav-link waves-effect waves-light">
+                            <i class=" remixicon-shopping-bag-3-line"></i>&nbsp Coș
+                       </a>
+
+                  </li>
+
+                  <div class="linie-herticala final"></div>
+
+                  @{
+                       var userEmail = Session["UserEmail"] as string;
+                  }
+
+                  @if (!string.IsNullOrEmpty(userEmail))
+                  {
+                       <li class="dropdown notification-list">
+                            <a href="#" class="nav-link waves-effect waves-light">
+                                 <i class="remixicon-user-3-line"></i> @userEmail
+                            </a>
+                       </li>
+                       <li class="dropdown notification-list">
+                            <a href="~/Auth/Logout" class="nav-link waves-effect waves-light">Logout</a>
+                       </li>
+                  }
+                  else
+                  {
+                       <li class="dropdown notification-list ">
+                            <a href="~/Auth/SignIn" class="nav-link waves-effect waves-light log_in">
+                                 Log In
+                            </a>
+                       </li>
+
+                       <li class="dropdown notification-list ">
+                            <a href="~/Auth/SignUp" class=" nav-link waves-effect waves-light sing_up">
+                                 Sign Up
+                            </a>
+                       </li>
+                  }
+
+
+
+
+             </ul>
 
             <!-- LOGO -->
             <div class="logo-box">

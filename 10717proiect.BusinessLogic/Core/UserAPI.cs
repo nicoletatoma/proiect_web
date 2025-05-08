@@ -26,41 +26,48 @@ namespace _10717proiect.BusinessLogic.Core
           //---------------AUTH----------------
           public string UserAuthLogicAction(UserLoginDTO data)
           {
-
-
-               ULogDbTable user;
-
                using (var db = new UserContext())
                {
-                    user = db.Users.FirstOrDefault(u => u.Email == data.Email);
+                    var user = db.Users.FirstOrDefault(u => u.Email == data.Email);
+
+                    if (user != null)
+                    {
+                         // Verifică parola
+                         if (user.Password == data.Password)
+                         {
+                              // Updatează ultima logare
+                              user.LastLoginDateTime = DateTime.Now;
+                              db.SaveChanges();
+
+                              // Returnează un token temporar sau ID sesiune
+                              return "token-key"; // Poți returna user.Id.ToString() dacă vrei
+                         }
+                         else
+                         {
+                              // Parolă greșită - în practică, ai returna un mesaj de eroare
+                              return null;
+                         }
+                    }
+                    else
+                    {
+                         // Creează un nou cont
+                         var u_data = new ULogDbTable()
+                         {
+                              Email = data.Email,
+                              Password = data.Password,
+                              LastLoginDateTime = DateTime.Now,
+                              RegistartionDateTime = DateTime.Now,
+                         };
+
+                         db.Users.Add(u_data);
+                         db.SaveChanges();
+
+                         return "token-key"; // Sau u_data.Id.ToString()
+                    }
                }
-
-               if (user != null)
-               {
-                    
-
-               }
-
-               var u_data = new ULogDbTable()
-               {
-                    Email = data.Email,
-                    Password = data.Password,
-                    LastLoginDateTime = DateTime.Now,
-                    RegistartionDateTime = DateTime.Now,
-                   
-               };
-
-
-               using (var db = new UserContext())
-               {
-                    db.Users.Add(u_data);
-                    db.SaveChanges();
-               }
-
-               return "token-key";
           }
 
-         
+
 
 
           //-----------------------------Search--------------------------------
