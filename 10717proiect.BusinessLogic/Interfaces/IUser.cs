@@ -1,0 +1,14 @@
+﻿using _10717proiect.Domain.User.Reg;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _10717proiect.BusinessLogic.Interfaces
+{
+    public interface IUser
+    {
+        UserRegDataResp RegisterUserAction(UserRegDTO local);
+    }
+}

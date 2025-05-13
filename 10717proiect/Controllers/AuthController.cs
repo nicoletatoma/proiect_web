@@ -51,28 +51,5 @@ namespace _10717proiect.Controllers
         {
             return View();
         }
-
-        [HttpPost]
-        public ActionResult Register(UserDataRegister register)
-        {
-            var data = new UserRegisterDTO
-            {
-                Username = register.Username,
-                Password = register.Password,
-                Email = register.Email
-            };
-
-            bool isRegistered = _auth.RegisterUser(data);
-
-            if (isRegistered)
-            {
-                return RedirectToAction("Index"); 
-            }
-            else
-            {
-                ViewBag.ErrorMessage = "Registration failed!";
-                return View();
-            }
-        }
     }
 }
