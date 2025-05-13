@@ -209,7 +209,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="10717proiect.csproj.user" />
     <Content Include="Content\assets\css\aplicatie.css" />
     <Content Include="Content\assets\css\app-rtl.css" />
     <Content Include="Content\assets\css\app.css" />
