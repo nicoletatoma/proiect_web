@@ -47,13 +47,11 @@
     <Compile Include="Enums\URole.cs" />
     <Compile Include="Model\Event\EventDataModel.cs" />
     <Compile Include="Model\Event\EventDbTable.cs" />
-    <Compile Include="Enums\URole.cs" />
     <Compile Include="Model\User\UserLoginDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User\UDbTable.cs" />
     <Compile Include="User\Reg\UserRegDataResp.cs" />
     <Compile Include="User\Reg\UserRegDTO.cs" />
-    <Compile Include="User\UDbTable.cs" />
     <Compile Include="User\UserAuthData.cs" />
   </ItemGroup>
   <ItemGroup>
