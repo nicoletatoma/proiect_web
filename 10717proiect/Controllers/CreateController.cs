@@ -38,6 +38,32 @@ namespace _10717proiect.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateEvent(EventDataModelView createEvent)
         {
+            string imagePath = null;
+
+           
+            if (createEvent.ImageFile != null && createEvent.ImageFile.ContentLength > 0)
+            {
+               
+                string uploadsFolder = Server.MapPath("~/Content/Images/Events");
+
+                
+                if (!System.IO.Directory.Exists(uploadsFolder))
+                {
+                    System.IO.Directory.CreateDirectory(uploadsFolder);
+                }
+
+                // Generați un nume unic pentru fișier pentru a evita suprascrierile
+                string uniqueFileName = Guid.NewGuid().ToString() + "_" +
+                                       System.IO.Path.GetFileName(createEvent.ImageFile.FileName);
+                string filePath = System.IO.Path.Combine(uploadsFolder, uniqueFileName);
+
+                // Salvați fișierul pe server
+                createEvent.ImageFile.SaveAs(filePath);
+
+                // Salvați calea relativă în baza de date
+                imagePath = "/Content/Images/Events/" + uniqueFileName;
+            }
+
             var data = new _10717proiect.Domain.Model.Event.EventDataModel
             {
                 Name = createEvent.Name,
@@ -46,13 +72,14 @@ namespace _10717proiect.Controllers
                 Location = createEvent.Location,
                 CategoryId = createEvent.CategoryId,
                 Price = createEvent.Price,
-                ImagePath = createEvent.ImagePath,
+                ImagePath = imagePath, // Folosiți calea nou generată
                 CreatedAt = DateTime.Now
             };
 
             string result = _eventCreate.CreateEventLogic(data);
 
-            return View("Index");
+            // Redirecționați către o pagină care arată toate evenimentele
+            return RedirectToAction("Index","Evenimente");
         }
     }
 }

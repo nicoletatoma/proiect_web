@@ -14,6 +14,7 @@ namespace _10717proiect.Models.Event
         public int CategoryId { get; set; }
         public decimal Price { get; set; }
         public string ImagePath { get; set; }
+        public HttpPostedFileBase ImageFile { get; set; }
         public DateTime CreatedAt { get; set; }
     }
 }

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace _10717proiect.Domain.Model.Event
 {
+    [Table("EventDbTables")]
     public class EventDbTable
     {
         [Key]
@@ -34,9 +35,11 @@ namespace _10717proiect.Domain.Model.Event
         [Display(Name = "Categoria")]
         public int CategoryId { get; set; }
 
+        [Required]
         [Display(Name = "Preț")]
         public decimal Price { get; set; }
 
+        [Required]
         [Display(Name = "Imagine")]
         public string ImagePath { get; set; }
 
