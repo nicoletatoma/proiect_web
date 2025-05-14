@@ -1,6 +1,5 @@
 ﻿using _10717proiect.BusinessLogic.Core;
 using _10717proiect.BusinessLogic.Interfaces;
-using _10717proiect.Domain.Model.User;
 using _10717proiect.Domain.User.Reg;
 using System;
 using System.Collections.Generic;
@@ -10,11 +9,12 @@ using System.Threading.Tasks;
 
 namespace _10717proiect.BusinessLogic.BL_Struct
 {
-    public class AuthBL : UserAPI, IAuth
+    public class UserBL : UserAPI, IUser
     {
-        public string UserAuthLogic(UserLoginDTO data)
-        {
-            return UserAuthLogicAction(data);
+        public UserRegDataResp RegisterUserAction(UserRegDTO local) 
+        { 
+            return SetRegisterUserAction(local);
         }
+
     }
 }

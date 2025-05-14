@@ -18,7 +18,12 @@ namespace _10717proiect.BusinessLogic
 
         public IAuth GetAuthBL() 
         { 
-        return new AuthBL();
+            return new AuthBL();
+        }
+
+        public IUser GetUserBL()
+        {
+            return new UserBL();
         }
         public IEvent CreateEventBL()
         {

@@ -16,36 +16,39 @@ namespace _10717proiect.Domain.User
         public int Id { get; set; }
 
         [Required]
-        [Display(Name = "username")]
+        [Display(Name = "Username")]
         [StringLength(30, MinimumLength = 5, ErrorMessage = "Username cannot be longer than 30 characters.")]
         public string Username { get; set; }
 
         [Required]
-        [Display(Name = "password")]
+        [Display(Name = "Password")]
         [StringLength(50, MinimumLength = 8, ErrorMessage = "Password cannot be shorter than 8 characters.")]
         public string Password { get; set; }
 
         [Required]
-        [Display(Name = "email address")]
-        [StringLength(30, MinimumLength = 5, ErrorMessage = "Email cannot be shorter than 5 characters.")]
+        [Display(Name = "Email")]
+        [StringLength(30)]
         public string Email { get; set; }
 
-        [Display(Name = "phone")]
-        public string Phone {  get; set; }
-
-        [Display(Name = "address")]
+        [Display(Name = "Address")]
         public string Address { get; set; }
 
-        [Display(Name = "ip")]
+        [Display(Name = "Phone")]
+        public string Phone { get; set; }
+
+        [StringLength(30)]
+        [Display(Name = "UserIP")]
         public string UserIP { get; set; }
 
-        [Display(Name ="reg_dt")]
-        public DateTime RegistrationDateTime { get; set; }
+        [Display(Name = "Login_dt")]
+        [DataType(DataType.Date)]
+        public DateTime LastLoginDateTime { get; set; }
 
-        [Display(Name = "login_dt")]
-        public DateTime LastLoginGateTime { get; set; }
+        [Display(Name = "Reg_dt")]
+        [DataType(DataType.Date)]
+        public DateTime RegistartionDateTime { get; set; }
 
-        [Display(Name = "u_level")]
+        [Display(Name = "U_Level")]
         public URole Level { get; set; }
     }
 }

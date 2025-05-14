@@ -16,7 +16,6 @@ namespace _10717proiect.Domain.Enums
         User1 = 101,
         User2 = 102,
         Moderator = 200,
-        Vip = 300,
-        Administrator = 400
+        Admin = 300
     }
 }

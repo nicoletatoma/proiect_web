@@ -55,15 +55,18 @@
     <Compile Include="BL_Struct\EventBL.cs" />
     <Compile Include="BL_Struct\ProductBL.cs" />
     <Compile Include="BL_Struct\SessionBL.cs" />
+    <Compile Include="BL_Struct\UserBL.cs" />
     <Compile Include="BusinessLogic.cs" />
     <Compile Include="Core\DbDataContext\EventContext.cs" />
     <Compile Include="Core\DbDataContext\UserContext.cs" />
     <Compile Include="Core\EventAPI.cs" />
     <Compile Include="Core\UserAPI.cs" />
+    <Compile Include="DBContext\Seed\UserContext.cs" />
     <Compile Include="Interfaces\IAuth.cs" />
     <Compile Include="Interfaces\IEvent.cs" />
     <Compile Include="Interfaces\IProduct.cs" />
     <Compile Include="Interfaces\ISession.cs" />
+    <Compile Include="Interfaces\IUser.cs" />
     <Compile Include="Migrations\202504172000288_InitialCreate.cs" />
     <Compile Include="Migrations\202504172000288_InitialCreate.Designer.cs">
       <DependentUpon>202504172000288_InitialCreate.cs</DependentUpon>
@@ -88,6 +91,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="App.config" />
     <None Include="obj\Debug\10717proiect.BusinessLogic.csproj.AssemblyReference.cache" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
@@ -95,8 +100,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Debug\" />
-    <Folder Include="Core\DbDataContext\Seed\" />
-    <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202504172000288_InitialCreate.resx">
