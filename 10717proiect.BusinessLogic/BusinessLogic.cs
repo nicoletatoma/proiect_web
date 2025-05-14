@@ -1,4 +1,5 @@
 ﻿using _10717proiect.BusinessLogic.BL_Struct;
+using _10717proiect.BusinessLogic.BLStruct;
 using _10717proiect.BusinessLogic.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,10 @@ namespace _10717proiect.BusinessLogic
         public IAuth GetAuthBL() 
         { 
         return new AuthBL();
+        }
+        public IEvent CreateEventBL()
+        {
+            return new EventBL();
         }
     }
 }

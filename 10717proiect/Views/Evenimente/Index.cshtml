@@ -3,6 +3,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@model IEnumerable<_10717proiect.Domain.Model.Event.EventDbTable>
+
+
 <!DOCTYPE html>
 <html lang="ro">
 <head>
@@ -39,499 +42,331 @@
     <!-- ============================================================== -->
     <!-- Start Page Content here -->
     <!-- ============================================================== -->
-    <div class="wrapper">
-        <div class="container-fluid">
+<div class="wrapper">
+    <div class="container-fluid">
 
-            <!-- start page title -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="page-title-box">
-                        <div class="page-title-right">
-                            <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="javascript: void(0);">TE</a></li>
-                                <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
-                                <li class="breadcrumb-item active">Evenimente</li>
-                            </ol>
-                        </div>
-                        <h4 class="page-title fs-4 text-muted">Evenimente</h4>
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">TE</a></li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
+                            <li class="breadcrumb-item active">Evenimente</li>
+                        </ol>
                     </div>
+                    <h4 class="page-title fs-4 text-muted">Evenimente</h4>
                 </div>
             </div>
-            <!-- end page title -->
-            <!-- Filter -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="text-center filter-menu">
-                        <a href="javascript: void(0);" class="filter-menu-item active" data-rel="all">Toate </a>
-                        <a href="javascript: void(0);" class="filter-menu-item" data-rel="web">Concerte </a>
-                        <a href="javascript: void(0);" class="filter-menu-item" data-rel="graphic">Festivaluri</a>
-                        <a href="javascript: void(0);" class="filter-menu-item" data-rel="illustrator">Spectacole</a>
-                        <a href="javascript: void(0);" class="filter-menu-item" data-rel="photography">Sport</a>
-                    </div>
-                </div>
-            </div>
-            <!-- end row-->
-
-            <div class="container mt-3">
-                <h4 class="text-center">Filtre</h4>
-                <form method="get" class="d-flex flex-wrap justify-content-between align-items-center p-3 bg-light rounded">
-                    <!-- Filtru Tip Eveniment -->
-                    <div class="d-flex flex-column flex-sm-row align-items-center gap-3">
-                        <label class="text-center"><i class="fas fa-theater-masks"></i></label>
-                        <select name="eventType" class="form-control">
-                            <option value="">Toate</option>
-                            <option value="concerte">Concerte</option>
-                            <option value="festivaluri">Festivaluri</option>
-                            <option value="spectacole">Spectacole</option>
-                            <option value="sport">Sport</option>
-                        </select>
-                    </div>
-
-                    <!-- Filtru Dată -->
-                    <div class="d-flex flex-column flex-sm-row align-items-center gap-3">
-                        <label class="text-center"><i class="fas fa-calendar-alt"></i></label>
-                        <input type="date" name="date" class="form-control">
-                    </div>
-
-                    <!-- Filtru Locație -->
-                    <div class="d-flex flex-column flex-sm-row align-items-center gap-3">
-                        <label class="text-center"><i class="fas fa-map-marker-alt"></i></label>
-                        <select name="city" class="form-control">
-                            <option value="">Locația</option>
-                            <option value="Chișinău">Chișinău</option>
-                            <option value="Bălți">Bălți</option>
-                            <option value="Orhei">Orhei</option>
-                            <option value="Cahul">Cahul</option>
-                            <option value="Ungheni">Ungheni</option>
-                        </select>
-                    </div>
-
-                    <!-- Filtru Preț -->
-                    <div class="d-flex flex-column flex-sm-row align-items-center gap-3">
-                        <label class="text-center"><i class="fas fa-dollar-sign"></i></label>
-                        <div class="d-flex gap-2">
-                            <input type="number" name="minPrice" class="form-control" placeholder="Min" min="0" step="10">
-                            <input type="number" name="maxPrice" class="form-control" placeholder="Max" min="0" step="10">
-                        </div>
-                    </div>
-
-                    <!-- Filtru Ordine -->
-                    <div class="d-flex flex-column flex-sm-row align-items-center gap-3">
-                        <label class="text-center"><i class="fas fa-sort"></i></label>
-                        <select name="sort" class="form-control">
-                            <option value="date_asc">Dată (crescător)</option>
-                            <option value="date_desc">Dată (descrescător)</option>
-                            <option value="price_asc">Preț (crescător)</option>
-                            <option value="price_desc">Preț (descrescător)</option>
-                        </select>
-                    </div>
-
-                    <!-- Butoane -->
-                    <div class="d-flex w-100 mt-3 justify-content-center">
-                        <button type="submit" class="btn btn-primary px-2">Aplică filtre</button>
-                        <button type="reset" class="btn btn-secondary px-2 ms-4">Resetează</button>
-                    </div>
-                </form>
-            </div>
-
-
-            <div class="col-md-12 mt-3">
-                <div class="row">
-                    <div class="col-md-6 col-xl-3">
-                        <!-- Simple card -->
-                        <div class="card">
-                            <img class="card-img-top img-fluid" src="~/Content/assets/images/small/carbon.jpeg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Carbon </h5>
-                                <p class="card-text">
-                                    100 lei
-                                </p>
-                                <div class="e-c-time">
-                                    <span>
-                                        23
-                                    </span>
-                                    <span class="e-c-month">
-                                        feb.
-                                    </span>
-                                </div>
-                                <a href="#" class="btn btn-primary">Buy </a>
-                            </div>
-                        </div>
-
-                    </div><!-- end col -->
-                    <div class="col-md-6 col-xl-3">
-
-                        <!-- Simple card -->
-                        <div class="card">
-                            <img class="card-img-top img-fluid" src="~/Content/assets/images/small/puterea.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Puterea Probabilitatii</h5>
-                                <p class="card-text">
-                                    50 lei
-                                </p>
-                                <div class="e-c-time">
-                                    <span>
-                                        23
-                                    </span>
-                                    <span class="e-c-month">
-                                        feb.
-                                    </span>
-                                </div>
-                                <a href="#" class="btn btn-primary">Buy</a>
-                            </div>
-                        </div>
-
-                    </div><!-- end col -->
-
-                    <div class="col-md-6 col-xl-3">
-
-                        <!-- Simple card -->
-                        <div class="card">
-                            <img class="card-img-top img-fluid" src="~/Content/assets/images/small/tunete.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Tunete</h5>
-                                <p class="card-text">
-                                    100 lei
-                                </p>
-                                <div class="e-c-time">
-                                    <span>
-                                        23
-                                    </span>
-                                    <span class="e-c-month">
-                                        feb.
-                                    </span>
-                                </div>
-                                <a href="#" class="btn btn-primary">Buy</a>
-                            </div>
-                        </div>
-
-                    </div><!-- end col -->
-
-                    <div class="col-md-6 col-xl-3">
-
-                        <!-- Simple card -->
-                        <div class="card">
-                            <img class="card-img-top img-fluid" src="~/Content/assets/images/small/mademd.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Made in Moldova</h5>
-                                <p class="card-text">
-                                    75 lei
-                                </p>
-                                <div class="e-c-time">
-                                    <span>
-                                        23
-                                    </span>
-                                    <span class="e-c-month">
-                                        feb.
-                                    </span>
-                                </div>
-                                <a href="#" class="btn btn-primary">Buy</a>
-                            </div>
-                        </div>
-
-                    </div><!-- end col -->
-
-                    <div class="col-md-6 col-xl-3">
-
-                        <!-- Simple card -->
-                        <div class="card">
-                            <img class="card-img-top img-fluid" src="~/Content/assets/images/small/Varvara.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Varvara</h5>
-                                <p class="card-text">
-                                    100 lei
-                                </p>
-                                <div class="e-c-time">
-                                    <span>
-                                        28
-                                    </span>
-                                    <span class="e-c-month">
-                                        feb.
-                                    </span>
-                                </div>
-                                <a href="#" class="btn btn-primary">Buy</a>
-                            </div>
-                        </div>
-
-                    </div><!-- end col -->
-
-                    <div class="col-md-6 col-xl-3">
-
-                        <!-- Simple card -->
-                        <div class="card">
-                            <img class="card-img-top img-fluid" src="~/Content/assets/images/small/pescarus.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Pescărușul</h5>
-                                <p class="card-text">
-                                    125 lei
-                                </p>
-                                <div class="e-c-time">
-                                    <span>
-                                        23
-                                    </span>
-                                    <span class="e-c-month">
-                                        mar.
-                                    </span>
-                                </div>
-                                <a href="#" class="btn btn-primary">Buy</a>
-                            </div>
-                        </div>
-
-                    </div><!-- end col -->
-
-                    <div class="col-md-6 col-xl-3">
-
-                        <!-- Simple card -->
-                        <div class="card">
-                            <img class="card-img-top img-fluid" src="~/Content/assets/images/small/caleidoscop.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Caleidoscop</h5>
-                                <p class="card-text">
-                                    250 lei
-                                </p>
-                                <div class="e-c-time">
-                                    <span>
-                                        15
-                                    </span>
-                                    <span class="e-c-month">
-                                        apr.
-                                    </span>
-                                </div>
-                                <a href="#" class="btn btn-primary">Buy</a>
-                            </div>
-                        </div>
-
-                    </div><!-- end col -->
-
-                    <div class="col-md-6 col-xl-3">
-
-                        <!-- Simple card -->
-                        <div class="card">
-                            <img class="card-img-top img-fluid" src="~/Content/assets/images/small/womenday.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Women's day</h5>
-                                <p class="card-text">
-                                    150 lei
-                                </p>
-                                <div class="e-c-time">
-                                    <span>
-                                        8
-                                    </span>
-                                    <span class="e-c-month">
-                                        mar.
-                                    </span>
-                                </div>
-                                <a href="#" class="btn btn-primary">Buy</a>
-                            </div>
-                        </div>
-
-                    </div><!-- end col -->
-
-                </div>
-            </div>
-
-
-
         </div>
-    </div>
-
-    <!-- end wrapper -->
-    <!-- ============================================================== -->
-    <!-- End Page content -->
-    <!-- ============================================================== -->
-    
-    <!-- Right Sidebar -->
-    <div class="right-bar">
-        <div class="rightbar-title">
-            <a href="javascript:void(0);" class="right-bar-toggle float-right">
-                <i class="fe-x noti-icon"></i>
-            </a>
-            <h4 class="m-0 text-white">Settings</h4>
+        <!-- end page title -->
+        <!-- Filter -->
+        <div class="row">
+            <div class="col-12">
+                <div class="text-center filter-menu">
+                    <a href="javascript: void(0);" class="filter-menu-item active" data-rel="all">Toate </a>
+                    <a href="javascript: void(0);" class="filter-menu-item" data-rel="web">Concerte </a>
+                    <a href="javascript: void(0);" class="filter-menu-item" data-rel="graphic">Festivaluri</a>
+                    <a href="javascript: void(0);" class="filter-menu-item" data-rel="illustrator">Spectacole</a>
+                    <a href="javascript: void(0);" class="filter-menu-item" data-rel="photography">Sport</a>
+                </div>
+            </div>
         </div>
-        <div class="slimscroll-menu">
-            <!-- User box -->
-            <div class="user-box">
-                <div class="user-img">
-                    <img src="~/Content/assets/images/users/avatar-1.jpg" alt="user-img" title="Mat Helme" class="rounded-circle img-fluid">
-                    <a href="javascript:void(0);" class="user-edit"><i class="mdi mdi-pencil"></i></a>
+        <!-- end row-->
+
+        <div class="container mt-3">
+            <h4 class="text-center">Filtre</h4>
+            <form method="get" class="d-flex flex-wrap justify-content-between align-items-center p-3 bg-light rounded">
+                <!-- Filtru Tip Eveniment -->
+                <div class="d-flex flex-column flex-sm-row align-items-center gap-3">
+                    <label class="text-center"><i class="fas fa-theater-masks"></i></label>
+                    <select name="eventType" class="form-control">
+                        <option value="">Toate</option>
+                        <option value="concerte">Concerte</option>
+                        <option value="festivaluri">Festivaluri</option>
+                        <option value="spectacole">Spectacole</option>
+                        <option value="sport">Sport</option>
+                    </select>
                 </div>
 
-                <h5><a href="javascript: void(0);">Nik G. Patel</a> </h5>
-                <p class="text-muted mb-0"><small>Admin Head</small></p>
-            </div>
-
-            <ul class="nav nav-pills bg-light nav-justified">
-                <li class="nav-item">
-                    <a href="#home1" data-toggle="tab" aria-expanded="false" class="nav-link rounded-0">
-                        General
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#messages1" data-toggle="tab" aria-expanded="false" class="nav-link rounded-0 active">
-                        Chat
-                    </a>
-                </li>
-            </ul>
-            <div class="tab-content pl-3 pr-3">
-                <div class="tab-pane" id="home1">
-                    <div class="row mb-2">
-                        <div class="col">
-                            <h5 class="m-0 font-15">Notifications</h5>
-                            <p class="text-muted"><small>Do you need them?</small></p>
-                        </div> <!-- end col-->
-                        <div class="col-auto">
-                            <div class="custom-control custom-switch mb-2">
-                                <input type="checkbox" class="custom-control-input" id="tabswitch1">
-                                <label class="custom-control-label" for="tabswitch1"></label>
-                            </div>
-                        </div> <!-- end col -->
-                    </div>
-                    <!-- end row-->
-
-                    <div class="row mb-2">
-                        <div class="col">
-                            <h5 class="m-0 font-15">API Access</h5>
-                            <p class="text-muted"><small>Enable/Disable access</small></p>
-                        </div> <!-- end col-->
-                        <div class="col-auto">
-                            <div class="custom-control custom-switch mb-2">
-                                <input type="checkbox" class="custom-control-input" checked id="tabswitch2">
-                                <label class="custom-control-label" for="tabswitch2"></label>
-                            </div>
-                        </div> <!-- end col -->
-                    </div>
-                    <!-- end row-->
-
-                    <div class="row mb-2">
-                        <div class="col">
-                            <h5 class="m-0 font-15">Auto Updates</h5>
-                            <p class="text-muted"><small>Keep up to date</small></p>
-                        </div> <!-- end col-->
-                        <div class="col-auto">
-                            <div class="custom-control custom-switch mb-2">
-                                <input type="checkbox" class="custom-control-input" id="tabswitch3">
-                                <label class="custom-control-label" for="tabswitch3"></label>
-                            </div>
-                        </div> <!-- end col -->
-                    </div>
-                    <!-- end row-->
-
-                    <div class="row mb-2">
-                        <div class="col">
-                            <h5 class="m-0 font-15">Online Status</h5>
-                            <p class="text-muted"><small>Show your status to all</small></p>
-                        </div> <!-- end col-->
-                        <div class="col-auto">
-                            <div class="custom-control custom-switch mb-2">
-                                <input type="checkbox" class="custom-control-input" checked id="tabswitch4">
-                                <label class="custom-control-label" for="tabswitch4"></label>
-                            </div>
-                        </div> <!-- end col -->
-                    </div>
-                    <!-- end row-->
-
-                    <div class="alert alert-success alert-dismissible fade mt-3 show" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                        <h5>Unlimited Access</h5>
-                        Upgrade to plan to get access to unlimited reports
-                        <br />
-                        <a href="javascript: void(0);" class="btn btn-outline-success mt-3 btn-sm">Upgrade<i class="ml-1 mdi mdi-arrow-right"></i></a>
-                    </div>
-
+                <!-- Filtru Dată -->
+                <div class="d-flex flex-column flex-sm-row align-items-center gap-3">
+                    <label class="text-center"><i class="fas fa-calendar-alt"></i></label>
+                    <input type="date" name="date" class="form-control">
                 </div>
-                <div class="tab-pane show active" id="messages1">
-                    <div>
-                        <div class="inbox-widget">
-                            <h5 class="mt-0">Recent</h5>
-                            <div class="inbox-item">
-                                <div class="inbox-item-img"><img src="~/Content/assets/images/users/avatar-2.jpg" class="rounded-circle" alt=""> <i class="online user-status"></i></div>
-                                <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Tomaslau</a></p>
-                                <p class="inbox-item-text">I've finished it! See you so...</p>
-                            </div>
-                            <div class="inbox-item">
-                                <div class="inbox-item-img"><img src="~/Content/assets/images/users/avatar-3.jpg" class="rounded-circle" alt=""> <i class="away user-status"></i></div>
-                                <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Stillnotdavid</a></p>
-                                <p class="inbox-item-text">This theme is awesome!</p>
-                            </div>
-                            <div class="inbox-item">
-                                <div class="inbox-item-img"><img src="~/Content/assets/images/users/avatar-4.jpg" class="rounded-circle" alt=""> <i class="online user-status"></i></div>
-                                <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Kurafire</a></p>
-                                <p class="inbox-item-text">Nice to meet you</p>
-                            </div>
 
-                            <div class="inbox-item">
-                                <div class="inbox-item-img"><img src="~/Content/assets/images/users/avatar-5.jpg" class="rounded-circle" alt=""> <i class="busy user-status"></i></div>
-                                <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Shahedk</a></p>
-                                <p class="inbox-item-text">Hey! there I'm available...</p>
-                            </div>
-                            <div class="inbox-item">
-                                <div class="inbox-item-img"><img src="~/Content/assets/images/users/avatar-6.jpg" class="rounded-circle" alt=""> <i class="user-status"></i></div>
-                                <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Adhamdannaway</a></p>
-                                <p class="inbox-item-text">This theme is awesome!</p>
-                            </div>
-
-                            <hr />
-                            <h5>Favorite <span class="float-right badge badge-pill badge-danger">18</span></h5>
-                            <hr />
-                            <div class="inbox-item">
-                                <div class="inbox-item-img"><img src="~/Content/assets/images/users/avatar-7.jpg" class="rounded-circle" alt=""> <i class="busy user-status"></i></div>
-                                <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Kennith</a></p>
-                                <p class="inbox-item-text">I've finished it! See you so...</p>
-                            </div>
-                            <div class="inbox-item">
-                                <div class="inbox-item-img"><img src="~/Content/assets/images/users/avatar-3.jpg" class="rounded-circle" alt=""> <i class="busy user-status"></i></div>
-                                <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Stillnotdavid</a></p>
-                                <p class="inbox-item-text">This theme is awesome!</p>
-                            </div>
-                            <div class="inbox-item">
-                                <div class="inbox-item-img"><img src="~/Content/assets/images/users/avatar-10.jpg" class="rounded-circle" alt=""> <i class="online user-status"></i></div>
-                                <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Kimberling</a></p>
-                                <p class="inbox-item-text">Nice to meet you</p>
-                            </div>
-
-                            <div class="inbox-item">
-                                <div class="inbox-item-img"><img src="~/Content/assets/images/users/avatar-4.jpg" class="rounded-circle" alt=""> <i class="user-status"></i></div>
-                                <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Kurafire</a></p>
-                                <p class="inbox-item-text">Hey! there I'm available...</p>
-                            </div>
-                            <div class="inbox-item">
-                                <div class="inbox-item-img"><img src="~/Content/assets/images/users/avatar-9.jpg" class="rounded-circle" alt=""> <i class="away user-status"></i></div>
-                                <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Leonareade</a></p>
-                                <p class="inbox-item-text">This theme is awesome!</p>
-                            </div>
-
-                            <div class="text-center mt-2">
-                                <a href="javascript:void(0);" class="text-muted"><i class="mdi mdi-spin mdi-loading mr-1"></i> Load more </a>
-                            </div>
-
-                        </div> <!-- end inbox-widget -->
-                    </div> <!-- end .p-3-->
+                <!-- Filtru Locație -->
+                <div class="d-flex flex-column flex-sm-row align-items-center gap-3">
+                    <label class="text-center"><i class="fas fa-map-marker-alt"></i></label>
+                    <select name="city" class="form-control">
+                        <option value="">Locația</option>
+                        <option value="Chișinău">Chișinău</option>
+                        <option value="Bălți">Bălți</option>
+                        <option value="Orhei">Orhei</option>
+                        <option value="Cahul">Cahul</option>
+                        <option value="Ungheni">Ungheni</option>
+                    </select>
                 </div>
-            </div>
 
-        </div> <!-- end slimscroll-menu-->
+                <!-- Filtru Preț -->
+                <div class="d-flex flex-column flex-sm-row align-items-center gap-3">
+                    <label class="text-center"><i class="fas fa-dollar-sign"></i></label>
+                    <div class="d-flex gap-2">
+                        <input type="number" name="minPrice" class="form-control" placeholder="Min" min="0" step="10">
+                        <input type="number" name="maxPrice" class="form-control" placeholder="Max" min="0" step="10">
+                    </div>
+                </div>
+
+                <!-- Filtru Ordine -->
+                <div class="d-flex flex-column flex-sm-row align-items-center gap-3">
+                    <label class="text-center"><i class="fas fa-sort"></i></label>
+                    <select name="sort" class="form-control">
+                        <option value="date_asc">Dată (crescător)</option>
+                        <option value="date_desc">Dată (descrescător)</option>
+                        <option value="price_asc">Preț (crescător)</option>
+                        <option value="price_desc">Preț (descrescător)</option>
+                    </select>
+                </div>
+
+                <!-- Butoane -->
+                <div class="d-flex w-100 mt-3 justify-content-center">
+                    <button type="submit" class="btn btn-primary px-2">Aplică filtre</button>
+                    <button type="reset" class="btn btn-secondary px-2 ms-4">Resetează</button>
+                </div>
+            </form>
+        </div>
+
+
+      
+
+                <div class="col-md-12 mt-3">
+                    <div class="row">
+                        @foreach (var eventItem in Model)
+                        {
+                            <div class="col-md-6 col-xl-3">
+                                <!-- Simple card -->
+                                <div class="card">
+                                    <img class="card-img-top img-fluid" src="@eventItem.ImagePath" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">@eventItem.Name</h5>
+                                        <p class="card-text">
+                                            @eventItem.Price lei
+                                        </p>
+                                        <div class="e-c-time">
+                                            <span>
+                                                @eventItem.EventDate.Day
+                                            </span>
+                                            <span class="e-c-month">
+                                                @eventItem.EventDate.ToString("MMM").ToLower()
+                                            </span>
+                                        </div>
+                                        <a href="#" class="btn btn-primary">Buy</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
     </div>
-    <!-- end wrapper -->
-    <!-- ============================================================== -->
-    <!-- End Page content -->
-    <!-- ============================================================== -->
-    <!-- Footer Start -->
-    @Html.Partial("_Footer")
+</div>
+
+            <!-- end wrapper -->
+            <!-- ============================================================== -->
+            <!-- End Page content -->
+            <!-- ============================================================== -->
+            <!-- Right Sidebar -->
+            <div class="right-bar">
+                <div class="rightbar-title">
+                    <a href="javascript:void(0);" class="right-bar-toggle float-right">
+                        <i class="fe-x noti-icon"></i>
+                    </a>
+                    <h4 class="m-0 text-white">Settings</h4>
+                </div>
+                <div class="slimscroll-menu">
+                    <!-- User box -->
+                    <div class="user-box">
+                        <div class="user-img">
+                            <img src="~/Content/assets/images/users/avatar-1.jpg" alt="user-img" title="Mat Helme" class="rounded-circle img-fluid">
+                            <a href="javascript:void(0);" class="user-edit"><i class="mdi mdi-pencil"></i></a>
+                        </div>
+
+                        <h5><a href="javascript: void(0);">Nik G. Patel</a> </h5>
+                        <p class="text-muted mb-0"><small>Admin Head</small></p>
+                    </div>
+
+                    <ul class="nav nav-pills bg-light nav-justified">
+                        <li class="nav-item">
+                            <a href="#home1" data-toggle="tab" aria-expanded="false" class="nav-link rounded-0">
+                                General
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#messages1" data-toggle="tab" aria-expanded="false" class="nav-link rounded-0 active">
+                                Chat
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content pl-3 pr-3">
+                        <div class="tab-pane" id="home1">
+                            <div class="row mb-2">
+                                <div class="col">
+                                    <h5 class="m-0 font-15">Notifications</h5>
+                                    <p class="text-muted"><small>Do you need them?</small></p>
+                                </div> <!-- end col-->
+                                <div class="col-auto">
+                                    <div class="custom-control custom-switch mb-2">
+                                        <input type="checkbox" class="custom-control-input" id="tabswitch1">
+                                        <label class="custom-control-label" for="tabswitch1"></label>
+                                    </div>
+                                </div> <!-- end col -->
+                            </div>
+                            <!-- end row-->
+
+                            <div class="row mb-2">
+                                <div class="col">
+                                    <h5 class="m-0 font-15">API Access</h5>
+                                    <p class="text-muted"><small>Enable/Disable access</small></p>
+                                </div> <!-- end col-->
+                                <div class="col-auto">
+                                    <div class="custom-control custom-switch mb-2">
+                                        <input type="checkbox" class="custom-control-input" checked id="tabswitch2">
+                                        <label class="custom-control-label" for="tabswitch2"></label>
+                                    </div>
+                                </div> <!-- end col -->
+                            </div>
+                            <!-- end row-->
+
+                            <div class="row mb-2">
+                                <div class="col">
+                                    <h5 class="m-0 font-15">Auto Updates</h5>
+                                    <p class="text-muted"><small>Keep up to date</small></p>
+                                </div> <!-- end col-->
+                                <div class="col-auto">
+                                    <div class="custom-control custom-switch mb-2">
+                                        <input type="checkbox" class="custom-control-input" id="tabswitch3">
+                                        <label class="custom-control-label" for="tabswitch3"></label>
+                                    </div>
+                                </div> <!-- end col -->
+                            </div>
+                            <!-- end row-->
+
+                            <div class="row mb-2">
+                                <div class="col">
+                                    <h5 class="m-0 font-15">Online Status</h5>
+                                    <p class="text-muted"><small>Show your status to all</small></p>
+                                </div> <!-- end col-->
+                                <div class="col-auto">
+                                    <div class="custom-control custom-switch mb-2">
+                                        <input type="checkbox" class="custom-control-input" checked id="tabswitch4">
+                                        <label class="custom-control-label" for="tabswitch4"></label>
+                                    </div>
+                                </div> <!-- end col -->
+                            </div>
+                            <!-- end row-->
+
+                            <div class="alert alert-success alert-dismissible fade mt-3 show" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                                <h5>Unlimited Access</h5>
+                                Upgrade to plan to get access to unlimited reports
+                                <br />
+                                <a href="javascript: void(0);" class="btn btn-outline-success mt-3 btn-sm">Upgrade<i class="ml-1 mdi mdi-arrow-right"></i></a>
+                            </div>
+
+                        </div>
+                        <div class="tab-pane show active" id="messages1">
+                            <div>
+                                <div class="inbox-widget">
+                                    <h5 class="mt-0">Recent</h5>
+                                    <div class="inbox-item">
+                                        <div class="inbox-item-img"><img src="~/Content/assets/images/users/avatar-2.jpg" class="rounded-circle" alt=""> <i class="online user-status"></i></div>
+                                        <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Tomaslau</a></p>
+                                        <p class="inbox-item-text">I've finished it! See you so...</p>
+                                    </div>
+                                    <div class="inbox-item">
+                                        <div class="inbox-item-img"><img src="~/Content/assets/images/users/avatar-3.jpg" class="rounded-circle" alt=""> <i class="away user-status"></i></div>
+                                        <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Stillnotdavid</a></p>
+                                        <p class="inbox-item-text">This theme is awesome!</p>
+                                    </div>
+                                    <div class="inbox-item">
+                                        <div class="inbox-item-img"><img src="~/Content/assets/images/users/avatar-4.jpg" class="rounded-circle" alt=""> <i class="online user-status"></i></div>
+                                        <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Kurafire</a></p>
+                                        <p class="inbox-item-text">Nice to meet you</p>
+                                    </div>
+
+                                    <div class="inbox-item">
+                                        <div class="inbox-item-img"><img src="~/Content/assets/images/users/avatar-5.jpg" class="rounded-circle" alt=""> <i class="busy user-status"></i></div>
+                                        <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Shahedk</a></p>
+                                        <p class="inbox-item-text">Hey! there I'm available...</p>
+                                    </div>
+                                    <div class="inbox-item">
+                                        <div class="inbox-item-img"><img src="~/Content/assets/images/users/avatar-6.jpg" class="rounded-circle" alt=""> <i class="user-status"></i></div>
+                                        <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Adhamdannaway</a></p>
+                                        <p class="inbox-item-text">This theme is awesome!</p>
+                                    </div>
+
+                                    <hr />
+                                    <h5>Favorite <span class="float-right badge badge-pill badge-danger">18</span></h5>
+                                    <hr />
+                                    <div class="inbox-item">
+                                        <div class="inbox-item-img"><img src="~/Content/assets/images/users/avatar-7.jpg" class="rounded-circle" alt=""> <i class="busy user-status"></i></div>
+                                        <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Kennith</a></p>
+                                        <p class="inbox-item-text">I've finished it! See you so...</p>
+                                    </div>
+                                    <div class="inbox-item">
+                                        <div class="inbox-item-img"><img src="~/Content/assets/images/users/avatar-3.jpg" class="rounded-circle" alt=""> <i class="busy user-status"></i></div>
+                                        <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Stillnotdavid</a></p>
+                                        <p class="inbox-item-text">This theme is awesome!</p>
+                                    </div>
+                                    <div class="inbox-item">
+                                        <div class="inbox-item-img"><img src="~/Content/assets/images/users/avatar-10.jpg" class="rounded-circle" alt=""> <i class="online user-status"></i></div>
+                                        <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Kimberling</a></p>
+                                        <p class="inbox-item-text">Nice to meet you</p>
+                                    </div>
+
+                                    <div class="inbox-item">
+                                        <div class="inbox-item-img"><img src="~/Content/assets/images/users/avatar-4.jpg" class="rounded-circle" alt=""> <i class="user-status"></i></div>
+                                        <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Kurafire</a></p>
+                                        <p class="inbox-item-text">Hey! there I'm available...</p>
+                                    </div>
+                                    <div class="inbox-item">
+                                        <div class="inbox-item-img"><img src="~/Content/assets/images/users/avatar-9.jpg" class="rounded-circle" alt=""> <i class="away user-status"></i></div>
+                                        <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Leonareade</a></p>
+                                        <p class="inbox-item-text">This theme is awesome!</p>
+                                    </div>
+
+                                    <div class="text-center mt-2">
+                                        <a href="javascript:void(0);" class="text-muted"><i class="mdi mdi-spin mdi-loading mr-1"></i> Load more </a>
+                                    </div>
+
+                                </div> <!-- end inbox-widget -->
+                            </div> <!-- end .p-3-->
+                        </div>
+                    </div>
+
+                </div> <!-- end slimscroll-menu-->
+            </div>
+            <!-- end wrapper -->
+            <!-- ============================================================== -->
+            <!-- End Page content -->
+            <!-- ============================================================== -->
+            <!-- Footer Start -->
+            @Html.Partial("_Footer")
 
 
-    <!-- Vendor js -->
-    <script src="~/Content/assets/js/vendor.min.js"></script>
+            <!-- Vendor js -->
+            <script src="~/Content/assets/js/vendor.min.js"></script>
 
-    <!-- Magnific Popup-->
-    <script src="~/Content/assets/libs/magnific-popup/jquery.magnific-popup.min.js"></script>
+            <!-- Magnific Popup-->
+            <script src="~/Content/assets/libs/magnific-popup/jquery.magnific-popup.min.js"></script>
 
-    <!-- Gallery Init-->
-    <script src="~/Content/assets/js/pages/gallery.init.js"></script>
+            <!-- Gallery Init-->
+            <script src="~/Content/assets/js/pages/gallery.init.js"></script>
 
-    <!-- App js -->
-    <script src="~/Content/assets/js/app.min.js"></script>
+            <!-- App js -->
+            <script src="~/Content/assets/js/app.min.js"></script>
 
 </body>
 
