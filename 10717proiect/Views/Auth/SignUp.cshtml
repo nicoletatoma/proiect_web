@@ -5,8 +5,8 @@
 }
 
 <!DOCTYPE html>
-<html>
-<body class="boxed-layout">
+<html style="max-height: 100%">
+<body class="boxed-layout"  style="max-height: 100%">
 
      <div class="account-pages mt-5 mb-5">
           <div class="container">
@@ -29,20 +29,28 @@
                                              <label for="fullname">Full Name</label>
                                              <input class="form-control" type="text" id="fullname" placeholder="Enter your name" required>
                                         </div>
-                                        <div class="form-group">
-                                             <label for="emailaddress">Email address</label>
-                                             <input class="form-control" type="email" id="emailaddress" required placeholder="Enter your email">
-                                        </div>
+
                                         <div class="form-group">
                                              <label for="password">Password</label>
                                              <input class="form-control" type="password" required id="password" placeholder="Enter your password">
                                         </div>
+
                                         <div class="form-group">
-                                             <div class="custom-control custom-checkbox">
-                                                  <input type="checkbox" class="custom-control-input" id="checkbox-signup">
-                                                  <label class="custom-control-label" for="checkbox-signup">I accept <a href="javascript: void(0);" class="text-dark">Terms and Conditions</a></label>
-                                             </div>
+                                             <label for="emailaddress">Email address</label>
+                                             <input class="form-control" type="email" id="emailaddress" required placeholder="Enter your email">
                                         </div>
+
+                                        <div class="form-group">
+                                             <label for="phone">Phone Number</label>
+                                             <input class="form-control" type="tel" id="phone" name="phone" placeholder="Enter your phone number" pattern="[0-9]{10}" required>
+                                        </div>
+
+                                        <div class="form-group">
+                                             <label for="fullname">Address</label>
+                                             <input class="form-control" type="text" id="address" placeholder="Enter your address" required>
+                                        </div>
+
+                                        
                                         <div class="form-group mb-0 text-center">
                                              <button class="btn btn-primary btn-block" type="submit"> Sign Up </button>
                                         </div>
