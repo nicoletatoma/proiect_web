@@ -20,16 +20,62 @@ namespace _10717proiect.BusinessLogic.Core
         }
 
 
-        //---------------AUTH----------------
-        public string UserAuthLogicAction(UserLoginDTO data)
-        {
+          //---------------AUTH----------------
+          public string UserAuthLogicAction(UserLoginDTO data)
+          {
+               using (var db = new UserContext())
+               {
+                    var user = db.Users.FirstOrDefault(u => u.Email == data.Email);
 
-            return "token-key";
-        }
+                    if (user != null)
+                    {
+                         // Verifică parola
+                         if (user.Password == data.Password)
+                         {
+                              // Updatează ultima logare
+                              user.LastLoginDateTime = DateTime.Now;
+                              db.SaveChanges();
 
-        //---------------Reg---------------
+                              // Returnează un token temporar sau ID sesiune
+                              return "token-key"; // Poți returna user.Id.ToString() dacă vrei
+                         }
+                         else
+                         {
+                              // Parolă greșită - în practică, ai returna un mesaj de eroare
+                              return null;
+                         }
+                    }
+                    else
+                    {
+                         // Creează un nou cont
+                         var u_data = new UDbTable()
+                         {
+                              Email = data.Email,
+                              Password = data.Password,
+                              LastLoginDateTime = DateTime.Now,
+                              RegistartionDateTime = DateTime.Now,
 
-        public bool UserRegisterDTO(UserRegDTO data)
+                              // Adăugăm câmpuri obligatorii
+                              Username = "default_user",         // sau ceva preluat din `data`
+                              Address = "N/A",
+                              Phone = "0000000000",
+                              Level = Domain.Enums.URole.User,  // presupunem că ai enumul `URole`
+                              UserIP = "0.0.0.0"
+                         };
+
+
+                         db.Users.Add(u_data);
+                         db.SaveChanges();
+
+                         return "token-key"; // Sau u_data.Id.ToString()
+                    }
+               }
+          }
+
+
+          //---------------Reg---------------
+
+          public bool UserRegisterDTO(UserRegDTO data)
         {
 
             Console.WriteLine($"User {data.Username} registered!");

@@ -16,7 +16,22 @@ namespace _10717proiect.Controllers
         private readonly ISession _session;
         private readonly IAuth _auth;
 
-        public AuthController()
+
+          public ActionResult SignIn()
+          {
+               // string session id provider
+               //check id in session
+               //var sId = "abcd";   
+               //bool ISession = _session.ValidateSessionId(sId);
+               return View(new UserDataLogin());
+          }
+
+          public ActionResult SignUp()
+          {
+               return View();
+          }
+
+          public AuthController()
         {
             var bl = new BusinessLogic.BusinessLogic();
             _session = bl.GetSessionBL();
@@ -36,17 +51,27 @@ namespace _10717proiect.Controllers
         {
             var data = new UserLoginDTO
             {
-                Username = login.Username,
+                Email = login.Email,
                 Password = login.Password,
            
             };
 
-            string token = _auth.UserAuthLogic(data);
+          string token = _auth.UserAuthLogic(data);
+          Session["UserEmail"] = login.Email;
 
-            return View();
+          //set cookies key value to session
+          return RedirectToAction("Index", "Home"); // sau orice alt view existent
+
+
         }
 
-        [HttpGet]
+          public ActionResult Logout()
+          {
+               Session.Clear(); // sau Session["UserEmail"] = null;
+               return RedirectToAction("Index", "Home");
+          }
+
+          [HttpGet]
         public ActionResult Register()
         {
             return View();

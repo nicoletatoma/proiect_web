@@ -815,6 +815,8 @@
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Create\Index.cshtml" />
     <Content Include="Views\Register\Index.cshtml" />
+    <Content Include="Views\Auth\SignIn.cshtml" />
+    <Content Include="Views\Auth\SignUp.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

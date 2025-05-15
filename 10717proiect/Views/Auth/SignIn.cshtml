@@ -1,0 +1,106 @@
+﻿﻿@using System.Web.Optimization;
+@{
+     //Layout = "~/Views/Shared/_Sign.cshtml";
+     ViewBag.Title = "SignIn";
+}
+
+<!DOCTYPE html>
+<html>
+<body class="boxed-layout">
+
+     <div class="account-pages mt-5 mb-5">
+          <div class="container">
+               <div class="row justify-content-center">
+                    <div class="col-md-8 col-lg-6 col-xl-5">
+                         <div class="card border-1 card-sign">
+
+                              <div class="card-body p-5 ">
+
+                                   <div class="text-center w-75 m-auto img-signin">
+                                        <a href="~/Home/Index">
+                                             <span class="text-after-logo-sign"><img src="~/Content/assets/images/logo-light.png" alt="" height="22">Ticket Express</span>
+                                        </a>
+                                        <p class="text-muted mb-4 mt-3">Enter your email address and password to access your account.</p>
+                                   </div>
+
+
+
+
+                                   @model _10717proiect.Models.Auth.UserDataLogin
+
+                                   @using (Html.BeginForm("Auth", "Auth", FormMethod.Post))
+                                   {
+                                        <div class="container">
+
+                                             <div class="form-group mb-3">
+                                                  @*<label for="uname"><b>Username</b></label>*@
+                                                  @*<input type="text" placeholder="Enter Username" name="uname" required>*@
+
+                                                  @*<label for="emailaddress">Email address</label>*@
+
+                                                  @*<input class="form-control" type="email" id="emailaddress" required="" placeholder="Enter your email">*@
+
+                                                  @*<label for="psw"><b>Password</b></label>*@
+
+                                                  @*<input type="password" placeholder="Enter Password" name="psw" required>*@
+
+                                                  <div class="form-group mb-3">
+                                                       @Html.LabelFor(u => u.Email, htmlAttributes: new { @class = "form-label" })
+                                                       @Html.TextBoxFor(u => u.Email, new { @class = "form-control", placeholder = "Enter your email", type = "email" })
+                                                  </div>
+
+                                                  <div class="form-group mb-3">
+                                                       @Html.LabelFor(u => u.Password, htmlAttributes: new { @class = "form-label" })
+                                                       @Html.PasswordFor(u => u.Password, new { @class = "form-control", placeholder = "Enter your password" })
+                                                  </div>
+
+                                                  <div class="form-group mb-0 text-center">
+                                                       <button type="submit" class="btn btn-primary btn-block">Login</button>
+                                                  </div>
+                                             </div>
+                                        </div>
+
+                                   }
+                                   @*<div class="form-group mb-3">
+                                             <label for="emailaddress">Email address</label>
+                                             <input class="form-control" type="email" id="emailaddress" required="" placeholder="Enter your email">
+                                        </div>
+
+                                        <div class="form-group mb-3">
+                                             <label for="password">Password</label>
+                                             <input class="form-control" type="password" required="" id="password" placeholder="Enter your password">
+                                        </div>
+
+                                        <div class="form-group mb-3">
+                                             <div class="custom-control custom-checkbox">
+                                                  <input type="checkbox" class="custom-control-input" id="checkbox-signin" checked>
+                                                  <label class="custom-control-label" for="checkbox-signin">Remember me</label>
+                                             </div>
+                                        </div>
+
+                                        <div class="form-group mb-0 text-center">
+                                             <button class="btn btn-primary btn-block" type="submit"> Log In </button>
+                                        </div>*@
+
+
+
+
+                              </div> <!-- end card-body -->
+                         </div>
+                         <!-- end card -->
+
+                         <div class="row mt-3">
+                              <div class="col-12 text-center">
+                                   <p class="text-muted">Don't have an account? <a href="~/Accounts/SignUp" class="text-muted font-weight-medium ml-1">Sign Up</a></p>
+                              </div> <!-- end col -->
+                         </div>
+                         <!-- end row -->
+
+                    </div> <!-- end col -->
+               </div>
+               <!-- end row -->
+          </div>
+          <!-- end container -->
+     </div>
+</body>
+</html>
