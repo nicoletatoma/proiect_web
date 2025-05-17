@@ -43,6 +43,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -59,6 +60,7 @@
     <Compile Include="Core\EventAPI.cs" />
     <Compile Include="Core\UserAPI.cs" />
     <Compile Include="DBContext\EventContext.cs" />
+    <Compile Include="DBContext\SessionContext.cs" />
     <Compile Include="DBContext\UserContext.cs" />
     <Compile Include="Interfaces\IAuth.cs" />
     <Compile Include="Interfaces\IEvent.cs" />
@@ -83,7 +85,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Core\DbDataContext\" />
     <Folder Include="DBContext\Seed\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -37,12 +37,22 @@ namespace _10717proiect.Web.Controllers
                 Email = data.Email,
                 Password = data.Password,
                 Phone = data.Phone
-
             };
-
             UserRegDataResp resp = _user.RegisterUserAction(local);
 
-            return View("Index", data);
+            // Verificați rezultatul înregistrării
+            if (resp.Status)
+            {
+                // Redirecționare corectă către acțiunea SignIn din controllerul Auth
+                return RedirectToAction("SignIn", "Auth");
+            }
+            else
+            {
+                // În caz de eroare, afișați un mesaj de eroare și rămâneți pe aceeași pagină
+                ModelState.AddModelError("", resp.Error);
+                return View("Index", data);
+            }
         }
+
     }
 }

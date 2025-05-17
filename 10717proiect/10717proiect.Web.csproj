@@ -630,6 +630,7 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\Images\Events\30c1ab1e-a936-4647-aab5-c77901f22f60_Screenshot 2025-04-24 003200.png" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -787,6 +788,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\CreateController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\EvenimenteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
@@ -815,7 +817,6 @@
     <Content Include="Views\Create\Index.cshtml" />
     <Content Include="Views\Register\Index.cshtml" />
     <Content Include="Views\Auth\SignIn.cshtml" />
-    <Content Include="Views\Auth\SignUp.cshtml" />
     <Content Include="Views\Shared\_Sign.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Shared\_HeaderAdmin.cshtml" />
@@ -824,6 +825,7 @@
     <Content Include="Views\Admin\EditLoc.cshtml" />
     <Content Include="Views\Admin\EditUsers.cshtml" />
     <Content Include="Views\Shared\SideBar.cshtml" />
+    <Content Include="Views\Error\Error.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -833,7 +835,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Images\Events\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\10717proiect.BusinessLogic\10717proiect.BusinessLogic.csproj">

@@ -17,7 +17,7 @@ namespace _10717proiect.Domain.User
 
         [Required]
         [Display(Name = "Username")]
-        [StringLength(30, MinimumLength = 5, ErrorMessage = "Username cannot be longer than 30 characters.")]
+        [StringLength(30, MinimumLength = 3, ErrorMessage = "Username cannot be longer than 30 characters.")]
         public string Username { get; set; }
 
         [Required]
