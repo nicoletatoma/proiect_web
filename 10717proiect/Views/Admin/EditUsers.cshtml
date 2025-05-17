@@ -1,0 +1,77 @@
+﻿@using System.Web.Optimization;
+
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+     <meta charset="UTF-8">
+     <title>Administrare Utilizatori</title>
+     <link rel="stylesheet" href="app.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+     
+     @Styles.Render("~/Content/assets/css/admin.css")
+
+</head>
+<body>
+     <header class="topbar">
+          <div><strong>Utilizatori - Admin Dashboard</strong></div>
+          <div>Utilizator: Admin</div>
+     </header>
+
+     <!-- SIDEBAR CU HAMBURGER -->
+     @Html.Partial("SideBar")
+
+
+     <main class="content" id="content">
+          <div class="container-admin">
+               <div class="utilizatori-lista">
+                    <div class="utilizator-card">
+                         <div class="utilizator-info">
+                              <h4>Andrei Popescu</h4>
+                              <p>andrei@email.com</p>
+                              <p>Rol: Admin</p>
+                         </div>
+                         <div class="utilizator-actions">
+                              <button class="edit-btn">Editare</button>
+                              <button class="delete-btn">Șterge</button>
+                         </div>
+                    </div>
+                    <div class="utilizator-card">
+                         <div class="utilizator-info">
+                              <h4>Maria Ionescu</h4>
+                              <p>maria@email.com</p>
+                              <p>Rol: Utilizator</p>
+                         </div>
+                         <div class="utilizator-actions">
+                              <button class="edit-btn">Editare</button>
+                              <button class="delete-btn">Șterge</button>
+                         </div>
+                    </div>
+               </div>
+
+               <div class="formular-nou">
+                    <h3>Adaugă Utilizator Nou</h3>
+                    <form>
+                         <div class="form-group">
+                              <label for="name">Nume</label>
+                              <input type="text" id="name" name="name">
+                         </div>
+                         <div class="form-group">
+                              <label for="email">Email</label>
+                              <input type="email" id="email" name="email">
+                         </div>
+                         <div class="form-group">
+                              <label for="role">Rol</label>
+                              <select id="role" name="role">
+                                   <option value="admin">Admin</option>
+                                   <option value="utilizator">Utilizator</option>
+                              </select>
+                         </div>
+                         <button type="submit" class="submit-btn">Adaugă Utilizator</button>
+                    </form>
+               </div>
+          </div>
+     </main>
+
+
+</body>
+</html>

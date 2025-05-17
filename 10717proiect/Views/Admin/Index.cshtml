@@ -1,0 +1,59 @@
+﻿@using System.Web.Optimization;
+
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+     <meta charset="UTF-8">
+     <title>Admin - Dashboard</title>
+     <link rel="stylesheet" href="app.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+     @Styles.Render("~/Content/assets/css/admin.css")
+</head>
+<body>
+
+     <!-- HEADER -->
+     <header class="topbar">
+          <div class="text-after-logo"><strong>Admin Dashboard</strong></div>
+          <div>Utilizator: Admin</div>
+     </header>
+
+     <!-- SIDEBAR CU HAMBURGER -->
+     @Html.Partial("SideBar")
+
+     <!-- CONȚINUT -->
+     <main class="content" id="content">
+          <h2 class="text-after-logo-sign text-center mb-4">Statistici generale</h2>
+
+          <div class="dashboard-stats">
+               <div class="stat-card">
+                    <i class="fas fa-ticket-alt"></i>
+                    <h3>512</h3>
+                    <p>Bilete vândute</p>
+               </div>
+               <div class="stat-card">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>18</h3>
+                    <p>Evenimente active</p>
+               </div>
+               <div class="stat-card">
+                    <i class="fas fa-users"></i>
+                    <h3>143</h3>
+                    <p>Vizitatori azi</p>
+               </div>
+          </div>
+
+          <div class="card">
+               <h3>Activitate recentă</h3>
+               <ul>
+                    <li> Bilet vândut: Concert Carla's Dreams</li>
+                    <li> Eveniment adăugat: Festivalul Toamnei</li>
+                    <li> Utilizator nou: andrei@email.com</li>
+               </ul>
+          </div>
+     </main>
+
+     <!-- SCRIPT TOGGLE -->
+
+
+</body>
+</html>

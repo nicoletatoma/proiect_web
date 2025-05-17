@@ -18,6 +18,9 @@ namespace _10717proiect.App_Start
                 "~/Content/assets/css/bootstrap.css"));
             bundles.Add(new StyleBundle("~/Content/assets/css/icons.css").Include(
                 "~/Content/assets/css/icons.css"));
+               bundles.Add(new StyleBundle("~/Content/assets/css/admin.css").Include(
+                    "~/Content/assets/css/admin.css"));
+            
 
 
         }

@@ -1,0 +1,19 @@
+﻿
+<aside class="sidebar" id="sidebar">
+     <button class="toggle-btn" onclick="toggleSidebar()">
+          <i class="fas fa-bars"></i> <span>Redu/Extinde</span>
+     </button>
+     <a href="~/Admin/Index"><i class="fas remixicon-home-fill"></i><span>Evenimente</span></a>
+     <a href="~/Admin/EditEvenim"><i class="fas fa-ticket-alt"></i><span>Evenimente</span></a>
+     <a href="~/Admin/EditLoc"><i class="fas fa-map-marker-alt"></i><span>Locații</span></a>
+     <a href="~/Admin/EditUsers"><i class="fas fa-users"></i><span>Utilizatori</span></a>
+</aside>
+
+<script>
+     function toggleSidebar() {
+          const sidebar = document.getElementById('sidebar');
+          const content = document.getElementById('content');
+          sidebar.classList.toggle('compact');
+          content.classList.toggle('compact');
+     }
+</script>

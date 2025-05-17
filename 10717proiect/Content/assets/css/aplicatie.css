@@ -1,223 +1,262 @@
-﻿
+﻿﻿
 
 header {
-    margin-bottom: 120px !important;
+     margin-bottom: 120px !important;
 }
 
-.logo_nagigatie{
-    padding-bottom: 10px;
+.logo_nagigatie {
+     padding-bottom: 10px;
 }
 
 .navbar-custom:hover .topnav-menu:hover .nav-link:hover {
-    background-color: rgb(255 255 255 / 38%);
+     background-color: rgb(255 255 255 / 38%);
+}
+
+.navbar-custom {
+     margin-top: -21px;
+}
+
+.card-sign {
+     border-radius: 35px !important;
 }
 
 .text-after-logo {
-    margin-top: 8px;
-    font-size: 30px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    color: black !important;
+     margin-top: 8px;
+     font-size: 30px;
+     display: flex;
+     justify-content: flex-start;
+     align-items: center;
+     color: black !important;
+}
+
+.text-after-logo-sign {
+     font-size: 30px;
+     color: black !important;
 }
 
 .text-coperta {
-    position:relative;
-    color: white !important;
-    z-index: 99 !important;
-    display: flex;
-    align-items: center;
-    font-size: 58px!important;
+     position: relative;
+     color: white !important;
+     z-index: 99 !important;
+     display: flex;
+     align-items: center;
+     font-size: 58px !important;
 }
 
 .text-coperta-mic {
-    position: relative;
-    color: snow !important;
-    z-index: 99 !important;
-    display: flex;
-    align-items: center;
+     position: relative;
+     color: snow !important;
+     z-index: 99 !important;
+     display: flex;
+     align-items: center;
 }
 
 #coperta {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-content: center;
-    flex-direction: column;
+     display: flex;
+     align-items: center;
+     flex-wrap: wrap;
+     justify-content: center;
+     align-content: center;
+     flex-direction: column;
 }
 
 .paginatitlu {
-    display: flex;
-    justify-content: center;
-    margin: 0 auto;
-    position: relative;
-    border-radius: 20px;
-    width: 90%;
-    height: 600px;
-    background-image: url('../images/homephoto.png');
-    background-size: cover;
+     display: flex;
+     justify-content: center;
+     margin: 0 auto;
+     position: relative;
+     border-radius: 20px;
+     width: 90%;
+     height: 600px;
+     background-image: url('../images/homephoto.png');
+     background-size: cover;
 }
 
-    .paginatitlu::after {
-        content: "";
-        position: absolute;
-        border-radius: 20px;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.7); /* Schimbă opacitatea pentru un efect mai întunecat */
-    }
+     .paginatitlu::after {
+          content: "";
+          position: absolute;
+          border-radius: 20px;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.7); /* Schimbă opacitatea pentru un efect mai întunecat */
+     }
 
-.buton-coperta{
-    z-index: 10 !important;
+.buton-coperta {
+     z-index: 10 !important;
 }
 
 .exploreaza {
-    transition: transform 0.3s ease;
-    background-color: #ffffffd9;
-    border-radius: 30px;
-    padding: 10px;
+     transition: transform 0.3s ease;
+     background-color: #ffffffd9;
+     border-radius: 30px;
+     padding: 10px;
 }
 
-    .exploreaza:hover {
-        font-weight: 600;
-        background-color: #fffffff0;
-        color: #292929;
-    }
+     .exploreaza:hover {
+          font-weight: 600;
+          background-color: #fffffff0;
+          color: #292929;
+     }
 
-    .exploreaza:active{
-        transform: scale(1.07);
-    }
+     .exploreaza:active {
+          transform: scale(1.07);
+     }
 
 .waves-effect {
-    transition: transform 0.3s ease;
+     transition: transform 0.3s ease;
 }
 
-.waves-effect:active {
-    transform: scale(1.2);
-}
+     .waves-effect:active {
+          transform: scale(1.2);
+     }
 
 .carousel {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    width: 600px;
-    height: 300px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     position: relative;
+     width: 600px;
+     height: 300px;
 }
 
-    .carousel img {
-        position: absolute;
-        width: 100px;
-        height: 150px;
-        object-fit: cover;
-        transition: all 0.5s ease;
-        border-radius: 10px;
-        cursor: pointer;
-        opacity: 0.7;
-    }
+     .carousel img {
+          position: absolute;
+          width: 100px;
+          height: 150px;
+          object-fit: cover;
+          transition: all 0.5s ease;
+          border-radius: 10px;
+          cursor: pointer;
+          opacity: 0.7;
+     }
 
-        .carousel img.active {
-            width: 300px;
-            height: 200px;
-            z-index: 2;
-            opacity: 1;
-            transform: translateX(0);
-        }
+          .carousel img.active {
+               width: 300px;
+               height: 200px;
+               z-index: 2;
+               opacity: 1;
+               transform: translateX(0);
+          }
 
-        .carousel img.left {
-            transform: translateX(-150px) scale(0.8);
-        }
+          .carousel img.left {
+               transform: translateX(-150px) scale(0.8);
+          }
 
-        .carousel img.right {
-            transform: translateX(150px) scale(0.8);
-        }
+          .carousel img.right {
+               transform: translateX(150px) scale(0.8);
+          }
 
-        .carousel img.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
+          .carousel img.hidden {
+               opacity: 0;
+               pointer-events: none;
+          }
 
 .buttons {
-    position: absolute;
-    width: 100%;
-    top: 50%;
-    display: flex;
-    justify-content: space-between;
-    transform: translateY(-50%);
+     position: absolute;
+     width: 100%;
+     top: 50%;
+     display: flex;
+     justify-content: space-between;
+     transform: translateY(-50%);
 }
 
-    .buttons button {
-        background: rgba(0, 0, 0, 0.5);
-        color: white;
-        border: none;
-        padding: 10px;
-        cursor: pointer;
-        font-size: 18px;
-        border-radius: 5px;
-    }
+     .buttons button {
+          background: rgba(0, 0, 0, 0.5);
+          color: white;
+          border: none;
+          padding: 10px;
+          cursor: pointer;
+          font-size: 18px;
+          border-radius: 5px;
+     }
 
-        .buttons button:hover {
-            background: rgba(0, 0, 0, 0.8);
-        }
+          .buttons button:hover {
+               background: rgba(0, 0, 0, 0.8);
+          }
 
 .linie-herticala {
-    display: flex;
-    float: left;
-    margin-top: 10px;
-    height: 25px;
-    width: 1px;
-    border: 1px solid black;
+     display: flex;
+     float: left;
+     margin-top: 15px;
+     height: 25px;
+     width: 1px;
+     border: 1px solid black;
 }
 
 .final {
-    height: 45px !important;
-    margin-top: 0px;
+     height: 45px !important;
+     margin-top: 5px;
+}
+
+.gap {
+     gap: 1em;
+     margin: auto;
 }
 
 .log_in {
-    margin-left: 12px !important;
-    border-radius: 30px 30px 30px 30px !important;
-    background-color: black;
-    color: snow !important;
-    border: 1px solid black;
-
+     margin-left: 12px !important;
+     border-radius: 30px 30px 30px 30px !important;
+     background-color: black;
+     color: snow !important;
+     border: 1px solid black;
 }
 
-    .log_in:hover {
-        background-color: #eaeaeab8;
-        border: 1px solid #424242;
-        color: black !important;
-    }
+     .log_in:hover {
+          background-color: #eaeaeab8;
+          border: 1px solid #424242;
+          color: black !important;
+     }
 
 .sing_up {
-    border-radius: 30px 30px 30px 30px !important;
-    margin-left: 3px !important;
+     border-radius: 30px 30px 30px 30px !important;
+     margin-left: 3px !important;
 }
 
-.sing_up:hover {
-    background-color: snow!important;
-}
+     .sing_up:hover {
+          background-color: snow !important;
+     }
 
 .custom-card {
-    text-decoration: none; /* Elimină sublinierea linkului */
-    display: block;
-    transition: transform 0.2s ease-in-out;
+     text-decoration: none; /* Elimină sublinierea linkului */
+     display: block;
+     transition: transform 0.2s ease-in-out;
 }
 
-    .custom-card:hover {
-        transform: scale(1.05); /* Mărește cardul la hover */
-    }
+     .custom-card:hover {
+          transform: scale(1.05); /* Mărește cardul la hover */
+     }
 
-    .custom-card .card {
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        transition: box-shadow 0.3s ease-in-out;
-    }
+     .custom-card .card {
+          border-radius: 10px;
+          overflow: hidden;
+          box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+          transition: box-shadow 0.3s ease-in-out;
+     }
 
-    .custom-card:hover .card {
-        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
-    }
+     .custom-card:hover .card {
+          box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+     }
+
+.bara-cautare {
+     margin-top: -5px;
+}
+
+.linine-dupa-filru {
+     height: 5px;
+     width: 110%;
+     margin-left: -5%;
+     background-color: #828181;
+     border-radius: 50%;
+}
+
+
+.sign {
+     background-color: rgb(207 200 200);
+     border-radius: 75px;
+}
+
+.text-center.w-75.m-auto.img-signin img {
+     height: 120px;
+}
