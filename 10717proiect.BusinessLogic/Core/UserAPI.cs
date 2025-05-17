@@ -1,4 +1,4 @@
-﻿using _10717proiect.BusinessLogic.DBContext.Seed;
+﻿using _10717proiect.BusinessLogic.DBContext;
 using _10717proiect.Domain.Model.User;
 using _10717proiect.Domain.User;
 using _10717proiect.Domain.User.Reg;

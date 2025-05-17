@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using _10717proiect.BusinessLogic.Core.DbDataContext;
+using _10717proiect.BusinessLogic.DBContext;
 using _10717proiect.Domain.Model.Event;
 
 namespace _10717proiect.Controllers

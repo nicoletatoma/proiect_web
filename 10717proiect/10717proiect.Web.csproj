@@ -630,10 +630,6 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
-    <Content Include="Content\Images\Events\09e21b0f-1df1-435a-b519-2491375fd06b_Screenshot 2025-04-03 122946.png" />
-    <Content Include="Content\Images\Events\69541d75-b48b-4117-9d4b-7503fd39a3de_Screenshot 2025-04-03 122946.png" />
-    <Content Include="Content\Images\Events\949cc22b-a686-449b-bf3f-a6c6fbaa4351_Screenshot 2025-04-03 122946.png" />
-    <Content Include="Content\Images\Events\ad9d8a3a-a839-47f2-9756-2f545ed70b5c_Screenshot 2025-04-03 122946.png" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -802,6 +798,7 @@
     <Compile Include="Models\Reg\UserRegData.cs" />
     <Compile Include="Models\Event\EventDataModelView.cs" />
     <Compile Include="Models\User\AuthData.cs" />
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -836,6 +833,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Images\Events\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\10717proiect.BusinessLogic\10717proiect.BusinessLogic.csproj">

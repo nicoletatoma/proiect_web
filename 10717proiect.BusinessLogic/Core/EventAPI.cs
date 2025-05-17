@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using _10717proiect.BusinessLogic.Core.DbDataContext;
+using _10717proiect.BusinessLogic.DBContext;
 using _10717proiect.Domain.Model.Event;
 
 namespace _10717proiect.BusinessLogic.Core
@@ -38,6 +38,7 @@ namespace _10717proiect.BusinessLogic.Core
                 dbContext.SaveChanges();
                 return "Event created successfully!";
             }
+
         }
     }
 }
