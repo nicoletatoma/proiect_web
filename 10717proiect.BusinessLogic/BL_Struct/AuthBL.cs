@@ -13,7 +13,7 @@ namespace _10717proiect.BusinessLogic.BL_Struct
 {
     public class AuthBL : UserAPI, IAuth
     {
-        public UserCookieResp GenerateCookieByUser(int id)
+        public UserCookieResp GeneratCookieByUser(int id)
         {
             return GenerateCookieByUserAction(id);
         }

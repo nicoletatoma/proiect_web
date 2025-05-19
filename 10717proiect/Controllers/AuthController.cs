@@ -85,10 +85,6 @@ namespace _10717proiect.Controllers
           //     return RedirectToAction("Index", "Home");
           //}
 
-          [HttpGet]
-        public ActionResult Register()
-        {
-            return View( );
-        }
+          
     }
 }
