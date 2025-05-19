@@ -11,5 +11,6 @@ namespace _10717proiect.Domain.Model.User.UserActionResp
         public bool Status { get; set; }
         public string Error { get; set; }
         public int UserId { get; set; }
+        public string Username { get; set; }
     }
 }

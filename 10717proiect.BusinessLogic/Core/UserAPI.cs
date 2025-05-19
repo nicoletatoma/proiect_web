@@ -60,8 +60,10 @@ namespace _10717proiect.BusinessLogic.Core
                     Status = false,
                     Error = "no user found"
                 };
+
             }
 
+           
             return new UserResp()
             {
                 Status = true,
@@ -70,8 +72,33 @@ namespace _10717proiect.BusinessLogic.Core
             };
 
         }
-        
-        internal UserCookieResp GeneratCookieByUserAction(int userId)
+
+        internal UserResp GetUserByCookieAction(string cookieKey)
+        {
+            USessionDbTable session;
+            UDbTable user;
+            using (var db = new SessionContext())
+            {
+                session = db.Session.FirstOrDefault(s => s.Cookie.Contains(cookieKey));
+            }
+
+            if (session != null)
+            {
+                using (var db = new UserContext())
+                {
+                    user = db.Users.FirstOrDefault(u => u.Id == session.UserId);
+                }
+                if (user != null)
+                {
+                    return new UserResp { Status = true, UserId = user.Id,
+                        Username = user.Username, Level = user.Level }; 
+                }
+               
+            }
+
+            return new UserResp { Status = false };
+        }
+        internal UserCookieResp GenerateCookieByUserAction(int userId)
         {
 
             var cookieString = new HttpCookie("X-KEY")
@@ -109,7 +136,7 @@ namespace _10717proiect.BusinessLogic.Core
                 session = new USessionDbTable()
                 {
                     UserId = userId,
-                    Cookie = cookieString.ToString(),
+                    Cookie = cookieString.Value,
                     IsValidTime = dateTime
                 };
 
