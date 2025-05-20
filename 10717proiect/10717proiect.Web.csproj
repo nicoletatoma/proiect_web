@@ -797,6 +797,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="LogicHelper\Attributes\IsAdminAttribute.cs" />
+    <Compile Include="LogicHelper\HttpContextExtensions.cs" />
     <Compile Include="Models\Auth\UserDataLogin.cs" />
     <Compile Include="Models\Reg\UserRegData.cs" />
     <Compile Include="Models\Event\EventDataModelView.cs" />

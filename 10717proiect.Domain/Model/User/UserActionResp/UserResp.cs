@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _10717proiect.Domain.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,5 +13,6 @@ namespace _10717proiect.Domain.Model.User.UserActionResp
         public string Error { get; set; }
         public int UserId { get; set; }
         public string Username { get; set; }
+        public URole Level { get; set; }
     }
 }
