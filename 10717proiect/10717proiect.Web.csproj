@@ -788,6 +788,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\CreateController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\EvenimenteController.cs" />
@@ -800,6 +801,7 @@
     <Compile Include="LogicHelper\Attributes\IsAdminAttribute.cs" />
     <Compile Include="LogicHelper\HttpContextExtensions.cs" />
     <Compile Include="Models\Auth\UserDataLogin.cs" />
+    <Compile Include="Models\Comment\CommentDataModelView.cs" />
     <Compile Include="Models\Reg\UserRegData.cs" />
     <Compile Include="Models\Event\EventDataModelView.cs" />
     <Compile Include="Models\User\AuthData.cs" />
@@ -829,6 +831,7 @@
     <Content Include="Views\Admin\EditUsers.cshtml" />
     <Content Include="Views\Shared\SideBar.cshtml" />
     <Content Include="Views\Error\Error.cshtml" />
+    <Content Include="Views\Comment\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
