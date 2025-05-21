@@ -39,6 +39,15 @@ namespace _10717proiect.BusinessLogic.Core
                 return "Event created successfully!";
             }
 
+
+
         }
-    }
+        public IEnumerable<EventDbTable> GetAllEventsLogic()
+        {
+            using (var dbContext = new EventContext())
+            {
+                return dbContext.Events.ToList();
+            }
+        }
+    }      
 }
