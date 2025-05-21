@@ -838,7 +838,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Account\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\ContulMeu\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\10717proiect.BusinessLogic\10717proiect.BusinessLogic.csproj">
