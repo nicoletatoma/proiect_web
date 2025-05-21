@@ -53,16 +53,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BL_Struct\AuthBL.cs" />
+    <Compile Include="BL_Struct\CommentBL.cs" />
     <Compile Include="BL_Struct\EventBL.cs" />
     <Compile Include="BL_Struct\SessionBL.cs" />
     <Compile Include="BL_Struct\UserBL.cs" />
     <Compile Include="BusinessLogic.cs" />
+    <Compile Include="Core\CommentAPI.cs" />
     <Compile Include="Core\EventAPI.cs" />
     <Compile Include="Core\UserAPI.cs" />
+    <Compile Include="DBContext\CommentContext.cs" />
     <Compile Include="DBContext\EventContext.cs" />
     <Compile Include="DBContext\SessionContext.cs" />
     <Compile Include="DBContext\UserContext.cs" />
     <Compile Include="Interfaces\IAuth.cs" />
+    <Compile Include="Interfaces\IComment.cs" />
     <Compile Include="Interfaces\IEvent.cs" />
     <Compile Include="Interfaces\ISession.cs" />
     <Compile Include="Interfaces\IUser.cs" />

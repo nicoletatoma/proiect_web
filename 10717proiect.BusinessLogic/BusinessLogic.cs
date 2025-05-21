@@ -29,5 +29,10 @@ namespace _10717proiect.BusinessLogic
         {
             return new EventBL();
         }
-    }
+
+        public IComment GetCommentBL()
+        {
+            return new CommentBL();
+        }
+     }
 }

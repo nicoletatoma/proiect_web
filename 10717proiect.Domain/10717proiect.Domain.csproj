@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\URole.cs" />
+    <Compile Include="Model\Comment\CommentDataModel.cs" />
+    <Compile Include="Model\Comment\CommentDbTable.cs" />
     <Compile Include="Model\Event\EventDataModel.cs" />
     <Compile Include="Model\Event\EventDbTable.cs" />
     <Compile Include="Model\Session\USessionDbTable.cs" />
