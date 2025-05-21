@@ -52,7 +52,7 @@ namespace _10717proiect.BusinessLogic.Core
             }
 
 
-            if (user != null)
+            if (user == null)
             {
 
                 return new UserResp()
@@ -68,7 +68,9 @@ namespace _10717proiect.BusinessLogic.Core
             {
                 Status = true,
                 Error = string.Empty,
-                UserId = 1
+                UserId = user.Id,
+                Username = user.Username,
+                Level = user.Level
             };
 
         }
@@ -84,29 +86,64 @@ namespace _10717proiect.BusinessLogic.Core
 
             if (session != null)
             {
+                TimeSpan sessionAge = DateTime.Now - session.IsValidTime;
+ 
+                bool isExpired = sessionAge.TotalHours > 1;
+
+                if (isExpired)
+                {
+                    
+                    using (var db = new SessionContext())
+                    {
+                        db.Session.Remove(session);
+                        db.SaveChanges();
+                    }
+                    return new UserResp { Status = false };
+                }
+
+               
+                using (var db = new SessionContext())
+                {
+                    var sessionToUpdate = db.Session.Find(session.Id);
+                    if (sessionToUpdate != null)
+                    {
+                        sessionToUpdate.IsValidTime = DateTime.Now;
+                        db.SaveChanges();
+                    }
+                }
+
+             
                 using (var db = new UserContext())
                 {
                     user = db.Users.FirstOrDefault(u => u.Id == session.UserId);
                 }
+
                 if (user != null)
                 {
-                    return new UserResp { Status = true, UserId = user.Id,
-                        Username = user.Username, Level = user.Level }; 
+                    return new UserResp
+                    {
+                        Status = true,
+                        UserId = user.Id,
+                        Username = user.Username,
+                        Level = user.Level
+                    };
                 }
-               
             }
 
             return new UserResp { Status = false };
         }
         internal UserCookieResp GenerateCookieByUserAction(int userId)
         {
-
+            var dateTime = DateTime.Now;
+          
+            var expirationTime = dateTime.AddHours(1);
             var cookieString = new HttpCookie("X-KEY")
             {
-                Value = CookieGenerator.Create(userId +"[0.0.0.0]" + "ISP: Super Fast Internet")
+                Value = CookieGenerator.Create(userId +"[0.0.0.0]" + "ISP: Super Fast Internet"),
+                 Expires = expirationTime
             };
 
-            var dateTime = DateTime.Now;
+           
 
             USessionDbTable session;
 
@@ -120,7 +157,7 @@ namespace _10717proiect.BusinessLogic.Core
             {
                 //UPDATE TABLE
 
-                session.Cookie = cookieString.ToString();
+                session.Cookie = cookieString.Value;
                 session.IsValidTime = dateTime;
 
                 using (var db = new SessionContext())
@@ -238,7 +275,7 @@ namespace _10717proiect.BusinessLogic.Core
             {
                 Address = local.Address,
                 Email = local.Email,
-                Password = local.Password,
+                Password = passHashed,
                 Phone = local.Phone,
                 Username = local.Username,
                 LastLoginDateTime = DateTime.Now,
@@ -253,9 +290,31 @@ namespace _10717proiect.BusinessLogic.Core
                 db.SaveChanges();
             }
 
-            return new UserRegDataResp() {  Status = true };
+            return new UserRegDataResp() { Status = true };
         }
-      
+
+        //----------------------- LOGOUT ----------------------------
+        internal bool InvalidateUserSessionAction(string sessionKey)
+        {
+            try
+            {
+                using (var db = new SessionContext())
+                {
+                    var session = db.Session.FirstOrDefault(s => s.Cookie.Contains(sessionKey));
+                    if (session != null)
+                    {
+                        db.Session.Remove(session);
+                        db.SaveChanges();
+                        return true;
+                    }
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
     }
 }

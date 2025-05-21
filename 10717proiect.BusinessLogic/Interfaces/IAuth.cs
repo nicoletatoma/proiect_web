@@ -14,5 +14,6 @@ namespace _10717proiect.BusinessLogic.Interfaces
     {
         UserCookieResp GeneratCookieByUser(int id);
         UserResp UserAuthLogic(UserLoginDTO data);
+        bool InvalidateUserSession(string sessionKey);
     }
 }

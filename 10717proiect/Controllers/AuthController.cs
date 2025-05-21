@@ -52,6 +52,7 @@ namespace _10717proiect.Controllers
             {
                 Email = login.Email,
                 Password = login.Password,
+                UserIP = "Localhost"
            
             };
 
@@ -64,27 +65,43 @@ namespace _10717proiect.Controllers
 
                 var cookie = respCookies.Cookie;
                 ControllerContext.HttpContext.Response.Cookies.Add(cookie);
-
+                Session["UserEmail"] = login.Email;
             }
             else
             {
                 return RedirectToAction("Error", "Error");
             }
 
-            Session["UserEmail"] = login.Email;
 
-          //set cookies key value to session
-          return RedirectToAction("Index", "Home"); 
+
+            //set cookies key value to session
+            return RedirectToAction("Index", "Home"); 
 
 
         }
 
-          //public ActionResult Logout()
-          //{
-          //     Session.Clear(); // sau Session["UserEmail"] = null;
-          //     return RedirectToAction("Index", "Home");
-          //}
+        public ActionResult Logout()
+        {
+            
+            Session.Clear();
 
-          
+           
+            var sessionCookie = Request.Cookies["X-KEY"];
+            if (sessionCookie != null)
+            {
+                _auth.InvalidateUserSession(sessionCookie.Value);
+
+               
+                sessionCookie.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(sessionCookie);
+            }
+
+            
+            System.Web.HttpContext.Current.Session["LoginStatus"] = "logout";
+
+            return RedirectToAction("SignIn", "Auth");
+        }
+
+
     }
 }

@@ -10,5 +10,6 @@ namespace _10717proiect.Domain.Model.User
     {
         public string Email { get; set; }
         public string Password { get; set; }
+        public string UserIP { get; set; }
     }
 }

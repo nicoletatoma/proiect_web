@@ -22,5 +22,9 @@ namespace _10717proiect.BusinessLogic.BL_Struct
         {
             return UserAuthLogicAction(data);
         }
+        public bool InvalidateUserSession(string sessionKey)
+        {
+            return InvalidateUserSessionAction(sessionKey);
+        }
     }
 }
