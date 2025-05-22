@@ -15,5 +15,10 @@ namespace _10717proiect.BusinessLogic.BLStruct
         {
             return EventCreateLogic(data);
         }
+
+        public IEnumerable<EventDbTable> GetAllEvents()
+        {
+            return GetAllEventsLogic();
+        }
     }
 }
