@@ -41,7 +41,7 @@
 
                 <div class="linie-herticala"></div>
 
-               
+
                 <li class="dropdown notification-list">
                     <a href="~/Locations/Index" class=" nav-link waves-effect waves-light">
                         <i class="remixicon-map-pin-line"></i>
@@ -66,13 +66,28 @@
 
                 @if (!string.IsNullOrEmpty(userEmail))
                 {
+                    <!-- Bilete mele - doar pentru utilizatorii logați -->
+                   
+
                     <li class="dropdown notification-list">
-                        <a href="#" class="nav-link waves-effect waves-light">
+                        <a href="#" class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown">
                             <i class="remixicon-user-3-line"></i> Contul meu
                         </a>
-                    </li>
-                    <li class="dropdown notification-list">
-                        <a href="~/Auth/Logout" class="nav-link waves-effect waves-light">Logout</a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#">
+                                <i class="remixicon-user-line me-1"></i> Profil
+                            </a>
+                            <a class="dropdown-item" href="~/Ticket/Index">
+                                <i class="remixicon-ticket-line me-1"></i> Bilete mele
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <i class="remixicon-settings-line me-1"></i> Setări
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="~/Auth/Logout">
+                                <i class="remixicon-logout-circle-line me-1"></i> Logout
+                            </a>
+                        </div>
                     </li>
                 }
                 else
