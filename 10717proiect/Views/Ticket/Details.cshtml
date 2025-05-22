@@ -1,0 +1,379 @@
+﻿@using System.Web.Optimization;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Detalii bilet";
+}
+
+@model _10717proiect.Models.Tickets.TicketViewModel
+
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="utf-8" />
+    <title>Detalii bilet - @Model.EventName</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- App css -->
+    @Styles.Render("~/Content/assets/css/aplicatie.css")
+    @Styles.Render("~/Content/assets/css/app.css")
+    @Styles.Render("~/Content/assets/css/bootstrap.css")
+    @Styles.Render("~/Content/assets/css/icons.css")
+
+    <style>
+        .ticket-details {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-top: 30px;
+        }
+
+        .ticket-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            position: relative;
+        }
+
+        .ticket-perforations {
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: white;
+            border-radius: 50% 50% 0 0 / 20px 20px 0 0;
+        }
+
+        .ticket-body {
+            padding: 40px;
+        }
+
+        .qr-code {
+            width: 150px;
+            height: 150px;
+            background: #f8f9fa;
+            border: 2px dashed #dee2e6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            border-radius: 10px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .info-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+            .info-card h6 {
+                color: #667eea;
+                font-size: 0.9em;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                margin-bottom: 8px;
+            }
+
+            .info-card p {
+                margin: 0;
+                font-size: 1.1em;
+                color: #333;
+            }
+
+        .status-valid {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        .status-expired {
+            background: linear-gradient(135deg, #6c757d, #495057);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        .btn-action {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin: 5px;
+        }
+
+            .btn-action:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+                color: white;
+                text-decoration: none;
+            }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #6c757d, #495057);
+        }
+
+            .btn-secondary:hover {
+                box-shadow: 0 5px 15px rgba(108, 117, 125, 0.4);
+            }
+
+        .event-image-large {
+            width: 100%;
+            max-width: 400px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .ticket-id-display {
+            font-family: 'Courier New', monospace;
+            font-size: 1.5em;
+            font-weight: bold;
+            letter-spacing: 3px;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 20px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+            .warning-box h6 {
+                color: #856404;
+                margin-bottom: 10px;
+            }
+
+            .warning-box p {
+                color: #856404;
+                margin: 0;
+                font-size: 0.9em;
+            }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    @Html.Partial("_Header")
+
+    <div class="wrapper">
+        <div class="container-fluid">
+            <div class="container">
+                <!-- Breadcrumb -->
+                <nav aria-label="breadcrumb" style="margin-top: 20px;">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="@Url.Action("Index", "Home")">Acasă</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="@Url.Action("Index", "Tickets")">Bilete mele</a>
+                        </li>
+                        <li class="breadcrumb-item active">@Model.TicketId</li>
+                    </ol>
+                </nav>
+
+                <div class="ticket-details">
+                    <!-- Ticket Header -->
+                    <div class="ticket-header text-center">
+                        <h1 class="mb-3">@Model.EventName</h1>
+                        <div class="ticket-id-display">@Model.TicketId</div>
+                        <div class="mt-3">
+                            @if (Model.Status == "Valabil")
+                            {
+                                <span class="status-valid">
+                                    <i class="remixicon-check-line me-2"></i>Bilet Valabil
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="status-expired">
+                                    <i class="remixicon-close-line me-2"></i>@Model.Status
+                                </span>
+                            }
+                        </div>
+                        <div class="ticket-perforations"></div>
+                    </div>
+
+                    <!-- Ticket Body -->
+                    <div class="ticket-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <!-- Event Image -->
+                                @if (!string.IsNullOrEmpty(Model.EventImage))
+                                {
+                                    <img src="@Model.EventImage" alt="@Model.EventName" class="event-image-large mb-4"
+                                         onerror="this.src='https://via.placeholder.com/400x250/667eea/ffffff?text=@Uri.EscapeDataString(Model.EventName)'">
+                                }
+                                else
+                                {
+                                    <div class="event-image-large mb-4 d-flex align-items-center justify-content-center"
+                                         style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                                        <i class="remixicon-music-line" style="font-size: 3em;"></i>
+                                    </div>
+                                }
+
+                                <!-- Event Details -->
+                                <div class="info-grid">
+                                    <div class="info-card">
+                                        <h6><i class="remixicon-calendar-line me-2"></i>Data și ora</h6>
+                                        <p>@Model.EventDate.ToString("dddd, dd MMMM yyyy")</p>
+                                        <p><strong>@Model.EventDate.ToString("HH:mm")</strong></p>
+                                    </div>
+
+                                    <div class="info-card">
+                                        <h6><i class="remixicon-map-pin-line me-2"></i>Locația</h6>
+                                        <p>@Model.Location</p>
+                                    </div>
+
+                                    <div class="info-card">
+                                        <h6><i class="remixicon-ticket-line me-2"></i>Cantitate</h6>
+                                        <p>@Model.Quantity bilet@(Model.Quantity != 1 ? "e" : "")</p>
+                                    </div>
+
+                                    <div class="info-card">
+                                        <h6><i class="remixicon-money-dollar-circle-line me-2"></i>Preț</h6>
+                                        <p>@Model.Price.ToString("0") lei / bilet</p>
+                                        <p><strong>Total: @Model.TotalPrice.ToString("0") lei</strong></p>
+                                    </div>
+
+                                    <div class="info-card">
+                                        <h6><i class="remixicon-shopping-cart-line me-2"></i>Data cumpărării</h6>
+                                        <p>@Model.PurchaseDate.ToString("dd MMMM yyyy, HH:mm")</p>
+                                    </div>
+
+                                    <div class="info-card">
+                                        <h6><i class="remixicon-barcode-line me-2"></i>ID Tranzacție</h6>
+                                        <p style="font-family: monospace;">TXN-@Model.TicketId.Substring(1)</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <!-- QR Code Section -->
+                                <div class="text-center">
+                                    <h5 class="mb-3">Cod QR pentru intrare</h5>
+                                    <div class="qr-code">
+                                        <div class="text-muted">
+                                            <i class="remixicon-qr-code-line" style="font-size: 3em;"></i>
+                                            <p class="mt-2">Cod QR</p>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted">
+                                        Prezintă acest cod QR la intrarea în eveniment pentru validarea biletului.
+                                    </p>
+                                </div>
+
+                                <!-- Important Information -->
+                                <div class="warning-box">
+                                    <h6><i class="remixicon-information-line me-2"></i>Informații importante</h6>
+                                    <p>• Biletul este valabil doar pentru persoana căreia îi aparține</p>
+                                    <p>• Prezentarea unei piese de identitate poate fi solicitată</p>
+                                    <p>• Vă rugăm să ajungeți cu 30 de minute înainte de începerea evenimentului</p>
+                                    <p>• Biletul nu poate fi returnat sau schimbat</p>
+                                </div>
+
+                                <!-- Actions -->
+                                <div class="text-center mt-4">
+                                    @if (Model.Status == "Valabil")
+                                    {
+                                        <a href="@Url.Action("DownloadTicket", "Tickets", new { ticketId = Model.TicketId })"
+                                           class="btn-action">
+                                            <i class="remixicon-download-line me-2"></i>Descarcă PDF
+                                        </a>
+
+                                        <a href="#" onclick="window.print()" class="btn-action">
+                                            <i class="remixicon-printer-line me-2"></i>Printează
+                                        </a>
+                                    }
+
+                                    <a href="@Url.Action("Index", "Tickets")" class="btn-action btn-secondary">
+                                        <i class="remixicon-arrow-left-line me-2"></i>Înapoi la bilete
+                                    </a>
+                                </div>
+
+                                @if (Model.IsUpcoming)
+                                {
+                                    <div class="mt-4 p-3" style="background: #e3f2fd; border-radius: 10px; border-left: 4px solid #2196f3;">
+                                        <h6 style="color: #1976d2; margin-bottom: 10px;">
+                                            <i class="remixicon-time-line me-2"></i>Eveniment viitor
+                                        </h6>
+                                        <p style="color: #1976d2; margin: 0; font-size: 0.9em;">
+                                            @{
+                                                var timeUntilEvent = Model.EventDate - DateTime.Now;
+                                                var daysUntil = (int)timeUntilEvent.TotalDays;
+                                            }
+                                            @if (daysUntil > 0)
+                                            {
+                                                <text>Evenimentul va avea loc în @daysUntil zile.</text>
+                                            }
+                                            else if (daysUntil == 0)
+                                            {
+                                                <text>Evenimentul este astăzi!</text>
+                                            }
+                                            else
+                                            {
+                                                <text>Evenimentul a trecut.</text>
+                                            }
+                                        </p>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    @Html.Partial("_Footer")
+
+    <!-- Scripts -->
+    <script src="~/Content/assets/js/vendor.min.js"></script>
+    <script src="~/Content/assets/js/app.min.js"></script>
+
+    <script>
+        // Print styles
+        window.addEventListener('beforeprint', function() {
+            document.body.style.background = 'white';
+        });
+
+        // Add some interactivity
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add smooth scrolling for better UX
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -3483,10 +3483,11 @@ input[type="button"].btn-block {
 .nav-pills .nav-link {
   border-radius: 0.25rem; }
 
-.nav-pills .nav-link.active,
-.nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #3b73da; }
+    .nav-pills .nav-link.active,
+    .nav-pills .show > .nav-link {
+        color: black;
+        background-color: linear-gradient(135deg, #d5cece 0%, #d4d4d4 100%);
+    }
 
 .nav-fill .nav-item {
   -webkit-box-flex: 1;
@@ -8411,7 +8412,7 @@ a.text-purple:hover, a.text-purple:focus {
   font-family: "Material Design Icons"; }
 
 .btn {
-  color: #fff; }
+  color: black; }
   .btn .mdi:before {
     margin-top: -1px; }
 

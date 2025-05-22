@@ -260,3 +260,145 @@ header {
 .text-center.w-75.m-auto.img-signin img {
      height: 120px;
 }
+
+
+.ticket-card {
+    border: 1px solid #e9ecef;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+    .ticket-card:hover {
+        transform: translateY(-2px);
+    }
+
+.ticket-header {
+    background: linear-gradient(135deg, #d5cece 0%, #d4d4d4 100%);
+    color: black;
+    padding: 20px;
+    position: relative;
+}
+
+.ticket-id {
+    font-size: 1.2em;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.ticket-body {
+    padding: 20px;
+}
+
+.event-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.status-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+.badge-success {
+    background-color: #28a745;
+    color: white;
+}
+
+.badge-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.badge-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+.badge-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.ticket-info {
+    margin-top: 15px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+    .info-item i {
+        width: 20px;
+        margin-right: 10px;
+    }
+
+.ticket-actions {
+    border-top: 1px solid #e9ecef;
+    padding: 15px 20px;
+}
+
+.btn-ticket {
+    background: linear-gradient(135deg, #d5cece 0%, #d4d4d4 100%);
+    border: none;
+    color: black;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+}
+
+    .btn-ticket:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 3px 10px rgba(102, 126, 234, 0.4);
+        color: white;
+    }
+
+.page-header {
+    background: linear-gradient(135deg, #d5cece 0%, #d4d4d4 100%);
+    color: white;
+    padding: 40px 0;
+    margin-bottom: 30px;
+    border-radius: 20px 20px;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+    .empty-state i {
+        font-size: 4em;
+        color: #ddd;
+        margin-bottom: 20px;
+    }
+
+.filter-tabs {
+    margin-bottom: 30px;
+}
+
+.nav-pills .nav-link.active {
+    background: linear-gradient(135deg, #d5cece 0%, #d4d4d4 100%);
+}
+
+
+
+@@keyframes bounce {
+    0%, 80%, 100% {
+        transform: scale(0);
+    }
+
+    40% {
+        transform: scale(1);
+    }
+}
