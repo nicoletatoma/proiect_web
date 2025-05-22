@@ -26,7 +26,7 @@ namespace _10717proiect.LogicHelper.Attributes
             if (sessionKey != null)
             {
                 UserResp profile = _session.GetUserByCookie(sessionKey.Value);
-                if (profile != null && profile.Level == URole.Admin)
+                if (profile != null && profile.Level != URole.Admin)
                 {
                     filterContext.Result =
                         new RedirectToRouteResult(
