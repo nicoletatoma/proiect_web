@@ -23,5 +23,10 @@ namespace _10717proiect.Web.Controllers
     
         }
 
+          public ActionResult Cos()
+          {
+               return View();
+          }
+
     }
 }

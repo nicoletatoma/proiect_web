@@ -832,6 +832,7 @@
     <Content Include="Views\Shared\SideBar.cshtml" />
     <Content Include="Views\Error\Error.cshtml" />
     <Content Include="Views\Comment\Index.cshtml" />
+    <Content Include="Views\Home\Cos.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

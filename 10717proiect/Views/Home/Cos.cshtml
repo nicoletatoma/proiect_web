@@ -1,0 +1,196 @@
+﻿@{
+     ViewBag.Title = "Coșul Meu";
+
+     var produse = new List<dynamic> {
+        new { ProductName = "Bilet Concert", Quantity = 2, Price = 350M, ImageUrl = "~/Content/assets/images/carbon.jpg" },
+        new { ProductName = "Bilet Film", Quantity = 1, Price = 100M, ImageUrl = "~/Content/assets/images/carbon.jpg" },
+        new { ProductName = "Bilet Teatru", Quantity = 3, Price = 250M, ImageUrl = "~/Content/assets/images/carbon.jpg" }
+    };
+}
+@using System.Web.Optimization
+@Html.Partial("_Header")
+
+<div class="container mt-5">
+     <div class="row justify-content-center">
+          <!-- Lista produse -->
+          <div class="col-md-8">
+               <div class="card shadow rounded-5 p-4">
+                    <h4 class="mb-4">Produse în Coș</h4>
+
+                    <!-- Produs 1 -->
+                    <div class="d-flex align-items-center border rounded-5 p-4 mb-4 shadow-sm bg-white">
+                         <img src="@Url.Content(produse[0].ImageUrl)" alt="@produse[0].ProductName" style="width: 130px; height: 100px; object-fit: cover;" class="rounded-4 me-3;" />
+                         <div class="flex-grow-1" style="margin-left: 15px;">
+
+
+                              <h5 class="mb-1">@produse[0].ProductName</h5>
+                              <p class="text-muted mb-2">Preț: <strong>@produse[0].Price</strong> lei</p>
+                              <div class="d-flex align-items-center">
+                                   <button class="btn btn-outline-secondary btn-sm me-2">-</button>
+                                   <span class="mx-2">@produse[0].Quantity</span>
+                                   <button class="btn btn-outline-secondary btn-sm ms-2">+</button>
+                              </div>
+                         </div>
+                         <div class="text-end ms-3">
+                              <strong>Total:</strong><br />
+                              @(produse[0].Price * produse[0].Quantity) lei
+                         </div>
+                    </div>
+
+                    <!-- Produs 2 -->
+                    <div class="d-flex align-items-center border rounded-5 p-4 mb-4 shadow-sm bg-white">
+                         <img src="@Url.Content(produse[1].ImageUrl)" alt="@produse[1].ProductName" style="width: 130px; height: 100px; object-fit: cover;" class="rounded-4 me-3" />
+                         <div class="flex-grow-1" style="margin-left: 15px;">
+                              <h5 class="mb-1">@produse[1].ProductName</h5>
+                              <p class="text-muted mb-2">Preț: <strong>@produse[1].Price</strong> lei</p>
+                              <div class="d-flex align-items-center">
+                                   <button class="btn btn-outline-secondary btn-sm me-2">-</button>
+                                   <span class="mx-2">@produse[1].Quantity</span>
+                                   <button class="btn btn-outline-secondary btn-sm ms-2">+</button>
+                              </div>
+                         </div>
+                         <div class="text-end ms-3">
+                              <strong>Total:</strong><br />
+                              @(produse[1].Price * produse[1].Quantity) lei
+                         </div>
+                    </div>
+
+                    <!-- Produs 3 -->
+                    <div class="d-flex align-items-center border rounded-5 p-4 mb-4 shadow-sm bg-white">
+                         <img src="@Url.Content(produse[2].ImageUrl)" alt="@produse[2].ProductName" style="width: 130px; height: 100px; object-fit: cover;" class="rounded-4 me-3" />
+                         <div class="flex-grow-1" style="margin-left: 15px;">
+                              <h5 class="mb-1">@produse[2].ProductName</h5>
+                              <p class="text-muted mb-2">Preț: <strong>@produse[2].Price</strong> lei</p>
+                              <div class="d-flex align-items-center">
+                                   <button class="btn btn-outline-secondary btn-sm me-2">-</button>
+                                   <span class="mx-2">@produse[2].Quantity</span>
+                                   <button class="btn btn-outline-secondary btn-sm ms-2">+</button>
+                              </div>
+                         </div>
+                         <div class="text-end ms-3">
+                              <strong>Total:</strong><br />
+                              @(produse[2].Price * produse[2].Quantity) lei
+                         </div>
+                    </div>
+
+               </div>
+          </div>
+
+          <!-- Metoda de plata -->
+          <div class="col-md-4">
+               <div class="card shadow rounded-5 p-4 bg-light border-0" style="background: linear-gradient(135deg, #f8f9fa, #e9ecef);">
+                    <h5 class="mb-3 text-center fw-bold">Metodă de Plată</h5>
+                    <p class="text-muted text-center">
+                         Alege metoda preferată și finalizează comanda în siguranță.
+                    </p>
+
+                    <!-- Cec Rezumat -->
+                    <div class="bg-white rounded-4 p-3 mb-4 shadow-sm">
+                         <h6 class="fw-bold mb-3 text-center">Rezumat Comandă</h6>
+                         <ul class="list-unstyled small">
+                              <li class="d-flex justify-content-between mb-1">
+                                   <span>Bilet Concert x2</span>
+                                   <span>@(produse[0].Price * produse[0].Quantity) lei</span>
+                              </li>
+                              <li class="d-flex justify-content-between mb-1">
+                                   <span>Bilet Film x1</span>
+                                   <span>@(produse[1].Price * produse[1].Quantity) lei</span>
+                              </li>
+                              <li class="d-flex justify-content-between mb-2">
+                                   <span>Bilet Teatru x3</span>
+                                   <span>@(produse[2].Price * produse[2].Quantity) lei</span>
+                              </li>
+                              <li class="border-top pt-2 d-flex justify-content-between fw-bold">
+                                   <span>Total</span>
+                                   <span>
+                                        @(
+                                   produse[0].Price * produse[0].Quantity +
+                                   produse[1].Price * produse[1].Quantity +
+                                   produse[2].Price * produse[2].Quantity
+                               ) lei
+                                   </span>
+                              </li>
+                         </ul>
+                    </div>
+
+                    <!-- Metode de plata -->
+                    <div class="d-flex justify-content-center flex-wrap gap-3 mb-4">
+                         <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa" style="height: 32px;" title="Visa" />
+                         <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" style="height: 32px;" title="Mastercard" />
+                         <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" style="height: 32px;" title="PayPal" />
+                         <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple Pay" style="height: 32px;" title="Apple Pay" />
+                    </div>
+
+                    <a href="/Plata" class="btn btn-success w-100 rounded-4 py-2 d-flex align-items-center justify-content-center shadow-sm">
+                         <i class="bi bi-credit-card-fill me-2"></i>
+                         <span class="fw-semibold">Mergi la Plată</span>
+                    </a>
+               </div>
+          </div>
+          <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const produsElements = document.querySelectorAll(".d-flex.align-items-center.border");
+
+        produsElements.forEach(function (produs, index) {
+            const minusBtn = produs.querySelector("button.btn-outline-secondary:nth-child(1)");
+            const plusBtn = produs.querySelector("button.btn-outline-secondary:nth-child(3)");
+            const qtySpan = produs.querySelector("span.mx-2");
+            const totalDiv = produs.querySelector(".text-end strong + br + span, .text-end");
+            const priceText = produs.querySelector("p.text-muted strong").innerText;
+            const price = parseFloat(priceText);
+
+            function updateTotal() {
+                const quantity = parseInt(qtySpan.innerText);
+                const total = price * quantity;
+                totalDiv.innerHTML = "Total:<br />" + total.toFixed(2) + " lei";
+
+                // actualizeaza si totalul general din rezumat
+                updateTotalGeneral();
+            }
+
+            plusBtn.addEventListener("click", function () {
+                let qty = parseInt(qtySpan.innerText);
+                qtySpan.innerText = ++qty;
+                updateTotal();
+            });
+
+            minusBtn.addEventListener("click", function () {
+                let qty = parseInt(qtySpan.innerText);
+                if (qty > 1) {
+                    qtySpan.innerText = --qty;
+                    updateTotal();
+                }
+            });
+        });
+
+        function updateTotalGeneral() {
+            let totalGeneral = 0;
+            document.querySelectorAll(".d-flex.align-items-center.border").forEach(function (produs) {
+                const qty = parseInt(produs.querySelector("span.mx-2").innerText);
+                const price = parseFloat(produs.querySelector("p.text-muted strong").innerText);
+                totalGeneral += qty * price;
+            });
+
+            // update totalul din cardul Rezumat Comandă
+            const totalRow = document.querySelector(".bg-white ul li.border-top span:last-child");
+            if (totalRow) {
+                totalRow.innerText = totalGeneral.toFixed(2) + " lei";
+            }
+
+            // update individual in rezumat
+            const summaryItems = document.querySelectorAll(".bg-white ul li:not(.border-top)");
+            const produseNames = ["Bilet Concert", "Bilet Film", "Bilet Teatru"];
+            summaryItems.forEach((item, idx) => {
+                const qty = document.querySelectorAll(".d-flex.align-items-center.border")[idx]
+                    .querySelector("span.mx-2").innerText;
+                const price = document.querySelectorAll(".d-flex.align-items-center.border")[idx]
+                    .querySelector("p.text-muted strong").innerText;
+                item.innerHTML = `<span>${produseNames[idx]} x${qty}</span><span>${(qty * price).toFixed(2)} lei</span>`;
+            });
+        }
+    });
+          </script>
+
+
+     </div>
+</div>
