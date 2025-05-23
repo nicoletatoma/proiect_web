@@ -19,12 +19,6 @@ namespace _10717proiect.BusinessLogic.Core
 {
     public class UserAPI
     {
-        ////metodele entitatilor se termina cu action
-        //internal bool ValidateSessionIdAction(string id)
-        //{
-        //    return true;
-        //}
-
 
         //---------------AUTH----------------
         internal UserResp UserAuthLogicAction(UserLoginDTO data)

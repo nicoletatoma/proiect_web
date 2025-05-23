@@ -807,7 +807,6 @@
     <Compile Include="Models\Event\EventDataModelView.cs" />
     <Compile Include="Models\TicketViewModel.cs" />
     <Compile Include="Models\User\AuthData.cs" />
-    <Compile Include="obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

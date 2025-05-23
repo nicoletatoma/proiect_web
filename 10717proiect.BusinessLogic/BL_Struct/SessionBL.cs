@@ -10,10 +10,10 @@ namespace _10717proiect.BusinessLogic.BL_Struct
 {
     class SessionBL : UserAPI, ISession
     {
-        public bool ValidateSessionId(string id)
+
+        public bool InvalidateUserSession(string sessionKey)
         {
-            //chemam metoda din UserAPI
-            return ValidateSessionId(id);
+            return InvalidateUserSessionAction(sessionKey);
         }
     }
 }

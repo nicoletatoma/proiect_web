@@ -20,16 +20,8 @@ namespace _10717proiect.Controllers
 
           public ActionResult SignIn()
           {
-               // string session id provider
-               //check id in session
-               //var sId = "abcd";   
-               //bool ISession = _session.ValidateSessionId(sId);
-               return View(new UserDataLogin());
-          }
 
-          public ActionResult SignUp()
-          {
-               return View();
+               return View(new UserDataLogin());
           }
 
           public AuthController()
@@ -39,12 +31,7 @@ namespace _10717proiect.Controllers
             _auth = bl.GetAuthBL();
         }
         //end entry point
-        public ActionResult Index()
-        {
-            //var sId = "abcd";   
-            //bool ISession = _session.ValidateSessionId(sId);
-            return View(new UserDataLogin());
-        }
+        
         [HttpPost]
         public ActionResult Auth (UserDataLogin login)
         {
@@ -89,7 +76,7 @@ namespace _10717proiect.Controllers
             var sessionCookie = Request.Cookies["X-KEY"];
             if (sessionCookie != null)
             {
-                _auth.InvalidateUserSession(sessionCookie.Value);
+                _session.InvalidateUserSession(sessionCookie.Value);
 
                
                 sessionCookie.Expires = DateTime.Now.AddDays(-1);

@@ -9,6 +9,6 @@ namespace _10717proiect.BusinessLogic.Interfaces
     public interface ISession
     {
         //doar structura metodei fara logica, fara implementare
-        bool ValidateSessionId(string id);
+        bool InvalidateUserSession(string sessionKey);
     }
 }
