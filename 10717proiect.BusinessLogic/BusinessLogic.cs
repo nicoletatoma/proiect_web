@@ -34,5 +34,10 @@ namespace _10717proiect.BusinessLogic
         {
             return new CommentBL();
         }
-     }
+
+        public IAdmin GetAdminBL()
+        {
+            return new AdminBL();
+        }
+    }
 }
