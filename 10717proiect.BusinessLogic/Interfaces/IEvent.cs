@@ -9,7 +9,7 @@ namespace _10717proiect.BusinessLogic.Interfaces
 {
     public interface IEvent
     {
-        string CreateEventLogic(EventDataModel data);
+        string CreateEventLogic(LocationData data);
         IEnumerable<EventDbTable> GetAllEvents();
     }
 }

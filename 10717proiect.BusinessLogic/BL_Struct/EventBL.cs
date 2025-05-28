@@ -11,7 +11,7 @@ namespace _10717proiect.BusinessLogic.BLStruct
 {
     public class EventBL : EventAPI, IEvent
     {
-        public string CreateEventLogic(EventDataModel data)
+        public string CreateEventLogic(LocationData data)
         {
             return EventCreateLogic(data);
         }

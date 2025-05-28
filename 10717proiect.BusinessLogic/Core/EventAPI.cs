@@ -5,12 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using _10717proiect.BusinessLogic.DBContext;
 using _10717proiect.Domain.Model.Event;
+using _10717proiect.Domain.Model.Location;
 
 namespace _10717proiect.BusinessLogic.Core
 {
     public class EventAPI
     {
-        public string EventCreateLogic(EventDataModel data)
+        public string EventCreateLogic(Domain.Model.Event.LocationData data)
         {
             if (data == null ||
                 data.EventDate == DateTime.MinValue ||
@@ -49,5 +50,5 @@ namespace _10717proiect.BusinessLogic.Core
                 return dbContext.Events.ToList();
             }
         }
-    }      
+     }      
 }

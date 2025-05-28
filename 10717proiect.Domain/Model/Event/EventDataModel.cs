@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _10717proiect.Domain.Model.Event
 {
-    public class EventDataModel
+    public class LocationData
     {
         public string Name { get; set; }
         public string Description { get; set; }
@@ -16,5 +16,5 @@ namespace _10717proiect.Domain.Model.Event
         public decimal Price { get; set; }
         public string ImagePath { get; set; }
         public DateTime CreatedAt { get; set; }
-    }
+     }
 }

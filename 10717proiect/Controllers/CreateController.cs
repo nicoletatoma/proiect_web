@@ -64,7 +64,7 @@ namespace _10717proiect.Controllers
                 imagePath = "/Content/Images/Events/" + uniqueFileName;
             }
 
-            var data = new _10717proiect.Domain.Model.Event.EventDataModel
+            var data = new _10717proiect.Domain.Model.Event.LocationData
             {
                 Name = createEvent.Name,
                 Description = createEvent.Description,

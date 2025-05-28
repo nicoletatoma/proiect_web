@@ -39,5 +39,11 @@ namespace _10717proiect.BusinessLogic
         {
             return new AdminBL();
         }
+
+        public ILocation GetLocationBL()
+        {
+            return new LocationBL();
+        }
+
     }
 }
