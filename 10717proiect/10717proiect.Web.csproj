@@ -790,11 +790,9 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\CreateController.cs" />
-    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
-    <Compile Include="Controllers\TicketController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -831,10 +829,11 @@
     <Content Include="Views\Admin\EditLoc.cshtml" />
     <Content Include="Views\Admin\EditUsers.cshtml" />
     <Content Include="Views\Shared\SideBar.cshtml" />
-    <Content Include="Views\Error\Error.cshtml" />
+    <Content Include="Views\Home\Error.cshtml" />
     <Content Include="Views\Comment\Index.cshtml" />
     <Content Include="Views\Home\Cos.cshtml" />
-    <Content Include="Views\Ticket\Index.cshtml" />
+    <Content Include="Views\Home\Ticket.cshtml" />
+    <Content Include="Views\Home\Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
