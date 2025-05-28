@@ -806,7 +806,7 @@
     <Compile Include="Models\Reg\UserRegData.cs" />
     <Compile Include="Models\Event\EventDataModelView.cs" />
     <Compile Include="Models\TicketViewModel.cs" />
-    <Compile Include="Models\User\AuthData.cs" />
+    <Compile Include="Models\User\UserData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -835,7 +835,6 @@
     <Content Include="Views\Comment\Index.cshtml" />
     <Content Include="Views\Home\Cos.cshtml" />
     <Content Include="Views\Ticket\Index.cshtml" />
-
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
