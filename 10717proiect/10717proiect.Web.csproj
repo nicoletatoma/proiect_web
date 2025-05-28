@@ -791,7 +791,6 @@
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\CreateController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
-    <Compile Include="Controllers\EvenimenteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
@@ -803,6 +802,7 @@
     <Compile Include="LogicHelper\HttpContextExtensions.cs" />
     <Compile Include="Models\Auth\UserDataLogin.cs" />
     <Compile Include="Models\Comment\CommentDataModelView.cs" />
+    <Compile Include="Models\Location\LocationDataView.cs" />
     <Compile Include="Models\Reg\UserRegData.cs" />
     <Compile Include="Models\Event\EventDataModelView.cs" />
     <Compile Include="Models\TicketViewModel.cs" />
@@ -844,6 +844,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Images\Location\" />
     <Folder Include="Views\Account\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\ContulMeu\" />

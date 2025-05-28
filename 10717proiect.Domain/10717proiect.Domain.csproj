@@ -51,6 +51,8 @@
     <Compile Include="Model\Comment\CommentDbTable.cs" />
     <Compile Include="Model\Event\EventDataModel.cs" />
     <Compile Include="Model\Event\EventDbTable.cs" />
+    <Compile Include="Model\Location\LocationData.cs" />
+    <Compile Include="Model\Location\LocationDbTable.cs" />
     <Compile Include="Model\Session\USessionDbTable.cs" />
     <Compile Include="Model\User\UserActionResp\UserCookieResp.cs" />
     <Compile Include="Model\User\UserActionResp\UserResp.cs" />
