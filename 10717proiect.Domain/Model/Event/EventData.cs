@@ -16,7 +16,7 @@ namespace _10717proiect.Domain.Model.Event
           public DateTime eventDate { get; set; }
           public string eventLocation { get; set; }
           public string eventCategory { get; set; }
-          public decimal eventPrice { get; set; }
+          public int eventPrice { get; set; }
           public string eventImage { get; set; }
           public EventStatus eventStatus { get; set; }
           public DateTime createdAt { get; set; }

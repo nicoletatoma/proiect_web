@@ -4,17 +4,35 @@ function showEventForm() {
      document.getElementById('eventForm').classList.remove('d-none');
      document.getElementById('eventName').focus();
 
-     // Reset form for new event
-     editingEventId = null;
-     document.getElementById('eventId').value = '0';
-     document.getElementById('eventForm').action = '/Admin/AddEvent';
-     document.getElementById('submitEventBtn').textContent = 'Publică Evenimentul';
+     // Only reset form if it's not an edit operation
+     if (!editingEventId) {
+          // Reset form for new event
+          document.getElementById('eventId').value = '0';
+          document.getElementById('eventForm').action = '/Admin/AddEvent';
+          document.getElementById('submitEventBtn').textContent = 'Publică Evenimentul';
+
+          // Remove edit mode indicator if it exists
+          const editModeInput = document.getElementById('editMode');
+          if (editModeInput) {
+               editModeInput.remove();
+          }
+     }
 }
 
 function hideEventForm() {
      document.getElementById('eventForm').classList.add('d-none');
      clearEventForm();
      editingEventId = null;
+
+     // Reset form to add mode
+     document.getElementById('eventForm').action = '/Admin/AddEvent';
+     document.getElementById('submitEventBtn').textContent = 'Publică Evenimentul';
+
+     // Remove edit mode indicator
+     const editModeInput = document.getElementById('editMode');
+     if (editModeInput) {
+          editModeInput.remove();
+     }
 }
 
 function clearEventForm() {
@@ -33,6 +51,12 @@ function clearEventForm() {
      document.querySelectorAll('#eventForm .is-invalid').forEach(field => {
           field.classList.remove('is-invalid');
      });
+
+     // Remove edit mode indicator
+     const editModeInput = document.getElementById('editMode');
+     if (editModeInput) {
+          editModeInput.remove();
+     }
 }
 
 function previewEventImage(input) {
@@ -49,10 +73,19 @@ function previewEventImage(input) {
 }
 
 function saveDraft() {
-     // Set status to draft and submit
+     // Set status to draft
      document.getElementById('eventStatus').value = '0';
-     document.getElementById('submitEventBtn').textContent = 'Salvează Draft';
-     document.getElementById('eventForm').submit();
+
+     // Update button text temporarily
+     const submitBtn = document.getElementById('submitEventBtn');
+     const originalText = submitBtn.textContent;
+     submitBtn.textContent = 'Salvează Draft';
+
+     // Submit the form
+     const form = document.getElementById('eventForm');
+     form.submit();
+
+     // Note: The page will reload after submit, so we don't need to restore the button text
 }
 
 function editEvent(eventId) {
@@ -68,6 +101,9 @@ function editEvent(eventId) {
           .then(response => response.json())
           .then(data => {
                if (data.success) {
+                    // Clear form first
+                    clearEventForm();
+
                     // Populate form with event data
                     document.getElementById('eventId').value = data.data.id;
                     document.getElementById('eventName').value = data.data.eventName;
@@ -85,11 +121,30 @@ function editEvent(eventId) {
                     }
 
                     // Update form for editing
-                    document.getElementById('eventForm').action = '/Admin/UpdateEvent';
-                    document.getElementById('submitEventBtn').textContent = 'Actualizează Evenimentul';
+                    const form = document.getElementById('eventForm');
+                    form.action = '/Admin/UpdateEvent';
+                    form.method = 'POST';
+
+                    // Update submit button
+                    const submitBtn = document.getElementById('submitEventBtn');
+                    submitBtn.textContent = 'Actualizează Evenimentul';
+                    submitBtn.type = 'submit';
+
+                    // Add hidden field to track that this is an edit
+                    let editModeInput = document.getElementById('editMode');
+                    if (!editModeInput) {
+                         editModeInput = document.createElement('input');
+                         editModeInput.type = 'hidden';
+                         editModeInput.id = 'editMode';
+                         editModeInput.name = 'editMode';
+                         form.appendChild(editModeInput);
+                    }
+                    editModeInput.value = 'true';
 
                     // Show form
-                    showEventForm();
+                    document.getElementById('eventForm').classList.remove('d-none');
+                    document.getElementById('eventName').focus();
+
                } else {
                     showNotification('error', data.message || 'Nu s-a putut încărca evenimentul.');
                }
@@ -270,7 +325,7 @@ function showNotification(type, message) {
      }, 5000);
 }
 
-// Form validation
+// Form validation and submission handling
 document.addEventListener('DOMContentLoaded', function () {
      const eventForm = document.getElementById('eventForm');
 
@@ -290,11 +345,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                });
 
-               // Validate event date is in the future
+               // Validate event date is in the future (only for new events, allow past dates for editing)
+               const eventId = document.getElementById('eventId').value;
                const eventDate = new Date(document.getElementById('eventDate').value);
                const now = new Date();
 
-               if (eventDate <= now) {
+               if (eventId === '0' && eventDate <= now) {
                     document.getElementById('eventDate').classList.add('is-invalid');
                     showNotification('error', 'Data evenimentului trebuie să fie în viitor.');
                     isValid = false;
@@ -311,7 +367,19 @@ document.addEventListener('DOMContentLoaded', function () {
                if (!isValid) {
                     e.preventDefault();
                     showNotification('error', 'Vă rugăm să completați corect toate câmpurile obligatorii.');
+                    return false;
                }
+
+               // Log form submission for debugging
+               const formAction = eventForm.action;
+               const eventIdValue = document.getElementById('eventId').value;
+               console.log('Form submission:', {
+                    action: formAction,
+                    eventId: eventIdValue,
+                    isEdit: eventIdValue !== '0'
+               });
+
+               return true;
           });
      }
 
@@ -326,7 +394,7 @@ document.addEventListener('DOMContentLoaded', function () {
           });
      });
 
-     // Set minimum date for event date input to today
+     // Set minimum date for event date input to today (only for new events)
      const eventDateInput = document.getElementById('eventDate');
      if (eventDateInput) {
           const now = new Date();
@@ -337,23 +405,48 @@ document.addEventListener('DOMContentLoaded', function () {
           const minutes = String(now.getMinutes()).padStart(2, '0');
 
           const minDateTime = `${year}-${month}-${day}T${hours}:${minutes}`;
-          eventDateInput.min = minDateTime;
+
+          // Only set min date for new events, allow editing past events
+          eventDateInput.addEventListener('focus', function () {
+               const eventId = document.getElementById('eventId').value;
+               if (eventId === '0') {
+                    this.min = minDateTime;
+               } else {
+                    this.removeAttribute('min');
+               }
+          });
      }
 });
 
-// Auto-dismiss alerts after page load
-document.addEventListener('DOMContentLoaded', function () {
-     const alerts = document.querySelectorAll('.alert-dismissible');
-     alerts.forEach(alert => {
-          setTimeout(() => {
-               if (alert.parentElement) {
-                    alert.classList.remove('show');
-                    setTimeout(() => {
-                         if (alert.parentElement) {
-                              alert.remove();
-                         }
-                    }, 150);
-               }
-          }, 5000);
+// Debug function to check form state
+function debugFormState() {
+     const form = document.getElementById('eventForm');
+     const eventId = document.getElementById('eventId').value;
+     const editMode = document.getElementById('editMode');
+
+     console.log('Form Debug Info:', {
+          formAction: form.action,
+          formMethod: form.method,
+          eventId: eventId,
+          editModeExists: !!editMode,
+          editModeValue: editMode ? editMode.value : 'N/A',
+          isEditMode: eventId !== '0',
+          editingEventId: editingEventId,
+          submitButtonText: document.getElementById('submitEventBtn').textContent
      });
+}
+
+// Add debug button (temporary - remove in production)
+document.addEventListener('DOMContentLoaded', function () {
+     // Add debug button for testing
+     const debugBtn = document.createElement('button');
+     debugBtn.textContent = 'Debug Form';
+     debugBtn.type = 'button';
+     debugBtn.className = 'btn btn-info btn-sm';
+     debugBtn.onclick = debugFormState;
+     debugBtn.style.position = 'fixed';
+     debugBtn.style.top = '10px';
+     debugBtn.style.right = '10px';
+     debugBtn.style.zIndex = '9999';
+     document.body.appendChild(debugBtn);
 });

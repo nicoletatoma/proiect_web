@@ -45,8 +45,8 @@ namespace _10717proiect.Domain.Model.Event
 
           [Required]
           [Display(Name = "Price")]
-          [Column(TypeName = "decimal(10,2)")]
-          public decimal eventPrice { get; set; }
+       
+          public int eventPrice { get; set; }
 
           [Display(Name = "Event Image")]
           [StringLength(500)]

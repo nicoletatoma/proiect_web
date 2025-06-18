@@ -13,7 +13,7 @@ namespace _10717proiect.BusinessLogic.DBContext
      {
           public EventContext() : base("name=10717proiect")
           {
-
+               //     Database.SetInitializer(new CreateDatabaseIfNotExists<EventContext>());
           }
 
           public virtual DbSet<EventDbTable> Events { get; set; }

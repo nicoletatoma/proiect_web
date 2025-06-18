@@ -15,7 +15,7 @@ namespace _10717proiect.Models.Event
           public DateTime eventDate { get; set; }
           public string eventLocation { get; set; }
           public string eventCategory { get; set; }
-          public decimal eventPrice { get; set; }
+          public int eventPrice { get; set; }
           public string eventImage { get; set; }
           public EventStatus eventStatus { get; set; }
           public DateTime createdAt { get; set; }
@@ -49,7 +49,7 @@ namespace _10717proiect.Models.Event
           [Required(ErrorMessage = "Prețul este obligatoriu")]
           [Range(0, double.MaxValue, ErrorMessage = "Prețul trebuie să fie mai mare sau egal cu 0")]
           [Display(Name = "Preț")]
-          public decimal eventPrice { get; set; }
+          public int eventPrice { get; set; }
 
           [Display(Name = "Imaginea Evenimentului")]
           public HttpPostedFileBase eventImageFile { get; set; }

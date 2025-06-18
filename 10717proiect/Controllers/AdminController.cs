@@ -50,7 +50,7 @@ namespace _10717proiect.Controllers
                int userId = (int)System.Web.HttpContext.Current.Session["UserId"];
                var events = _eventManager.GetUserEvents(userId);
 
-               var eventViewModels = events.Select(e => new EventListViewModel
+               var eventViewModels = events.Select(e => new EventViewModel
                {
                     Id = e.Id,
                     eventName = e.eventName,
@@ -249,7 +249,7 @@ namespace _10717proiect.Controllers
                                    eventLocation = eventData.eventLocation,
                                    eventCategory = eventData.eventCategory,
                                    eventPrice = eventData.eventPrice,
-                                   eventImage = eventData.eventImage,
+                                   eventImage = !string.IsNullOrEmpty(eventData.eventImage) ? Url.Content(eventData.eventImage) : null,
                                    eventStatus = (int)eventData.eventStatus
                               }
                          };

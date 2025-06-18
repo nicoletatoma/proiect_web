@@ -33,7 +33,7 @@ namespace _10717proiect.BusinessLogic.Core
                     // Procesare imagine dacă este furnizată
                     if (imageFile != null && imageFile.ContentLength > 0)
                     {
-                         imagePath = await SaveEventImage(imageFile, userId);
+                         imagePath = await SaveEventImage(imageFile, eventData.eventName);
                          if (imagePath == null)
                          {
                               return false; // Eroare la salvarea imaginii
@@ -90,7 +90,7 @@ namespace _10717proiect.BusinessLogic.Core
                     // Procesare imagine nouă dacă este furnizată
                     if (imageFile != null && imageFile.ContentLength > 0)
                     {
-                         var newImagePath = SaveEventImage(imageFile, userId).Result;
+                         var newImagePath = SaveEventImage(imageFile, eventData.eventName).Result;
                          if (newImagePath != null)
                          {
                               // Șterge imaginea veche dacă există
@@ -393,7 +393,7 @@ namespace _10717proiect.BusinessLogic.Core
                return events;
           }
 
-          private async Task<string> SaveEventImage(HttpPostedFileBase imageFile, int userId)
+          private async Task<string> SaveEventImage(HttpPostedFileBase imageFile, string eventName)
           {
                try
                {
@@ -411,8 +411,8 @@ namespace _10717proiect.BusinessLogic.Core
                     }
 
                     // Creare structură directoare
-                    string baseEventsPath = HttpContext.Current.Server.MapPath("~/Resources/EventImages");
-                    string userEventsPath = Path.Combine(baseEventsPath, userId.ToString());
+                    string baseEventsPath = HttpContext.Current.Server.MapPath("~/Content/Images/Events");
+                    string userEventsPath = Path.Combine(baseEventsPath, eventName);
 
                     if (!Directory.Exists(baseEventsPath))
                     {
@@ -433,7 +433,7 @@ namespace _10717proiect.BusinessLogic.Core
                     imageFile.SaveAs(filePath);
 
                     // Returnare path relativ
-                    return $"~/Resources/EventImages/{userId}/{fileName}";
+                    return $"~/Content/Images/Events/{eventName}/{fileName}";
                }
                catch (Exception ex)
                {
