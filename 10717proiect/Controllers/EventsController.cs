@@ -11,7 +11,7 @@ using _10717proiect.Domain.Model.Event;
 namespace _10717proiect.Controllers
 {
 
-     public class EvenimenteController : Controller
+     public class EventsController : Controller
      {
           //private readonly IEvent _product;
 
