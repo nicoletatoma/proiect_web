@@ -13,18 +13,18 @@ namespace _10717proiect.Controllers
 
      public class EvenimenteController : Controller
      {
-          private readonly IEvent _product;
+          //private readonly IEvent _product;
 
-          public EvenimenteController()
-          {
-               var bl = new BusinessLogic.BusinessLogic();
-               _product = bl.CreateEventBL();
-          }
+          //public EvenimenteController()
+          //{
+          //     var bl = new BusinessLogic.BusinessLogic();
+          //     _product = bl.CreateEventBL();
+          //}
 
           public ActionResult Index()
           {
-               var evenimente = _product.GetAllEvents();
-               return View(evenimente);
+               //var evenimente = _product.GetAllEvents();
+               return View(/*evenimente*/);
           }
      }
 }

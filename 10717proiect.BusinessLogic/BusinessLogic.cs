@@ -25,12 +25,12 @@ namespace _10717proiect.BusinessLogic
         {
             return new UserBL();
         }
-        public IEvent CreateEventBL()
-        {
-            return new EventBL();
-        }
+          public IEventManager GetEventManagerBL()
+          {
+               return new EventManagerBL();
+          }
 
-        public IComment GetCommentBL()
+          public IComment GetCommentBL()
         {
             return new CommentBL();
         }

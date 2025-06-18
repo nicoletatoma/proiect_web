@@ -28,7 +28,9 @@ namespace _10717proiect.Controllers
                 {
                     System.Web.HttpContext.Current.SetUserProfile(profile);
                     System.Web.HttpContext.Current.Session["LoginStatus"] = "login";
-                }
+                         System.Web.HttpContext.Current.Session["UserFirstName"] = profile.Username;
+                         System.Web.HttpContext.Current.Session["UserId"] = profile.UserId;
+                    }
                 else
                 {
                     System.Web.HttpContext.Current.Session.Clear();

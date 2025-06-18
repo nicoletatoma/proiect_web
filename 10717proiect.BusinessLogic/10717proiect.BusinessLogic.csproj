@@ -55,7 +55,7 @@
     <Compile Include="BL_Struct\AdminBL.cs" />
     <Compile Include="BL_Struct\AuthBL.cs" />
     <Compile Include="BL_Struct\CommentBL.cs" />
-    <Compile Include="BL_Struct\EventBL.cs" />
+    <Compile Include="BL_Struct\EventManagerBL.cs" />
     <Compile Include="BL_Struct\LocationBL.cs" />
     <Compile Include="BL_Struct\SessionBL.cs" />
     <Compile Include="BL_Struct\UserBL.cs" />
@@ -73,7 +73,7 @@
     <Compile Include="Interfaces\IAdmin.cs" />
     <Compile Include="Interfaces\IAuth.cs" />
     <Compile Include="Interfaces\IComment.cs" />
-    <Compile Include="Interfaces\IEvent.cs" />
+    <Compile Include="Interfaces\IEventManager.cs" />
     <Compile Include="Interfaces\ILocation.cs" />
     <Compile Include="Interfaces\ISession.cs" />
     <Compile Include="Interfaces\IUser.cs" />

@@ -1,250 +1,275 @@
-﻿@{
+﻿@model List<_10717proiect.Models.Event.EventViewModel>
+
+
+@{
+     ViewBag.Title = "Evenimente";
      Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-<div class="container-fluid">
+
+<div class="container-fluid p-0">
      <div class="row">
           <div class="col-12">
-               <div class="card shadow">
-                    <div class="card-header bg-primary text-white">
-                         <h4 class="mb-0">
-                              <i class="fas fa-plus-circle me-2"></i>
-                              Adaugă Eveniment Nou
-                         </h4>
+               <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                         <div>
+                              <h5 class="card-title mb-1">Evenimente</h5>
+                              <h6 class="card-subtitle text-muted">Adăugați sau gestionați evenimentele organizate.</h6>
+                         </div>
+                         <button class="btn btn-primary" onclick="showEventForm()">
+                              <i class="bi bi-plus-lg me-1"></i>Adaugă eveniment
+                         </button>
                     </div>
                     <div class="card-body">
-                         <form id="eventForm" enctype="multipart/form-data">
+                         <!-- Success/Error Messages-->
+                         @if (TempData["SuccessMessage"] != null)
+                         {
+                              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                   @TempData["SuccessMessage"]
+                                   <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                              </div>
+                         }
+                         @if (TempData["ErrorMessage"] != null)
+                         {
+                              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                   @TempData["ErrorMessage"]
+                                   <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                              </div>
+                         }
+
+                         <!-- Anti-forgery token for AJAX -->
+                         @Html.AntiForgeryToken()
+
+                         <!-- Form for adding/editing event -->
+                         <form class="d-none mb-4" id="eventForm" method="post" action="@Url.Action("AddEvent", "Admin")" enctype="multipart/form-data">
+                              @Html.AntiForgeryToken()
+                              <input type="hidden" id="eventId" name="Id" value="0">
 
                               <!-- Numele Evenimentului -->
-                              <div class="mb-3">
-                                   <label for="eventName" class="form-label fw-bold">
-                                        Numele Evenimentului <span class="text-danger">*</span>
-                                   </label>
-                                   <input type="text" class="form-control" id="eventName" name="eventName" required
-                                          placeholder="Introduceți numele evenimentului">
+                              <div class="row">
+                                   <div class="col-12 mb-3">
+                                        <label for="eventName" class="form-label">Numele Evenimentului *</label>
+                                        <input type="text" class="form-control" id="eventName" name="eventName" placeholder="Introduceți numele evenimentului" required>
+                                   </div>
                               </div>
 
                               <!-- Descriere -->
-                              <div class="mb-3">
-                                   <label for="eventDescription" class="form-label fw-bold">
-                                        Descrierea Evenimentului <span class="text-danger">*</span>
-                                   </label>
-                                   <textarea class="form-control" id="eventDescription" name="eventDescription" rows="4" required
-                                             placeholder="Descrieți evenimentul..."></textarea>
+                              <div class="row">
+                                   <div class="col-12 mb-3">
+                                        <label for="eventDescription" class="form-label">Descriere</label>
+                                        <textarea class="form-control" id="eventDescription" name="eventDescription" rows="4" placeholder="Descrieți evenimentul..."></textarea>
+                                   </div>
                               </div>
 
                               <!-- Data și Locația -->
                               <div class="row">
-                                   <div class="col-md-6">
-                                        <div class="mb-3">
-                                             <label for="eventDate" class="form-label fw-bold">
-                                                  Data Evenimentului <span class="text-danger">*</span>
-                                             </label>
-                                             <input type="datetime-local" class="form-control" id="eventDate" name="eventDate" required>
-                                        </div>
+                                   <div class="col-12 col-md-6 mb-3">
+                                        <label for="eventDate" class="form-label">Data Evenimentului *</label>
+                                        <input type="datetime-local" class="form-control" id="eventDate" name="eventDate" required>
                                    </div>
-                                   <div class="col-md-6">
-                                        <div class="mb-3">
-                                             <label for="eventLocation" class="form-label fw-bold">
-                                                  Locația <span class="text-danger">*</span>
-                                             </label>
-                                             <select class="form-select" id="eventLocation" name="eventLocation" required>
-                                                  <option value="">Selectează locația</option>
-                                                  <option value="locatie1">Locația 1</option>
-                                                  <option value="locatie2">Locația 2</option>
-                                                  <option value="locatie3">Locația 3</option>
-                                                  <option value="locatie4">Locația 4</option>
-                                                  <option value="locatie5">Locația 5</option>
-                                             </select>
-                                        </div>
+                                   <div class="col-12 col-md-6 mb-3">
+                                        <label for="eventLocation" class="form-label">Locația *</label>
+                                        <select class="form-select" id="eventLocation" name="eventLocation" required>
+                                             <option value="" selected disabled>Selectează locația</option>
+                                             <option value="chisinau">Chișinău</option>
+                                             <option value="balti">Bălți</option>
+                                             <option value="cahul">Cahul</option>
+                                             <option value="orhei">Orhei</option>
+                                             <option value="soroca">Soroca</option>
+                                             <option value="ungheni">Ungheni</option>
+                                             <option value="comrat">Comrat</option>
+                                             <option value="anenii-noi">Anenii Noi</option>
+                                             <option value="basarabeasca">Basarabeasca</option>
+                                             <option value="briceni">Briceni</option>
+                                             <option value="cantemir">Cantemir</option>
+                                             <option value="calarasi">Călărași</option>
+                                             <option value="causeni">Căușeni</option>
+                                             <option value="cimislia">Cimișlia</option>
+                                             <option value="criuleni">Criuleni</option>
+                                             <option value="donduseni">Dondușeni</option>
+                                             <option value="drochia">Drochia</option>
+                                             <option value="dubasari">Dubăsari</option>
+                                             <option value="edinet">Edineț</option>
+                                             <option value="falesti">Fălești</option>
+                                             <option value="floresti">Florești</option>
+                                             <option value="glodeni">Glodeni</option>
+                                             <option value="hincesti">Hîncești</option>
+                                             <option value="ialoveni">Ialoveni</option>
+                                             <option value="leova">Leova</option>
+                                             <option value="nisporeni">Nisporeni</option>
+                                             <option value="ocnita">Ocnița</option>
+                                             <option value="rezina">Rezina</option>
+                                             <option value="riscani">Rîșcani</option>
+                                             <option value="singerei">Sîngerei</option>
+                                             <option value="soldanesti">Șoldănești</option>
+                                             <option value="stefan-voda">Ștefan Vodă</option>
+                                             <option value="straseni">Strășeni</option>
+                                             <option value="taraclia">Taraclia</option>
+                                             <option value="telenesti">Telenești</option>
+                                             <option value="gagauzia">UTA Găgăuzia</option>
+                                        </select>
                                    </div>
                               </div>
 
                               <!-- Categoria și Prețul -->
                               <div class="row">
-                                   <div class="col-md-6">
-                                        <div class="mb-3">
-                                             <label for="eventCategory" class="form-label fw-bold">
-                                                  Categoria <span class="text-danger">*</span>
-                                             </label>
-                                             <select class="form-select" id="eventCategory" name="eventCategory" required>
-                                                  <option value="">Selectează categoria</option>
-                                                  <option value="concert">Concert</option>
-                                                  <option value="teatru">Teatru</option>
-                                                  <option value="festival">Festival</option>
-                                                  <option value="conferinta">Conferință</option>
-                                                  <option value="workshop">Workshop</option>
-                                                  <option value="sport">Eveniment Sportiv</option>
-                                                  <option value="altele">Altele</option>
-                                             </select>
-                                        </div>
+                                   <div class="col-12 col-md-6 mb-3">
+                                        <label for="eventCategory" class="form-label">Categoria *</label>
+                                        <select class="form-select" id="eventCategory" name="eventCategory" required>
+                                             <option value="" selected disabled>Selectează categoria</option>
+                                             <option value="concert">Concert</option>
+                                             <option value="teatru">Teatru</option>
+                                             <option value="festival">Festival</option>
+                                             <option value="conferinta">Conferință</option>
+                                             <option value="workshop">Workshop</option>
+                                             <option value="sport">Eveniment Sportiv</option>
+                                             <option value="expozitie">Expoziție</option>
+                                             <option value="dans">Dans</option>
+                                             <option value="film">Film</option>
+                                             <option value="altele">Altele</option>
+                                        </select>
                                    </div>
-                                   <div class="col-md-6">
-                                        <div class="mb-3">
-                                             <label for="eventPrice" class="form-label fw-bold">
-                                                  Preț (MDL) <span class="text-danger">*</span>
-                                             </label>
-                                             <div class="input-group">
-                                                  <input type="number" class="form-control" id="eventPrice" name="eventPrice"
-                                                         required min="0" step="0.01" placeholder="0.00">
-                                                  <span class="input-group-text">MDL</span>
-                                             </div>
-                                        </div>
+                                   <div class="col-12 col-md-6 mb-3">
+                                        <label for="eventPrice" class="form-label">Preț (MDL) *</label>
+                                        <input type="number" class="form-control" id="eventPrice" name="eventPrice" placeholder="Ex: 150" min="0" step="0.01" required>
                                    </div>
                               </div>
 
                               <!-- Imaginea Evenimentului -->
-                              <div class="mb-4">
-                                   <label for="eventImage" class="form-label fw-bold">
-                                        Imaginea Evenimentului <span class="text-danger">*</span>
-                                   </label>
-                                   <input type="file" class="form-control" id="eventImage" name="eventImage"
-                                          accept="image/*" required>
-                                   <div class="form-text">
-                                        Formateле acceptate: JPG, PNG, GIF. Mărimea maximă: 5MB.
-                                   </div>
+                              <div class="row">
+                                   <div class="col-12 mb-3">
+                                        <label for="eventImageFile" class="form-label">Imaginea Evenimentului</label>
+                                        <input type="file" class="form-control" id="eventImageFile" name="eventImageFile" accept="image/*" onchange="previewEventImage(this)">
+                                        <small class="text-muted">Formate acceptate: JPG, PNG, GIF. Mărimea maximă: 5MB.</small>
 
-                                   <!-- Preview imagine -->
-                                   <div id="imagePreview" class="mt-3 d-none">
-                                        <div class="card" style="max-width: 300px;">
-                                             <img id="previewImg" class="card-img-top" style="height: 200px; object-fit: cover;">
-                                             <div class="card-body p-2">
-                                                  <small class="text-muted">Previzualizare imagine</small>
+                                        <!-- Preview imagine -->
+                                        <div id="imagePreview" class="mt-3 d-none">
+                                             <div class="card" style="max-width: 300px;">
+                                                  <img id="previewImg" class="card-img-top" style="height: 200px; object-fit: cover;">
+                                                  <div class="card-body p-2">
+                                                       <small class="text-muted">Previzualizare imagine</small>
+                                                  </div>
                                              </div>
                                         </div>
                                    </div>
                               </div>
 
-                              <!-- Alerta pentru mesaje -->
-                              <div id="alertContainer"></div>
+                              <!-- Status -->
+                              <!--<div class="row">
+                                   <div class="col-12 col-md-6 mb-3">
+                                        <label for="eventStatus" class="form-label">Status *</label>
+                                        <select class="form-select" id="eventStatus" name="eventStatus" required>
+                                             <option value="0">Draft</option>
+                                             <option value="1">Publicat</option>
+                                        </select>
+                                   </div>
+                              </div>-->
 
                               <!-- Butoane -->
-                              <div class="d-flex justify-content-between">
-                                   <button type="button" class="btn btn-secondary" onclick="resetForm()">
-                                        <i class="fas fa-undo me-1"></i>
-                                        Resetează
-                                   </button>
-                                   <div>
-                                        <button type="button" class="btn btn-outline-primary me-2" onclick="saveDraft()">
-                                             <i class="fas fa-save me-1"></i>
-                                             Salvează Draft
-                                        </button>
-                                        <button type="submit" class="btn btn-primary">
-                                             <i class="fas fa-check me-1"></i>
-                                             Publică Evenimentul
-                                        </button>
+                              <div class="row">
+                                   <div class="col-12 mb-3 text-end">
+                                        <button class="btn btn-secondary me-2" type="button" onclick="hideEventForm()">Anulează</button>
+                                        <button class="btn btn-outline-primary me-2" type="button" onclick="saveDraft()">Salvează Draft</button>
+                                        <button type="submit" class="btn btn-success" id="submitEventBtn">Publică Evenimentul</button>
                                    </div>
                               </div>
+                              <hr class="mb-4">
                          </form>
+
+                         <!-- Event list -->
+                         <div id="eventList" class="row">
+                              @if (Model != null && Model.Any())
+                              {
+                                   foreach (var eventItem in Model)
+                                   {
+                                        <div class="col-12 mb-3" data-event-id="@eventItem.Id">
+                                             <div class="event-card p-3">
+                                                  <div class="content-wrapper">
+                                                       <div class="event-image-section">
+                                                            @if (!string.IsNullOrEmpty(eventItem.eventImage))
+                                                            {
+                                                                 <img src="@Url.Content(eventItem.eventImage)" alt="@eventItem.eventName" class="event-image">
+                                                            }
+                                                            else
+                                                            {
+                                                                 <img src="~/Resources/Home/event.png" alt="Eveniment Default" class="event-image">
+                                                            }
+                                                       </div>
+                                                       <div class="event-details-section">
+                                                            <h5 class="mb-1">@eventItem.eventName</h5>
+                                                            <div class="event-meta mb-2">
+                                                                 <span class="badge bg-primary me-2">@eventItem.eventCategory</span>
+                                                                 <span class="text-muted"><i class="bi bi-calendar3 me-1"></i>@eventItem.eventDate.ToString("dd MMMM yyyy, HH:mm")</span>
+                                                                 <span class="text-muted ms-3"><i class="bi bi-geo-alt me-1"></i>@eventItem.eventLocation</span>
+                                                            </div>
+                                                            <div class="event-description text-muted mb-2">@(string.IsNullOrEmpty(eventItem.eventDescription) ? "Fără descriere" : eventItem.eventDescription)</div>
+                                                       </div>
+                                                       <div class="event-price-section text-end">
+                                                            <p class="event-price mb-1">@eventItem.eventPrice MDL</p>
+                                                            <p class="event-status mb-2">
+                                                                 @switch (eventItem.eventStatus)
+                                                                 {
+                                                                      case _10717proiect.Domain.Enums.EventStatus.Published:
+                                                                           <span class="badge bg-success">Publicat</span>
+                                                                           break;
+                                                                      case _10717proiect.Domain.Enums.EventStatus.Draft:
+                                                                           <span class="badge bg-warning">Draft</span>
+                                                                           break;
+                                                                      case _10717proiect.Domain.Enums.EventStatus.Suspended:
+                                                                           <span class="badge bg-secondary">Suspendat</span>
+                                                                           break;
+                                                                      case _10717proiect.Domain.Enums.EventStatus.Cancelled:
+                                                                           <span class="badge bg-danger">Anulat</span>
+                                                                           break;
+                                                                      case _10717proiect.Domain.Enums.EventStatus.Finished:
+                                                                           <span class="badge bg-dark">Finalizat</span>
+                                                                           break;
+                                                                 }
+                                                            </p>
+                                                            <div class="event-actions">
+                                                                 <button class="btn btn-sm btn-outline-primary me-1" onclick="editEvent(@eventItem.Id)">
+                                                                      <i class="bi bi-pencil"></i>
+                                                                 </button>
+                                                                 @if (eventItem.eventStatus == _10717proiect.Domain.Enums.EventStatus.Published)
+                                                                 {
+                                                                      <button class="btn btn-sm btn-outline-warning me-1" onclick="toggleEventStatus(@eventItem.Id, 2)">
+                                                                           <i class="bi bi-pause"></i>
+                                                                      </button>
+                                                                 }
+                                                                 else if (eventItem.eventStatus == _10717proiect.Domain.Enums.EventStatus.Suspended)
+                                                                 {
+                                                                      <button class="btn btn-sm btn-outline-success me-1" onclick="toggleEventStatus(@eventItem.Id, 1)">
+                                                                           <i class="bi bi-play"></i>
+                                                                      </button>
+                                                                 }
+                                                                 else if (eventItem.eventStatus == _10717proiect.Domain.Enums.EventStatus.Draft)
+                                                                 {
+                                                                      <button class="btn btn-sm btn-outline-success me-1" onclick="publishEvent(@eventItem.Id)">
+                                                                           <i class="bi bi-play"></i>
+                                                                      </button>
+                                                                 }
+                                                                 <button class="btn btn-sm btn-outline-danger" onclick="deleteEvent(@eventItem.Id)">
+                                                                      <i class="bi bi-trash"></i>
+                                                                 </button>
+                                                            </div>
+                                                       </div>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                   }
+                              }
+                              else
+                              {
+                                   <!-- Empty state -->
+                                   <div id="emptyState" class="col-12 text-center py-5">
+                                        <i class="bi bi-calendar-event" style="font-size: 3rem; color: #6c757d;"></i>
+                                        <p class="mt-3 text-muted">Nu există evenimente adăugate momentan.</p>
+                                   </div>
+                              }
+                         </div>
                     </div>
                </div>
           </div>
      </div>
 </div>
 
-<!-- Bootstrap CSS (Include în head-ul paginii principale) -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-
-<script>
-     // Preview imagine
-     document.getElementById('eventImage').addEventListener('change', function (e) {
-          const file = e.target.files[0];
-          const preview = document.getElementById('imagePreview');
-          const previewImg = document.getElementById('previewImg');
-
-          if (file) {
-               const reader = new FileReader();
-               reader.onload = function (e) {
-                    previewImg.src = e.target.result;
-                    preview.classList.remove('d-none');
-               };
-               reader.readAsDataURL(file);
-          } else {
-               preview.classList.add('d-none');
-          }
-     });
-
-     // Setează data minimă la astăzi
-     const today = new Date();
-     today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
-     document.getElementById('eventDate').min = today.toISOString().slice(0, 16);
-
-     // Funcție pentru afișarea alertelor
-     function showAlert(type, message) {
-          const alertContainer = document.getElementById('alertContainer');
-          const alertHTML = `
-            <div class="alert alert-${type} alert-dismissible fade show" role="alert">
-                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'danger' ? 'exclamation-triangle' : 'info-circle'} me-2"></i>
-                ${message}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        `;
-          alertContainer.innerHTML = alertHTML;
-
-          // Scroll la alert
-          alertContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
-     }
-
-     // Resetare formular
-     function resetForm() {
-          if (confirm('Sigur doriți să resetați formularul? Toate datele vor fi pierdute.')) {
-               document.getElementById('eventForm').reset();
-               document.getElementById('imagePreview').classList.add('d-none');
-               document.getElementById('alertContainer').innerHTML = '';
-          }
-     }
-
-     // Salvare ca draft
-     function saveDraft() {
-          const formData = new FormData(document.getElementById('eventForm'));
-
-          // Simulare salvare draft
-          showAlert('info', 'Evenimentul a fost salvat ca draft.');
-
-          // Aici vei face apelul către controller
-          // fetch('/Events/SaveDraft', {
-          //     method: 'POST',
-          //     body: formData
-          // });
-     }
-
-     // Trimiterea formularului
-     document.getElementById('eventForm').addEventListener('submit', function (e) {
-          e.preventDefault();
-
-          // Validare formular
-          if (!this.checkValidity()) {
-               this.classList.add('was-validated');
-               showAlert('danger', 'Te rugăm să completezi toate câmpurile obligatorii.');
-               return;
-          }
-
-          const submitBtn = this.querySelector('button[type="submit"]');
-          const originalText = submitBtn.innerHTML;
-
-          // Schimbă textul butonului
-          submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i> Se procesează...';
-          submitBtn.disabled = true;
-
-          // Simulare trimitere
-          setTimeout(() => {
-               showAlert('success', 'Evenimentul a fost publicat cu succes!');
-
-               // Resetează butonul
-               submitBtn.innerHTML = originalText;
-               submitBtn.disabled = false;
-
-               // Aici vei face apelul către controller
-               // const formData = new FormData(this);
-               // fetch('/Events/Create', {
-               //     method: 'POST',
-               //     body: formData
-               // }).then(response => {
-               //     if (response.ok) {
-               //         window.location.href = '/Events';
-               //     }
-               // });
-
-          }, 1500);
-     });
-</script>
+<script src="~/Scripts/AdminScript/Events.js"></script>

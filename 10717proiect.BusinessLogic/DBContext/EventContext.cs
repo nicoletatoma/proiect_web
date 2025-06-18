@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 namespace _10717proiect.BusinessLogic.DBContext
 {
 
-    public class EventContext : DbContext
-    {
-        public EventContext() : base("name=10717proiect")
-        {
-            Database.SetInitializer(new CreateDatabaseIfNotExists<EventContext>());
-        }
+     public class EventContext : DbContext
+     {
+          public EventContext() : base("name=10717proiect")
+          {
 
-        public virtual DbSet<EventDbTable> Events { get; set; }
-    }
+          }
+
+          public virtual DbSet<EventDbTable> Events { get; set; }
+     }
 }
