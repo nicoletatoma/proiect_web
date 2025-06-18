@@ -418,17 +418,17 @@ Responsive Menu
 }
 
 .navbar-custom {
-    background-color: rgb(207 200 200);
-    position: fixed;
-    border-radius: 0 0 15px 15px;
-    
-    left: 0;
-    right: 0;
-    padding: 8px;
-    padding-left: 40px;
-    height: 80px;
-    z-index: 100;
-    /* Search */
+     background-color: rgb(207 200 200);
+     position: fixed;
+     border-radius: 0 0 15px 15px;
+     margin: -21px 10px;
+     left: 0;
+     right: 0;
+     padding: 8px;
+     padding-left: 40px;
+     height: 80px;
+     z-index: 100;
+     /* Search */
 }
   .navbar-custom .topnav-menu > li {
     float: left; }

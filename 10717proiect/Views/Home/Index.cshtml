@@ -1,171 +1,274 @@
 ﻿@using System.Web.Optimization;
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-    <meta charset="utf-8" />
-    <title>Minton - Responsive Admin Dashboard Template</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
-    <meta content="Coderthemes" name="author" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="~/Content/assets/images/favicon.ico">
+     <meta charset="utf-8" />
+     <title>Minton - Responsive Admin Dashboard Template</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+     <meta content="Coderthemes" name="author" />
+     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+     <link rel="shortcut icon" href="~/Content/assets/images/favicon.ico">
 
-    <!-- App css -->
-    @Styles.Render("~/Content/assets/css/aplicatie.css")
-    @Styles.Render("~/Content/assets/css/app.css")
-    @Styles.Render("~/Content/assets/css/bootstrap.css")
-    @Styles.Render("~/Content/assets/css/icons.css")
+     @Styles.Render("~/Content/assets/css/aplicatie.css")
+     @Styles.Render("~/Content/assets/css/app.css")
+     @Styles.Render("~/Content/assets/css/bootstrap.css")
+     @Styles.Render("~/Content/assets/css/icons.css")
+     <style>
 
+          .locations-grid {
+               display: flex;
+               flex-wrap: nowrap;
+               overflow-x: auto;
+               margin: auto;
+               gap: 20px;
+               padding-bottom: 10px;
+               justify-content: center;
+               margin-bottom: 20px;
+          }
 
+          .location-box {
+               flex: 0 0 auto; /* Nu se micșorează, nu crește, rămâne fixă */
+               width: 260px;
+               background-color: white;
+               border-radius: 10px;
+               box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+               overflow: hidden;
+               transition: transform 0.3s;
+          }
 
+               .location-box:hover {
+                    transform: scale(1.03);
+               }
+
+          .location-image {
+               width: 100%;
+               height: auto;
+               display: block;
+          }
+
+          .location-info {
+               padding: 15px;
+               text-align: center;
+          }
+
+          .event-grid {
+               display: grid;
+               grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+               gap: 20px;
+               margin: 60px auto;
+               width: 90%;
+          }
+
+          .event-box {
+               background-size: cover;
+               background-position: center;
+               border-radius: 20px;
+               position: relative;
+               color: white;
+               overflow: hidden;
+               min-height: 200px;
+               display: flex;
+               align-items: flex-end;
+               transition: transform 0.3s ease;
+          }
+
+               .event-box:hover {
+                    transform: scale(1.03);
+               }
+
+          .event-info {
+               color: white;
+               background: rgba(0, 0, 0, 0.5);
+               width: 100%;
+               padding: 15px;
+          }
+
+          h3 .event-info {
+               color: white;
+          }
+
+          .event-box.tall {
+               grid-row: span 2;
+               min-height: 400px;
+          }
+
+          .event-box.wide {
+               object-fit: contain;
+               grid-column: span 2;
+               min-height: 200px;
+          }
+
+          .event-box.square {
+               aspect-ratio: 1 / 1;
+          }
+
+          .paginatitlu {
+               position: relative;
+               text-align: center;
+               padding: 60px 20px 40px 20px;
+          }
+
+          .buton-coperta {
+               position: absolute;
+               top: 20px;
+               right: 20px;
+               list-style: none;
+               padding: 0;
+               margin: 0;
+          }
+
+               .buton-coperta a {
+                    text-decoration: none;
+                    background-color: #007bff;
+                    color: white;
+                    padding: 10px 20px;
+                    border-radius: 30px;
+                    transition: background-color 0.3s ease;
+                    display: inline-block;
+               }
+
+                    .buton-coperta a:hover {
+                         background-color: #0056b3;
+                    }
+
+          .text-coperta {
+               font-size: 2.5em;
+               font-weight: bold;
+               margin-bottom: 15px;
+          }
+
+          .text-coperta-mic {
+               font-size: 1.4em;
+               color: #666;
+          }
+
+          .separator{
+               background-color:white;
+               width:1px;
+               height: 10px;
+               margin: 0 2px;
+          }
+     </style>
 </head>
 <body>
+     @Html.Partial("_Header")
 
-   
-    <!-- End Preloader-->
-        @Html.Partial("_Header")
-    <!-- Start Page Content here -->
-    <!-- ============================================================== -->
-
-    <div class="wrapper">
-        <div class="container-fluid">
-            <div class="paginatitlu">
-                <div class="col-sm-8" id="coperta">
-                    <h1 class="text-coperta">Descoperă noi evenimente</h1>
-                    <h3 class="text-coperta-mic"> Creeazăți amintiri de neuitat</h3>
-                    <br />
+     <div class="wrapper">
+          <div class="container-fluid">
+               <div class="paginatitlu">
                     <ul class="dropdown notification-list buton-coperta">
-                        <a href="#" class=" waves-light">
-                            <h3 class="exploreaza">Exploreaza mai mult</h3>
-                        </a>
+                         <li>
+                              <a href="~/Evenimente/Index" class="waves-light">
+                                   Explorează mai mult
+                              </a>
+                         </li>
                     </ul>
-                </div>
-            </div>
-            <br />
-            <!-- start page title -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="page-title-box">
+                    <h1 class="text-coperta">Descoperă noi evenimente |</h1>
+                    
+                    <h3 class="text-coperta-mic"> Creeazăți amintiri de neuitat</h3>
+               </div>
+               <br />
+               <br />
+               <h2 style="text-align: center; margin-bottom: 40px;">Evenimente Populare</h2>
+               <div class="event-grid">
 
-                        <h1 class="page-title">Filme</h1>
+                    <div class="event-box tall" style="background-image: url('https://mihaileni.md/wp-content/uploads/2024/04/image-5.png');">
+                         <div class="event-info">
+                              <h3 style="color: white">Festival Electric</h3>
+                              <p>Parcul Central</p>
+                         </div>
                     </div>
-                </div>
-            </div>
-            <!-- end page title -->
-            <!-- Filter -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="text-center filter-menu">
-                        <a href="javascript: void(0);" class="filter-menu-item active" data-rel="all">
-                            <i class="remixicon-home-5-line"></i>
-                            All
-                        </a>
-                        <a href="javascript: void(0);" class="filter-menu-item" data-rel="web">Web Design</a>
-                        <a href="javascript: void(0);" class="filter-menu-item" data-rel="graphic">Graphic Design</a>
-                        <a href="javascript: void(0);" class="filter-menu-item" data-rel="illustrator">Illustrator</a>
-                        <a href="javascript: void(0);" class="filter-menu-item" data-rel="photography">Photography</a>
+                    <div class="event-box wide" style="background-image: url('https://varvara.md/imgs/og_image.jpg');">
+                         <div class="event-info">
+                              <h3 style="color: white">Teatru în aer liber</h3>
+                              <p>Piața Mare</p>
+                         </div>
                     </div>
-                </div>
-            </div>
-            <!-- end row-->
-
-            <div class="row filterable-content">
-
-                <div class="col-sm-6 col-xl-3 filter-item all web illustrator">
-                    <div class="gal-box">
-                        <a href="~/Content/assets/images/carbon.jpg" class="image-popup" title="Screenshot-1">
-                            <img src="~/Content/assets/images/carbon.jpg" class="img-fluid" alt="work-thumbnail">
-                        </a>
-                        <div class="gall-info">
-                            <h4 class="font-16 mt-0">Man wearing black jacket</h4>
-                            <a href="javascript: void(0);">
-                                <img src="~/Content/assets/images/users/avatar-3.jpg" alt="user-img" class="rounded-circle" height="24" />
-                                <span class="text-muted ml-1">Justin Coke</span>
-                            </a>
-                            <a href="javascript: void(0);" class="gal-like-btn"><i class="mdi mdi-heart-outline text-muted"></i></a>
-                        </div> <!-- gallery info -->
-                    </div> <!-- end gal-box -->
-                </div> <!-- end col -->
-
-                <div class="col-sm-6 col-xl-3 filter-item all graphic photography">
-                    <div class="gal-box">
-                        <a href="~/Content/assets/images/small/img-2.jpg" class="image-popup" title="Screenshot-2">
-                            <img src="~/Content/assets/images/small/img-2.jpg" class="img-fluid" alt="work-thumbnail">
-                        </a>
-                        <div class="gall-info">
-                            <h4 class="font-16 mt-0">Snow covered mountain</h4>
-                            <a href="javascript: void(0);">
-                                <img src="~/Content/assets/images/users/avatar-2.jpg" alt="user-img" class="rounded-circle" height="24" />
-                                <span class="text-muted ml-1">Toni Sanchez</span>
-                            </a>
-                            <a href="javascript: void(0);" class="gal-like-btn"><i class="mdi mdi-heart-outline text-danger"></i></a>
-                        </div> <!-- gallery info -->
-                    </div> <!-- end gal-box -->
-                </div> <!-- end col -->
-
-                <div class="col-sm-6 col-xl-3 filter-item all web illustrator">
-                    <div class="gal-box">
-                        <a href="~/Content/assets/images/small/img-3.jpg" class="image-popup" title="Screenshot-3">
-                            <img src="~/Content/assets/images/small/img-3.jpg" class="img-fluid" alt="work-thumbnail">
-                        </a>
-                        <div class="gall-info">
-                            <h4 class="font-16 mt-0">Woman sitting on rock</h4>
-                            <a href="javascript: void(0);">
-                                <img src="~/Content/assets/images/users/avatar-4.jpg" alt="user-img" class="rounded-circle" height="24" />
-                                <span class="text-muted ml-1">Maria Crowder</span>
-                            </a>
-                            <a href="javascript: void(0);" class="gal-like-btn"><i class="mdi mdi-heart-outline text-muted"></i></a>
-                        </div> <!-- gallery info -->
-                    </div> <!-- end gal-box -->
-                </div> <!-- end col -->
-
-                <div class="col-sm-6 col-xl-3 filter-item all graphic illustrator">
-                    <div class="gal-box">
-                        <a href="~/Content/assets/images/small/img-4.jpg" class="image-popup" title="Screenshot-4">
-                            <img src="~/Content/assets/images/small/img-4.jpg" class="img-fluid" alt="work-thumbnail">
-                        </a>
-                        <div class="gall-info">
-                            <h4 class="font-16 mt-0">Smiling woman's face</h4>
-                            <a href="javascript: void(0);">
-                                <img src="~/Content/assets/images/users/avatar-5.jpg" alt="user-img" class="rounded-circle" height="24" />
-                                <span class="text-muted ml-1">Charles East</span>
-                            </a>
-                            <a href="javascript: void(0);" class="gal-like-btn"><i class="mdi mdi-heart-outline text-muted"></i></a>
-                        </div> <!-- gallery info -->
-                    </div> <!-- end gal-box -->
-                </div> <!-- end col -->
+                    <div class="event-box square" style="background-image: url('https://vipmagazin-md.b-cdn.net/wp-content/uploads/2023/09/375180313_789382066523557_5229187905158426588_n-1024x1024.jpg'); ">
+                         <div class="event-info">
+                              <h3 style="color: white">Atelier Digital</h3>
+                              <p>Zona Creativă</p>
+                         </div>
+                    </div>
+                    <div class="event-box tall" style="background-image: url('https://film.md/uploads/movies/big/Poster_Povesti_Moldovenesti_Key_Visual1_Film_md.png');">
+                         <div class="event-info">
+                              <h3 style="color: white">Yoga Sunset</h3>
+                              <p>Lacul Valea</p>
+                         </div>
+                    </div>
+                    <div class="event-box wide" style="background-image: url('https://i.simpalsmedia.com/point.md/news/809x456/8bf53673318a78c4210ec11bb83b3823.jpg'); ">
+                         <div class="event-info">
+                              <h3 style="color: white">Stand-up Comedy</h3>
+                              <p>Bar Central</p>
+                         </div>
+                    </div>
+                    <div class="event-box square" style="background-image: url('https://storage.moldova1.md/images/2c4922b3-07ec-4d79-b765-da1f5608ec6e.jpg'); ">
+                         <div class="event-info">
+                              <h3 style="color: white">Noaptea Filmelor</h3>
+                              <p>Cinema Urban</p>
+                         </div>
+                    </div>
+                    <div class="event-box wide" style="background-image: url('https://www.ziarulnational.md/getimages/620x2000x2/large/1ceb45928040fa0e9a965b33636ee247.jpg');">
+                         <div class="event-info">
+                              <h3 style="color: white">Expoziție Modernă</h3>
+                              <p>Muzeul de Artă</p>
+                         </div>
+                    </div>
 
 
-                <!-- end row -->
 
-            </div> <!-- end container -->
-        </div>
-        <!-- end wrapper -->
-        <!-- ============================================================== -->
-        <!-- End Page content -->
-        <!-- ============================================================== -->
-        <!-- Footer Start -->
-        @Html.Partial("_Footer")
+               </div>
 
 
-         @*Vendor js*@ 
-        <script src="~/Content/assets/js/vendor.min.js"></script>
+               <!-- Sectiune Locatii -->
+               <section class="locatii-section">
+                    <div class="container">
+                         <h2 style="text-align: center; margin-bottom: 40px;">Locații Populare</h2>
+                         <div class="locations-grid">
+                              <div class="location-box">
+                                   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Teatrul_Na%C8%9Bional_%22Mihai_Eminescu%22%2C_Chisinau%2C_Republica_Moldova_Mihai_Eminescu_National_Theatre%2C_Chisinau%2C_Republic_of_Moldova_%2850730297817%29.jpg/330px-Teatrul_Na%C8%9Bional_%22Mihai_Eminescu%22%2C_Chisinau%2C_Republica_Moldova_Mihai_Eminescu_National_Theatre%2C_Chisinau%2C_Republic_of_Moldova_%2850730297817%29.jpg" alt="Parcul Central" class="location-image" />
+                                   <div class="location-info">
+                                        <h3>Teatrul Mihai Eminescul</h3>
+                                        <p>Un loc perfect pentru relaxare și activități în aer liber.</p>
+                                   </div>
+                              </div>
+                              <div class="location-box">
+                                   <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Patria_B%C4%83l%C8%9Bi.JPG" alt="Piața Mare" class="location-image" />
+                                   <div class="location-info">
+                                        <h3>Patria</h3>
+                                        <p>Inima orașului, cu evenimente culturale și târguri tradiționale.</p>
+                                   </div>
+                              </div>
+                              <div class="location-box">
+                                   <img src="https://iticket.md/public/store/locations/23/5a6b1203dfcb9.jpg" alt="Zona Creativă" class="location-image" />
+                                   <div class="location-info">
+                                        <h3>Odeon</h3>
+                                        <p>Locul artiștilor și inovației urbane.</p>
+                                   </div>
+                              </div>
+                              <div class="location-box">
+                                   <img src="https://i.simpalsmedia.com/point.md/news/809x456/db9e10fb1cc4b25ec2b480b3a37ade62.jpg" alt="Lacul Valea" class="location-image" />
+                                   <div class="location-info">
+                                        <h3>Arena Chișinău</h3>
+                                        <p>Un loc liniștit pentru activități recreative și natură.</p>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </section>
+          </div>
+     </div>
 
-         Magnific Popup
-        <script src="~/Content/assets/libs/magnific-popup/jquery.magnific-popup.min.js"></script>
+     @Html.Partial("_Footer")
 
-         Gallery Init
-        <script src="~/Content/assets/js/pages/gallery.init.js"></script>
-
-         App js 
-        <script src="~/Content/assets/js/app.min.js"></script>
-
+     <script src="~/Content/assets/js/vendor.min.js"></script>
+     <script src="~/Content/assets/libs/magnific-popup/jquery.magnific-popup.min.js"></script>
+     <script src="~/Content/assets/js/pages/gallery.init.js"></script>
+     <script src="~/Content/assets/js/app.min.js"></script>
 </body>
-
 </html>
-
