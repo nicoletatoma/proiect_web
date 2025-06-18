@@ -1,27 +1,81 @@
-﻿@using System;
-@using System.Web.Optimization;
+﻿@using System.Web.Optimization
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-     <meta charset="utf-8" />
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>@ViewBag.Title Tiket Expres</title>
+     <meta charset="utf-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+
+     <link rel="preconnect" href="https://fonts.gstatic.com">
+
+     <title>@ViewBag.Title - Ticket Express</title>
+
+     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
      <link rel="icon" type="image/png" href="~/Content/assets/images/Logoa.png">
 
-     @Styles.Render("~/Content/assets/css/app.css")
-     @Styles.Render("~/Content/assets/css/bootstrap.css")
-     @Styles.Render("~/Content/assets/css/icons.css")
+     @Styles.Render("~/bundles/bootstrap/css")
      @Styles.Render("~/Content/assets/css/admin.css")
 </head>
-<body>
-     
-     <div class="container body-content">
-          @RenderBody()
 
+<body>
+     <div class="wrapper">
+          <!-- Sidebar -->
+          @Html.Partial("_SideBar")
+          <div class="main">
+               <!-- Nabvbar -->
+               @Html.Partial("_HeaderAdmin")
+
+               <main class="content p-4">
+                    @RenderBody()
+               </main>
+
+               <footer class="footer">
+                    <div class="container-fluid">
+                         <div class="row text-muted justify-content-center">
+                              <div class="col-12">
+                                   <p class="mb-0">
+                                        <a class="text-muted" href="" target="_blank"><strong>&copy; Ticket Express. Toate drepturile rezervate.</strong></a>&copy;
+                                   </p>
+                              </div>
+                         </div>
+                    </div>
+               </footer>
+          </div>
      </div>
 
-     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-     <script src="~/Scripts/bootstrap.min.js"></script>
+     <script>
+          document.addEventListener('DOMContentLoaded', function () {
+               const sidebarToggle = document.getElementById('sidebarToggle');
+               const sidebar = document.getElementById('sidebar');
+
+               // Toggle sidebar on button click
+               sidebarToggle.addEventListener('click', function () {
+                    const windowWidth = window.innerWidth;
+
+                    if (windowWidth <= 768) {
+                         // For mobile: we toggle the "expanded" class
+                         sidebar.classList.toggle('expanded');
+                    } else {
+                         // For desktop: we toggle the "collapsed" class
+                         sidebar.classList.toggle('collapsed');
+                    }
+               });
+
+               // Handle responsive behavior
+               window.addEventListener('resize', function () {
+                    const windowWidth = window.innerWidth;
+
+                    if (windowWidth > 768) {
+                         sidebar.classList.remove('expanded');
+                    }
+               });
+          });
+     </script>
+
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+
 </body>
 </html>

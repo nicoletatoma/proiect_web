@@ -1,0 +1,44 @@
+﻿
+<div id="sidebar" class="d-flex flex-column flex-shrink-0 p-3 bg-light">
+     <a href="/Admin" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+          <span class="fs-4">Ticket Express - Admin</span>
+     </a>
+     <hr>
+     <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item">
+               <a href="@Url.Action("Index", "Admin")" class="nav-link @(ViewContext.RouteData.Values["action"].ToString() == "Index" ? "active" : "link-dark")">
+                    <i class="bi bi-speedometer2" width="16" height="16"></i>&nbsp;&nbsp;&nbsp;Dashboard
+               </a>
+          </li>
+          <li>
+               <a href="@Url.Action("Events", "Admin")" class="nav-link @(ViewContext.RouteData.Values["action"].ToString() == "Index" ? "active" : "link-dark")">
+                    <i class="bi bi-ticket-detailed" width="16" height="16"></i>&nbsp;&nbsp;&nbsp;Evenimente
+               </a>
+          </li>
+          <li>
+               <a href="@Url.Action("Location", "Admin")" class="nav-link @(ViewContext.RouteData.Values["action"].ToString() == "Agenda" ? "active" : "link-dark")">
+                    <i class="bi  bi-geo" width="16" height="16"></i>&nbsp;&nbsp;&nbsp;Locatii
+               </a>
+          </li>
+          <li>
+               <a href="@Url.Action("Transactions", "Admin")" class="nav-link @(ViewContext.RouteData.Values["action"].ToString() == "Messages" ? "active" : "link-dark")">
+                    <i class="bi bi-graph-up-arrow" width="16" height="16"></i>&nbsp;&nbsp;&nbsp;Tranzactii
+               </a>
+          </li>
+     </ul>
+     <!-- User profile for mobile - will show only on small screens -->
+     <div class="d-block d-sm-none mt-auto user-profile-mobile">
+          <hr>
+          <div class="dropdown">
+               <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="user-default-image.jpg" alt="User" class="avatar rounded-circle me-2">
+                    <strong>User Name</strong>
+               </a>
+               <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser1">
+                    <li><a class="dropdown-item" href="#"><i class="bi bi-gear" style="font-size: 16px;"></i>&nbsp;&nbsp;Settings & Privacy</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#"><i class="bi bi-box-arrow-right" style="font-size: 16px;"></i>&nbsp;&nbsp;Log out</a></li>
+               </ul>
+          </div>
+     </div>
+</div>

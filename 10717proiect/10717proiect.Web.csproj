@@ -790,6 +790,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\CreateController.cs" />
+    <Compile Include="Controllers\EvenimenteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
@@ -825,10 +826,10 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Shared\_HeaderAdmin.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
-    <Content Include="Views\Admin\EditEvenim.cshtml" />
-    <Content Include="Views\Admin\EditLoc.cshtml" />
-    <Content Include="Views\Admin\EditUsers.cshtml" />
-    <Content Include="Views\Shared\SideBar.cshtml" />
+    <Content Include="Views\Admin\Events.cshtml" />
+    <Content Include="Views\Admin\Location.cshtml" />
+    <Content Include="Views\Admin\Transactions.cshtml" />
+    <Content Include="Views\Shared\_SideBar.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
     <Content Include="Views\Comment\Index.cshtml" />
     <Content Include="Views\Home\Cos.cshtml" />

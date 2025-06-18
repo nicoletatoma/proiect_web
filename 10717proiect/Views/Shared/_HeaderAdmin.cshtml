@@ -1,121 +1,18 @@
-﻿﻿<!-- Navigation Bar-->
-<header id="topnav">
+﻿<nav class="navbar navbar-light bg-light p-2">
+     <div class="container-fluid">
+          <a class="sidebar-toggle" id="sidebarToggle">
+               <i class="bi bi-list align-self-center"></i>
+          </a>
 
-     <!-- Topbar Start -->
-     <div class="navbar-custom">
-          <div class="container-fluid">
-
-
-
-               <ul class="list-unstyled topnav-menu float-right mb-0">
-
-                    <li class="d-none d-sm-block">
-                         <form class="app-search bara-cautare" action="/Search" method="post">
-                              <div class="app-search-box">
-                                   <div class="input-group bara-cautare">
-
-                                        <input type="text" name="NumeEveniment" class="form-control" placeholder="Search...">
-                                        <div class="input-group-append">
-                                             <button class="btn" type="submit">
-                                                  <i class="fe-search"></i>
-                                             </button>
-                                        </div>
-                                   </div>
-                              </div>
-                         </form>
-                    </li>
-
-                    <li class="dropdown notification-list">
-                         <a href="~/Home/Index" class=" nav-link waves-effect waves-light">
-                              <i class="remixicon-home-5-line"></i>
-                              &nbsp Home
-                         </a>
-                    </li>
-
-                    <div class="linie-herticala"></div>
-
-
-                    <li class="dropdown notification-list">
-                         <a href="~/Evenimente/Index" class=" nav-link waves-effect waves-light">
-                              <i class="remixicon-coupon-line"></i>
-                              &nbsp Evenimente
-                         </a>
-                    </li>
-
-                    <div class="linie-herticala"></div>
-
-                    <li class="dropdown notification-list">
-                         <a href="#" class=" nav-link waves-effect waves-light">
-                              <i class=" remixicon-shopping-bag-3-line"></i>&nbsp Coș
-                         </a>
-
-                    </li>
-
-                    <div class="linie-herticala final"></div>
-
-                    @{
-                         var userEmail = Session["UserEmail"] as string;
-                    }
-
-                    @if (!string.IsNullOrEmpty(userEmail))
-                    {
-                         <li class="dropdown notification-list">
-                              <a href="#" class="nav-link waves-effect waves-light">
-                                   <i class="remixicon-user-3-line"></i> @userEmail
-                              </a>
-                         </li>
-                         <li class="dropdown notification-list">
-                              <a href="~/Auth/Logout" class="nav-link waves-effect waves-light">Logout</a>
-                         </li>
-                    }
-                    else
-                    {
-                         <li class="dropdown notification-list ">
-                              <a href="~/Auth/SignIn" class="nav-link waves-effect waves-light log_in">
-                                   Log In
-                              </a>
-                         </li>
-
-                         <li class="dropdown notification-list ">
-                              <a href="~/Auth/SignUp" class=" nav-link waves-effect waves-light sing_up">
-                                   Sign Up
-                              </a>
-                         </li>
-                    }
-
-
-
-
-               </ul>
-
-               <!-- LOGO -->
-               <div class="logo-box">
-                    <a href="~/Home/Index" class="logo text-center">
-                         <span class="logo-lg">
-                              <img class="logo_nagigatie" src="~/Content/assets/images/logo-light.png" alt="" height="110">
-                              <!-- <span class="logo-lg-text-light">Xeria</span> -->
-                         </span>
-                         <span class="logo-sm">
-                              <!-- <span class="logo-sm-text-dark">X</span> -->
-                              <img src="~/Content/assets/images/logo-sm.png" alt="" height="34">
-                         </span>
-                    </a>
+          <!-- User profile for desktop - will hide on small screens -->
+          <div class="dropdown d-none d-sm-inline-block">
+               <a class="nav-link dropdown-toggle" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="~/Resources/user-default-image.jpg" class="avatar img-fluid rounded-circle me-1" alt="User" width="40" height="40" /> <span class="text-dark">@Session["UserFirstName"] @Session["UserLastName"]</span>
+               </a>
+               <div class="dropdown-menu user-dropdown-menu" aria-labelledby="userDropdown">
+                   
+                    <a class="dropdown-item" href="@Url.Action("LogOut", "Auth")"><i class="bi bi-box-arrow-right" style="font-size: 16px;"></i>&nbsp;&nbsp;Log out</a>
                </div>
-
-               <!-- Text dupa logo -->
-               <ul>
-                    <a class="text-after-logo" href="~/Home/Index">
-                         Ticket Express
-                    </a>
-
-               </ul>
-
-               <div class="clearfix"></div>
           </div>
      </div>
-     <!-- end Topbar -->
-     <!-- end navbar-custom -->
-
-</header>
-<!-- End Navigation Bar-->
-<!-- ============================================================== -->
+</nav>
