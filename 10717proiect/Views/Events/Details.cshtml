@@ -1,0 +1,426 @@
+﻿@model _10717proiect.Models.Event.EventListViewModel
+@{
+     ViewBag.Title = Model.eventName;
+     Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+     <!-- Back button -->
+     <div class="row mb-3">
+          <div class="col-12">
+               <a href="@Url.Action("Index", "Events")" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left me-2"></i>Înapoi la evenimente
+               </a>
+          </div>
+     </div>
+
+     <!-- Event header -->
+     <div class="row mb-4">
+          <div class="col-12">
+               <div class="d-flex justify-content-between align-items-start flex-wrap">
+                    <div>
+                         <h1 class="event-title fw-bold">@Model.eventName</h1>
+                         <div class="event-meta-info">
+                              <span class="badge bg-primary me-2">@Model.eventCategory</span>
+                              <span class="text-muted">
+                                   <i class="bi bi-calendar3 me-1"></i>
+                                   @Model.eventDate.ToString("dd MMMM yyyy, HH:mm")
+                              </span>
+                              <span class="text-muted ms-3">
+                                   <i class="bi bi-geo-alt me-1"></i>
+                                   @Model.eventLocation
+                              </span>
+                         </div>
+                    </div>
+                    <div class="event-price-display">
+                         <div class="price-badge">
+                              @Model.eventPrice MDL
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </div>
+
+     <!-- Event content -->
+     <div class="row">
+          <!-- Event image and description -->
+          <div class="col-lg-8 mb-4">
+               <!-- Event image -->
+               @if (!string.IsNullOrEmpty(Model.eventImage))
+               {
+                    <div class="event-image-container mb-4">
+                         <img src="@Url.Content(Model.eventImage)" class="img-fluid rounded shadow" alt="@Model.eventName">
+                    </div>
+               }
+               else
+               {
+                    <div class="event-image-container mb-4">
+                         <img src="~/Resources/Home/event.png" class="img-fluid rounded shadow" alt="@Model.eventName">
+                    </div>
+               }
+
+               <!-- Event description -->
+               <div class="card border-0 shadow-sm rounded-4 mb-4">
+                    <div class="card-body p-4">
+                         <h3 class="mb-3 fw-bold">Despre eveniment</h3>
+                         <div class="event-description-content">
+                              @if (!string.IsNullOrEmpty(Model.eventDescription))
+                              {
+                                   @Html.Raw(Model.eventDescription.Replace("\n", "<br>"))
+                              }
+                              else
+                              {
+                                   <p class="text-muted">Nu există o descriere disponibilă pentru acest eveniment.</p>
+                              }
+                         </div>
+                    </div>
+               </div>
+
+               <!-- Event details -->
+               <div class="card border-0 shadow-sm rounded-4">
+                    <div class="card-body p-4">
+                         <h3 class="mb-3 fw-bold">Detalii eveniment</h3>
+                         <div class="row">
+                              <div class="col-md-6">
+                                   <div class="detail-item mb-3">
+                                        <div class="detail-label">
+                                             <i class="bi bi-calendar3 me-2 text-primary"></i>
+                                             <strong>Data și ora</strong>
+                                        </div>
+                                        <div class="detail-value">
+                                             @Model.eventDate.ToString("dddd, dd MMMM yyyy")
+                                             <br>
+                                             Ora: @Model.eventDate.ToString("HH:mm")
+                                        </div>
+                                   </div>
+                              </div>
+                              <div class="col-md-6">
+                                   <div class="detail-item mb-3">
+                                        <div class="detail-label">
+                                             <i class="bi bi-geo-alt me-2 text-primary"></i>
+                                             <strong>Locația</strong>
+                                        </div>
+                                        <div class="detail-value">
+                                             @Model.eventLocation
+                                        </div>
+                                   </div>
+                              </div>
+                              <div class="col-md-6">
+                                   <div class="detail-item mb-3">
+                                        <div class="detail-label">
+                                             <i class="bi bi-tag me-2 text-primary"></i>
+                                             <strong>Categoria</strong>
+                                        </div>
+                                        <div class="detail-value">
+                                             @Model.eventCategory
+                                        </div>
+                                   </div>
+                              </div>
+                              <div class="col-md-6">
+                                   <div class="detail-item mb-3">
+                                        <div class="detail-label">
+                                             <i class="bi bi-currency-exchange me-2 text-primary"></i>
+                                             <strong>Preț</strong>
+                                        </div>
+                                        <div class="detail-value">
+                                             @Model.eventPrice MDL
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+
+          <!-- Booking sidebar -->
+          <div class="col-lg-4">
+               <div class="card border-0 shadow-sm rounded-4 sticky-top" style="top: 20px;">
+                    <div class="card-body p-4">
+                         <h4 class="mb-3 fw-bold text-center">Rezervă bilet</h4>
+
+                         <!-- Price display -->
+                         <div class="price-section text-center mb-4">
+                              <div class="current-price">
+                                   <span class="price-amount">@Model.eventPrice</span>
+                                   <span class="price-currency">MDL</span>
+                              </div>
+                              <small class="text-muted">per bilet</small>
+                         </div>
+
+                         <!-- Ticket quantity -->
+                         <div class="mb-3">
+                              <label class="form-label fw-medium">Numărul de bilete</label>
+                              <div class="input-group">
+                                   <button class="btn btn-outline-secondary" type="button" id="decreaseBtn">-</button>
+                                   <input type="number" class="form-control text-center" id="ticketQuantity" value="1" min="1" max="10">
+                                   <button class="btn btn-outline-secondary" type="button" id="increaseBtn">+</button>
+                              </div>
+                         </div>
+
+                         <!-- Total price -->
+                         <div class="total-section mb-4 p-3 bg-light rounded">
+                              <div class="d-flex justify-content-between align-items-center">
+                                   <span class="fw-medium">Total:</span>
+                                   <span class="total-price fw-bold" id="totalPrice">@Model.eventPrice MDL</span>
+                              </div>
+                         </div>
+
+                         <!-- Book button -->
+                         <button class="btn-31 booking-btn mb-3" onclick="bookTickets()">
+                              <span class="text-container">
+                                   <span class="text">
+                                        <i class="bi bi-ticket-perforated me-2"></i>Rezervă bilete
+                                   </span>
+                              </span>
+                         </button>
+
+                         <!-- Event info -->
+                         <div class="event-quick-info">
+                              <div class="info-item mb-2">
+                                   <i class="bi bi-clock me-2 text-muted"></i>
+                                   <span class="text-muted">Eveniment de @(((DateTime.Now - Model.eventDate).TotalDays < 0) ? Math.Abs((DateTime.Now - Model.eventDate).TotalDays).ToString("F0") + " zile" : "astăzi")</span>
+                              </div>
+                              <div class="info-item mb-2">
+                                   <i class="bi bi-people me-2 text-muted"></i>
+                                   <span class="text-muted">Bilete disponibile</span>
+                              </div>
+                              <div class="info-item">
+                                   <i class="bi bi-shield-check me-2 text-muted"></i>
+                                   <span class="text-muted">Plată securizată</span>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+
+               <!-- Share section -->
+               <div class="card border-0 shadow-sm rounded-4 mt-4">
+                    <div class="card-body p-4">
+                         <h5 class="mb-3 fw-bold">Distribuie evenimentul</h5>
+                         <div class="share-buttons">
+                              <button class="btn btn-outline-primary btn-sm me-2 mb-2" onclick="shareOnFacebook()">
+                                   <i class="bi bi-facebook me-1"></i>Facebook
+                              </button>
+                              <button class="btn btn-outline-info btn-sm me-2 mb-2" onclick="shareOnTwitter()">
+                                   <i class="bi bi-twitter me-1"></i>Twitter
+                              </button>
+                              <button class="btn btn-outline-success btn-sm me-2 mb-2" onclick="shareOnWhatsApp()">
+                                   <i class="bi bi-whatsapp me-1"></i>WhatsApp
+                              </button>
+                              <button class="btn btn-outline-secondary btn-sm mb-2" onclick="copyLink()">
+                                   <i class="bi bi-link-45deg me-1"></i>Copiază link
+                              </button>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </div>
+
+     <!-- Related events -->
+     <div class="row mt-5">
+          <div class="col-12">
+               <h3 class="mb-4 fw-bold">Evenimente similare</h3>
+               <div class="row" id="relatedEvents">
+                    <!-- Related events will be loaded here -->
+                    <div class="col-12 text-center py-4">
+                         <div class="spinner-border" role="status">
+                              <span class="visually-hidden">Se încarcă evenimente similare...</span>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </div>
+</div>
+
+<style>
+.event-title {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.event-meta-info {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.event-image-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.event-image-container img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+}
+
+.price-badge {
+    background: linear-gradient(135deg, #db3056, #e94570);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(219, 48, 86, 0.3);
+}
+
+.current-price {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #db3056;
+}
+
+.price-amount {
+    font-size: 2.5rem;
+}
+
+.price-currency {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.total-price {
+    color: #db3056;
+    font-size: 1.25rem;
+}
+
+.detail-item {
+    padding: 0.75rem 0;
+}
+
+.detail-label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    color: #555;
+}
+
+.detail-value {
+    color: #333;
+    margin-left: 1.75rem;
+}
+
+.share-buttons .btn {
+    border-radius: 25px;
+    padding: 0.5rem 1rem;
+}
+
+.event-quick-info .info-item {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+@@media (max-width: 768px) {
+    .event-title {
+        font-size: 1.75rem;
+    }
+
+    .event-meta-info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .price-badge {
+        font-size: 1.25rem;
+        padding: 0.5rem 1rem;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const ticketQuantity = document.getElementById('ticketQuantity');
+    const decreaseBtn = document.getElementById('decreaseBtn');
+    const increaseBtn = document.getElementById('increaseBtn');
+    const totalPrice = document.getElementById('totalPrice');
+    const pricePerTicket = @Model.eventPrice;
+
+    function updateTotal() {
+        const quantity = parseInt(ticketQuantity.value);
+        const total = quantity * pricePerTicket;
+        totalPrice.textContent = total + ' MDL';
+    }
+
+    decreaseBtn.addEventListener('click', function() {
+        const current = parseInt(ticketQuantity.value);
+        if (current > 1) {
+            ticketQuantity.value = current - 1;
+            updateTotal();
+        }
+    });
+
+    increaseBtn.addEventListener('click', function() {
+        const current = parseInt(ticketQuantity.value);
+        if (current < 10) {
+            ticketQuantity.value = current + 1;
+            updateTotal();
+        }
+    });
+
+    ticketQuantity.addEventListener('change', function() {
+        const value = parseInt(this.value);
+        if (value < 1) this.value = 1;
+        if (value > 10) this.value = 10;
+        updateTotal();
+    });
+
+    // Load related events
+    loadRelatedEvents();
+});
+
+function bookTickets() {
+    const quantity = document.getElementById('ticketQuantity').value;
+    const total = quantity * @Model.eventPrice;
+
+    if (confirm(`Doriți să rezervați ${quantity} bilet${quantity > 1 ? 'e' : ''} pentru ${total} MDL?`)) {
+        // Redirect to booking/payment page
+        // For now, just show an alert
+        alert('Funcționalitatea de rezervare va fi implementată în curând!');
+    }
+}
+
+function shareOnFacebook() {
+    const url = encodeURIComponent(window.location.href);
+    const text = encodeURIComponent('@Model.eventName');
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank', 'width=600,height=400');
+}
+
+function shareOnTwitter() {
+    const url = encodeURIComponent(window.location.href);
+    const text = encodeURIComponent('@Model.eventName - @Model.eventDate.ToString("dd MMMM yyyy")');
+    window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank', 'width=600,height=400');
+}
+
+function shareOnWhatsApp() {
+    const url = encodeURIComponent(window.location.href);
+    const text = encodeURIComponent(`@Model.eventName - @Model.eventDate.ToString("dd MMMM yyyy") - ${url}`);
+    window.open(`https://wa.me/?text=${text}`, '_blank');
+}
+
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href).then(function() {
+        alert('Link-ul a fost copiat în clipboard!');
+    });
+}
+
+function loadRelatedEvents() {
+    // Simulate loading related events
+    setTimeout(() => {
+        const relatedEventsContainer = document.getElementById('relatedEvents');
+        relatedEventsContainer.innerHTML = `
+            <div class="col-12 text-center text-muted">
+                <p>Nu există evenimente similare în acest moment.</p>
+                <a href="@Url.Action("Index", "Events")" class="btn btn-outline-primary">
+                    Vezi toate evenimentele
+                </a>
+            </div>
+        `;
+    }, 1000);
+}
+</script>
