@@ -5501,7 +5501,8 @@ a.close.disabled {
   vertical-align: text-top !important; }
 
 .bg-primary {
-  background-color: #3b73da !important; }
+     background-color: #494d56 !important;
+}
 
 a.bg-primary:hover, a.bg-primary:focus,
 button.bg-primary:hover,

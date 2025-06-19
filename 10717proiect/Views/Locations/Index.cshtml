@@ -24,39 +24,7 @@
      </div>
 
      <div class="container">
-          <!-- Search and Filter Section -->
-          <div class="row mb-4">
-               <div class="col-12">
-                    <div class="card border-0 shadow-sm">
-                         <div class="card-body">
-                              <div class="row">
-                                   <div class="col-md-6 mb-3 mb-md-0">
-                                        <div class="input-group">
-                                             <span class="input-group-text"><i class="bi bi-search"></i></span>
-                                             <input type="text" class="form-control" id="searchInput" placeholder="Caută locații...">
-                                        </div>
-                                   </div>
-                                   <div class="col-md-4 mb-3 mb-md-0">
-                                        <select class="form-select" id="cityFilter">
-                                             <option value="">Toate orașele</option>
-                                             <option value="chisinau">Chișinău</option>
-                                             <option value="balti">Bălți</option>
-                                             <option value="cahul">Cahul</option>
-                                             <option value="orhei">Orhei</option>
-                                             <option value="soroca">Soroca</option>
-                                             <option value="ungheni">Ungheni</option>
-                                        </select>
-                                   </div>
-                                   <div class="col-md-2">
-                                        <button class="btn btn-outline-secondary w-100" onclick="resetFilters()">
-                                             <i class="bi bi-arrow-clockwise me-1"></i>Reset
-                                        </button>
-                                   </div>
-                              </div>
-                         </div>
-                    </div>
-               </div>
-          </div>
+         
 
           <!-- Locations Grid -->
           <div class="row" id="locationsGrid">
@@ -162,18 +130,24 @@
 </div>
 
 <style>
-/* Location card styling */
-.location-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border-radius: 8px;
-    overflow: hidden;
-    border: 1px solid #e9ecef;
-}
+/* Location card styling - FIXED */
+     .location-card {
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          border-radius: 8px;
+          overflow: hidden;
+          border: none; /* Remove border completely */
+          background-color: white;
+          position: relative;
+          z-index: 1;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+          * Lower z-index than header */
+     }
 
-.location-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
+          .location-card:hover {
+               transform: translateY(-5px);
+               box-shadow: 0 10px 20px rgba(0,0,0,0.15); /* Enhanced shadow on hover */
+               z-index: 2;
+          }
 
 .location-card-image-container {
     width: 100%;
@@ -232,17 +206,51 @@
     line-height: 1.4;
 }
 
-.page-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 3rem 0;
-    margin-bottom: 2rem;
+     .page-header {
+          /*  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);*/
+          color: white;
+          padding: 3rem 0;
+          margin-bottom: 2rem;
+          position: relative;
+          margin-top: 50px;
+          z-index: 10; /* Higher z-index for header */
+     }
+
+/* Fix container positioning */
+.container-fluid {
+    position: relative;
+    z-index: 1;
+}
+
+/* Ensure proper spacing after header */
+body {
+    padding-top: 0; /* Remove any top padding that might cause overlap */
+}
+
+/* Fix for potential header overlap issues */
+#topnav {
+    position: relative;
+    z-index: 1000; /* Very high z-index for navigation */
+}
+
+/* Modal fixes */
+.modal {
+    z-index: 1050; /* Standard Bootstrap modal z-index */
+}
+
+.modal-backdrop {
+    z-index: 1040; /* Standard Bootstrap backdrop z-index */
 }
 
 /* Responsive adjustments */
 @@media (max-width: 768px) {
     .location-card-image-container {
         height: 180px;
+    }
+
+    .page-header {
+        padding: 2rem 0; /* Reduce padding on mobile */
+        margin-bottom: 1.5rem;
     }
 }
 </style>

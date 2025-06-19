@@ -11,31 +11,30 @@ namespace _10717proiect.Domain.Model.Location
      [Table("LocationDbTable")]
      public class LocationDbTable
      {
-          
           [Key]
           [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
           public int Id { get; set; }
 
           [Required]
-          [Display(Name = "Numele loactiei")]
+          [Display(Name = "Numele locației")]
+          [StringLength(200)]
           public string Name { get; set; }
 
-          [Required]
           [Display(Name = "Descriere")]
-          public string Description { get; set; }
+          [StringLength(1000)]
+          public string Description { get; set; } // Nu mai e Required
 
           [Required]
           [Display(Name = "Adresa")]
+          [StringLength(500)]
           public string Address { get; set; }
 
-          [Required]
           [Display(Name = "Telefon")]
-          public string Phone { get; set; }
+          [StringLength(20)]
+          public string Phone { get; set; } // Nu mai e Required
 
-          [Required]
           [Display(Name = "Imagine")]
+          [StringLength(500)]
           public string ImagePath { get; set; }
-
-          
      }
 }
