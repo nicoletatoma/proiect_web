@@ -23,8 +23,11 @@ namespace _10717proiect.Controllers
 
           public ActionResult Index()
           {
-               //var evenimente = _product.GetAllEvents();
-               return View(/*evenimente*/);
+               using (var context = new EventContext())
+               {
+                    var evenimente = context.Events.ToList();
+                    return View(evenimente);
+               }
           }
      }
 }

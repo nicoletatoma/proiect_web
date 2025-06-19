@@ -142,18 +142,18 @@
                             <div class="col-md-6 col-xl-3">
                                 <!-- Simple card -->
                                 <div class="card">
-                                    <img class="card-img-top img-fluid" src="@eventItem.ImagePath" alt="Card image cap">
+                                    <img class="card-img-top img-fluid" src="@Url.Content(eventItem.eventImage)" alt="Card image cap">
                                     <div class="card-body">
-                                        <h5 class="card-title">@eventItem.Name</h5>
+                                        <h5 class="card-title">@eventItem.eventName</h5>
                                         <p class="card-text">
-                                            @eventItem.Price lei
+                                            @eventItem.eventPrice lei
                                         </p>
                                         <div class="e-c-time">
                                             <span>
-                                                @eventItem.EventDate.Day
+                                                @eventItem.eventDate.Day
                                             </span>
                                             <span class="e-c-month">
-                                                @eventItem.EventDate.ToString("MMM").ToLower()
+                                                @eventItem.eventDate.ToString("MMM").ToLower()
                                             </span>
                                         </div>
                                         <a href="#" class="btn btn-primary">Buy</a>
