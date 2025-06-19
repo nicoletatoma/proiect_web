@@ -1,12 +1,9 @@
-﻿using _10717proiect.BusinessLogic.DBContext;
-using _10717proiect.BusinessLogic.Interfaces;
+﻿using _10717proiect.BusinessLogic.Interfaces;
 using _10717proiect.Domain.Model.Event;
 using _10717proiect.Models.Event;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
 using System.Web.Mvc;
 
 namespace _10717proiect.Controllers
@@ -90,7 +87,7 @@ namespace _10717proiect.Controllers
           // GET: Events/Details/5
           public ActionResult Details(int id)
           {
-              
+
 
                try
                {

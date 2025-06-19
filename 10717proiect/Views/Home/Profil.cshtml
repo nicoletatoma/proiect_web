@@ -1,0 +1,47 @@
+﻿@model _10717proiect.Domain.User.UDbTable
+@{
+     ViewBag.Title = "Profilul meu";
+     Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+     <div class="card shadow-lg">
+          <div class="card-header bg-primary text-white text-center">
+               <h3>Profilul utilizatorului</h3>
+          </div>
+          <div class="card-body">
+               <div class="row mb-3">
+                    <div class="col-md-4 fw-bold">Username:</div>
+                    <div class="col-md-8">@Model.Username</div>
+               </div>
+               <div class="row mb-3">
+                    <div class="col-md-4 fw-bold">Email:</div>
+                    <div class="col-md-8">@Model.Email</div>
+               </div>
+               <div class="row mb-3">
+                    <div class="col-md-4 fw-bold">Telefon:</div>
+                    <div class="col-md-8">@Model.Phone</div>
+               </div>
+               <div class="row mb-3">
+                    <div class="col-md-4 fw-bold">Adresă:</div>
+                    <div class="col-md-8">@Model.Address</div>
+               </div>
+               <div class="row mb-3">
+                    <div class="col-md-4 fw-bold">Ultima autentificare:</div>
+                    <div class="col-md-8">@Model.LastLoginDateTime.ToShortDateString()</div>
+               </div>
+               <div class="row mb-3">
+                    <div class="col-md-4 fw-bold">Data înregistrării:</div>
+                    <div class="col-md-8">@Model.RegistartionDateTime.ToShortDateString()</div>
+               </div>
+               <div class="row mb-3">
+                    <div class="col-md-4 fw-bold">Rol:</div>
+                    <div class="col-md-8">@Model.Level</div>
+               </div>
+
+               <div class="text-center mt-4">
+                    <a href="@Url.Action("Edit", "Profile")" class="btn btn-outline-primary">Editează profilul</a>
+               </div>
+          </div>
+     </div>
+</div>

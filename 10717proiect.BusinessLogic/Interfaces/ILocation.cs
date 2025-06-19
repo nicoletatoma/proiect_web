@@ -10,5 +10,9 @@ namespace _10717proiect.BusinessLogic.Interfaces
      public interface ILocation
      {
           string AddLocation(LocationData data);
+          bool UpdateLocation(LocationData data);
+          bool DeleteLocation(int locationId);
+          LocationData GetLocationById(int locationId);
+          List<LocationData> GetAllLocations();
      }
 }

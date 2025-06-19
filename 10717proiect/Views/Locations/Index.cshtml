@@ -1,286 +1,368 @@
-﻿
+﻿@model List<_10717proiect.Models.Location.LocationViewModel>
+
 @{
-    ViewBag.Title = "Locations";
+     ViewBag.Title = "Locații";
+     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<!DOCTYPE html>
-<html lang="ro">
-<head>
-    <meta charset="utf-8" />
-    <title>Minton - Responsive Admin Dashboard Template</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
-    <meta content="Coderthemes" name="author" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="~/Content/assets/images/favicon.ico">
 
-</head>
-<body>
-
-
-    <!-- End Preloader-->
-    <!-- Navigation Bar-->
-    @Html.Partial("_Header")
-    <!-- End Navigation Bar-->
-    <!-- ============================================================== -->
-    <!-- Start Page Content here -->
-    <!-- ============================================================== -->
-
-    <div class="wrapper">
-        <div class="container-fluid">
-
-            <!-- start page title -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="page-title-box">
-
-                        <h1 class="page-title">Locații</h1>
+<div class="container-fluid">
+     <!-- Page Header -->
+     <div class="page-header mb-4">
+          <div class="container">
+               <div class="row align-items-center">
+                    <div class="col-md-8">
+                         <h1 class="mb-0"><i class="bi bi-geo-alt me-2"></i>Locații</h1>
+                         <p class="mb-0 mt-2">Descoperă locațiile unde se desfășoară evenimentele</p>
                     </div>
-                </div>
+                    <div class="col-md-4 text-md-end">
+                         <span class="badge bg-primary" style="font-size: 1.1em; padding: 10px 15px;">
+                              @(Model?.Count ?? 0) locații disponibile
+                         </span>
+                    </div>
+               </div>
+          </div>
+     </div>
+
+     <div class="container">
+          <!-- Search and Filter Section -->
+          <div class="row mb-4">
+               <div class="col-12">
+                    <div class="card border-0 shadow-sm">
+                         <div class="card-body">
+                              <div class="row">
+                                   <div class="col-md-6 mb-3 mb-md-0">
+                                        <div class="input-group">
+                                             <span class="input-group-text"><i class="bi bi-search"></i></span>
+                                             <input type="text" class="form-control" id="searchInput" placeholder="Caută locații...">
+                                        </div>
+                                   </div>
+                                   <div class="col-md-4 mb-3 mb-md-0">
+                                        <select class="form-select" id="cityFilter">
+                                             <option value="">Toate orașele</option>
+                                             <option value="chisinau">Chișinău</option>
+                                             <option value="balti">Bălți</option>
+                                             <option value="cahul">Cahul</option>
+                                             <option value="orhei">Orhei</option>
+                                             <option value="soroca">Soroca</option>
+                                             <option value="ungheni">Ungheni</option>
+                                        </select>
+                                   </div>
+                                   <div class="col-md-2">
+                                        <button class="btn btn-outline-secondary w-100" onclick="resetFilters()">
+                                             <i class="bi bi-arrow-clockwise me-1"></i>Reset
+                                        </button>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+
+          <!-- Locations Grid -->
+          <div class="row" id="locationsGrid">
+               @if (Model != null && Model.Any())
+               {
+                    foreach (var location in Model)
+                    {
+                         <div class="col-lg-4 col-md-6 col-sm-6 mb-4 location-item"
+                              data-name="@location.Name.ToLower()"
+                              data-address="@location.Address.ToLower()">
+                              <div class="card h-100 location-card">
+                                   <div class="position-relative">
+                                        <div class="location-card-image-container">
+                                             @if (!string.IsNullOrEmpty(location.ImagePath))
+                                             {
+                                                  <img src="@Url.Content(location.ImagePath)" class="card-img-top" alt="@location.Name">
+                                             }
+                                             else
+                                             {
+                                                  <div class="card-img-top location-placeholder">
+                                                       <i class="bi bi-geo-alt"></i>
+                                                  </div>
+                                             }
+                                        </div>
+                                        <div class="location-type-badge">
+                                             <i class="bi bi-building"></i> Locație
+                                        </div>
+                                   </div>
+                                   <div class="card-body">
+                                        <h5 class="card-title mb-2">@location.Name</h5>
+                                        <div class="location-meta mb-3">
+                                             <div class="location-address">
+                                                  <i class="bi bi-geo-alt me-1"></i>
+                                                  @location.Address
+                                             </div>
+                                             <div class="location-phone">
+                                                  <i class="bi bi-telephone me-1"></i>
+                                                  @location.Phone
+                                             </div>
+                                        </div>
+                                        @if (!string.IsNullOrEmpty(location.Description))
+                                        {
+                                             <p class="location-description">
+                                                  @(location.Description.Length > 120 ? location.Description.Substring(0, 120) + "..." : location.Description)
+                                             </p>
+                                        }
+                                        <div class="mt-auto">
+                                             <a href="#" class="btn btn-outline-primary btn-sm me-2" onclick="showLocationDetails(@location.Id)">
+                                                  <i class="bi bi-eye me-1"></i>Vezi detalii
+                                             </a>
+                                             <a href="@Url.Action("Index", "Events", new { location = location.Name.ToLower() })" class="btn btn-primary btn-sm">
+                                                  <i class="bi bi-calendar-event me-1"></i>Vezi evenimente
+                                             </a>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                    }
+               }
+               else
+               {
+                    <div class="col-12">
+                         <div class="alert alert-info text-center">
+                              <i class="bi bi-geo-alt" style="font-size: 3rem; color: #6c757d;"></i>
+                              <h4 class="mt-3">Nu s-au găsit locații</h4>
+                              <p>Momentan nu sunt disponibile locații în sistem.</p>
+                         </div>
+                    </div>
+               }
+          </div>
+
+          <!-- No results message -->
+          <div id="noResultsMessage" class="col-12" style="display: none;">
+               <div class="alert alert-info text-center">
+                    <i class="bi bi-search" style="font-size: 3rem; color: #6c757d;"></i>
+                    <h4 class="mt-3">Nu s-au găsit locații</h4>
+                    <p>Încearcă să modifici filtrele pentru a găsi locații.</p>
+                    <button class="btn btn-outline-primary" onclick="resetFilters()">Resetează filtrele</button>
+               </div>
+          </div>
+     </div>
+</div>
+
+<!-- Location Details Modal -->
+<div class="modal fade" id="locationModal" tabindex="-1" aria-labelledby="locationModalLabel" aria-hidden="true">
+     <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+               <div class="modal-header">
+                    <h5 class="modal-title" id="locationModalLabel">Detalii locație</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+               </div>
+               <div class="modal-body" id="locationModalBody">
+                    <!-- Content will be loaded here -->
+               </div>
+               <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Închide</button>
+                    <a href="#" class="btn btn-primary" id="viewEventsBtn">
+                         <i class="bi bi-calendar-event me-1"></i>Vezi evenimente
+                    </a>
+               </div>
+          </div>
+     </div>
+</div>
+
+<style>
+/* Location card styling */
+.location-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e9ecef;
+}
+
+.location-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.location-card-image-container {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.location-card-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease;
+}
+
+.location-card:hover .location-card-image-container img {
+    transform: scale(1.05);
+}
+
+.location-placeholder {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: #6c757d;
+}
+
+.location-type-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.location-meta {
+    font-size: 14px;
+    color: #6c757d;
+}
+
+.location-meta > div {
+    margin-bottom: 4px;
+}
+
+.location-description {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.4;
+}
+
+.page-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 3rem 0;
+    margin-bottom: 2rem;
+}
+
+/* Responsive adjustments */
+@@media (max-width: 768px) {
+    .location-card-image-container {
+        height: 180px;
+    }
+}
+</style>
+
+<script>
+     let allLocations = [];
+
+     document.addEventListener('DOMContentLoaded', function () {
+          // Store all locations data for client-side filtering
+          storeLocationsData();
+
+          // Set up event listeners
+          setupEventListeners();
+     });
+
+     function storeLocationsData() {
+          const locationItems = document.querySelectorAll('.location-item');
+          allLocations = Array.from(locationItems).map(item => {
+               return {
+                    element: item,
+                    name: item.dataset.name,
+                    address: item.dataset.address
+               };
+          });
+     }
+
+     function setupEventListeners() {
+          // Search input
+          const searchInput = document.getElementById('searchInput');
+          if (searchInput) {
+               searchInput.addEventListener('input', function () {
+                    applyFilters();
+               });
+          }
+
+          // City filter
+          const cityFilter = document.getElementById('cityFilter');
+          if (cityFilter) {
+               cityFilter.addEventListener('change', function () {
+                    applyFilters();
+               });
+          }
+     }
+
+     function applyFilters() {
+          const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+          const selectedCity = document.getElementById('cityFilter').value.toLowerCase();
+
+          let filteredLocations = allLocations.filter(location => {
+               // Search filter
+               if (searchTerm && !location.name.includes(searchTerm) && !location.address.includes(searchTerm)) {
+                    return false;
+               }
+
+               // City filter
+               if (selectedCity && !location.address.includes(selectedCity)) {
+                    return false;
+               }
+
+               return true;
+          });
+
+          // Show/hide locations
+          allLocations.forEach(location => {
+               location.element.style.display = 'none';
+          });
+
+          filteredLocations.forEach(location => {
+               location.element.style.display = 'block';
+          });
+
+          // Show no results message if needed
+          showNoResultsMessage(filteredLocations.length === 0);
+     }
+
+     function showNoResultsMessage(show) {
+          const noResultsDiv = document.getElementById('noResultsMessage');
+          const locationsGrid = document.getElementById('locationsGrid');
+
+          if (show) {
+               noResultsDiv.style.display = 'block';
+               locationsGrid.appendChild(noResultsDiv);
+          } else {
+               noResultsDiv.style.display = 'none';
+          }
+     }
+
+     function resetFilters() {
+          document.getElementById('searchInput').value = '';
+          document.getElementById('cityFilter').value = '';
+          applyFilters();
+     }
+
+     function showLocationDetails(locationId) {
+          // This would typically fetch location details from the server
+          // For now, we'll show a placeholder modal
+          const modal = new bootstrap.Modal(document.getElementById('locationModal'));
+          document.getElementById('locationModalBody').innerHTML = `
+        <div class="text-center">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Se încarcă...</span>
             </div>
-            <!-- end page title -->
-
-            <div class="row filterable-content">
-
-                <div class="col-sm-6 col-xl-3 filter-item all web illustrator">
-                    <a href="pagina_noua.html" target="_blank" class="custom-card">
-                        <div class="gal-box card shadow-sm">
-                            <img src="~/Content/assets/images/1loc.jpg" class="img-fluid" alt="work-thumbnail">
-                            <div class="gall-info p-3">
-                                <h4 class="font-16 mt-0">Teatrul Republican de Păpuși „Licurici”</h4>
-                                <div class="d-flex align-items-center">
-                                    <i class="mdi mdi-map-marker text-muted"></i>
-                                    <span class="text-muted ml-1">STR. 31 AUGUST 1989, NR.121</span>
-                                </div>
-                            </div>
-                            <div class="event-count bg-info text-white px-3 py-2 rounded-bottom">
-                                <strong>26</strong> eveniment
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-sm-6 col-xl-3 filter-item all web illustrator">
-                    <a href="pagina_noua.html" target="_blank" class="custom-card">
-                        <div class="gal-box card shadow-sm">
-                            <img src="~/Content/assets/images/2loc.jpg" class="img-fluid" alt="work-thumbnail">
-                            <div class="gall-info p-3">
-                                <h4 class="font-16 mt-0">Teatrul Dramatic Rus de Stat „A. P. Cehov”</h4>
-                                <div class="d-flex align-items-center">
-                                    <i class="mdi mdi-map-marker text-muted"></i>
-                                    <span class="text-muted ml-1">str. Vlaicu Parcalab 75, Chisinau</span>
-                                </div>
-                            </div>
-                            <div class="event-count bg-info text-white px-3 py-2 rounded-bottom">
-                                <strong>26</strong> eveniment
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-sm-6 col-xl-3 filter-item all web illustrator">
-                    <a href="pagina_noua.html" target="_blank" class="custom-card">
-                        <div class="gal-box card shadow-sm">
-                            <img src="~/Content/assets/images/3loc.jpg" class="img-fluid" alt="work-thumbnail">
-                            <div class="gall-info p-3">
-                                <h4 class="font-16 mt-0">Chișinău Arena</h4>
-                                <div class="d-flex align-items-center">
-                                    <i class="mdi mdi-map-marker text-muted"></i>
-                                    <span class="text-muted ml-1">str. Calea Orheiului 130, Stăuceni</span>
-                                </div>
-                            </div>
-                            <div class="event-count bg-info text-white px-3 py-2 rounded-bottom">
-                                <strong>26</strong> eveniment
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-sm-6 col-xl-3 filter-item all web illustrator">
-                    <a href="pagina_noua.html" target="_blank" class="custom-card">
-                        <div class="gal-box card shadow-sm">
-                            <img src="~/Content/assets/images/4loc.jpg" class="img-fluid" alt="work-thumbnail">
-                            <div class="gall-info p-3">
-                                <h4 class="font-16 mt-0">Teatrul Național „Satiricus Ion Luca Caragiale”</h4>
-                                <div class="d-flex align-items-center">
-                                    <i class="mdi mdi-map-marker text-muted"></i>
-                                    <span class="text-muted ml-1">str. Mihai Eminescu 55, Chișinău</span>
-                                </div>
-                            </div>
-                            <div class="event-count bg-info text-white px-3 py-2 rounded-bottom">
-                                <strong>26</strong> eveniment
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-sm-6 col-xl-3 filter-item all web illustrator">
-                    <a href="pagina_noua.html" target="_blank" class="custom-card">
-                        <div class="gal-box card shadow-sm">
-                            <img src="~/Content/assets/images/5loc.jpg" class="img-fluid" alt="work-thumbnail">
-                            <div class="gall-info p-3">
-                                <h4 class="font-16 mt-0">Teatrul Național de Operă şi Balet „Maria Bieșu”</h4>
-                                <div class="d-flex align-items-center">
-                                    <i class="mdi mdi-map-marker text-muted"></i>
-                                    <span class="text-muted ml-1">blv. Ștefan cel Mare și Sfînt 152, MD-2012, Chișinău</span>
-                                </div>
-                            </div>
-                            <div class="event-count bg-info text-white px-3 py-2 rounded-bottom">
-                                <strong>26</strong> eveniment
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-sm-6 col-xl-3 filter-item all web illustrator">
-                    <a href="pagina_noua.html" target="_blank" class="custom-card">
-                        <div class="gal-box card shadow-sm">
-                            <img src="~/Content/assets/images/6loc.jpg" class="img-fluid" alt="work-thumbnail">
-                            <div class="gall-info p-3">
-                                <h4 class="font-16 mt-0">Cineplex Loteanu</h4>
-                                <div class="d-flex align-items-center">
-                                    <i class="mdi mdi-map-marker text-muted"></i>
-                                    <span class="text-muted ml-1">blv. Ștefan cel Mare și Sfînt 103, MD-2012, Chișinău</span>
-                                </div>
-                            </div>
-                            <div class="event-count bg-info text-white px-3 py-2 rounded-bottom">
-                                <strong>26</strong> eveniment
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-sm-6 col-xl-3 filter-item all web illustrator">
-                    <a href="pagina_noua.html" target="_blank" class="custom-card">
-                        <div class="gal-box card shadow-sm">
-                            <img src="~/Content/assets/images/7loc.jpg" class="img-fluid" alt="work-thumbnail">
-                            <div class="gall-info p-3">
-                                <h4 class="font-16 mt-0">Cineplex Mall</h4>
-                                <div class="d-flex align-items-center">
-                                    <i class="mdi mdi-map-marker text-muted"></i>
-                                    <span class="text-muted ml-1"> Arborilor, 21 Shopping Malldova Chisinau, MD-2025</span>
-                                </div>
-                            </div>
-                            <div class="event-count bg-info text-white px-3 py-2 rounded-bottom">
-                                <strong>26</strong> eveniment
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-sm-6 col-xl-3 filter-item all web illustrator">
-                    <a href="pagina_noua.html" target="_blank" class="custom-card">
-                        <div class="gal-box card shadow-sm">
-                            <img src="~/Content/assets/images/8loc.jpg" class="img-fluid" alt="work-thumbnail">
-                            <div class="gall-info p-3">
-                                <h4 class="font-16 mt-0">IP CCA “Ginta Latină” - Teatrul Fără Nume</h4>
-                                <div class="d-flex align-items-center">
-                                    <i class="mdi mdi-map-marker text-muted"></i>
-                                    <span class="text-muted ml-1">Sfatul Țării, 18, Chișinău, RM, MD 2012</span>
-                                </div>
-                            </div>
-                            <div class="event-count bg-info text-white px-3 py-2 rounded-bottom">
-                                <strong>26</strong> eveniment
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-sm-6 col-xl-3 filter-item all web illustrator">
-                    <a href="pagina_noua.html" target="_blank" class="custom-card">
-                        <div class="gal-box card shadow-sm">
-                            <img src="~/Content/assets/images/9loc.jpg" class="img-fluid" alt="work-thumbnail">
-                            <div class="gall-info p-3">
-                                <h4 class="font-16 mt-0">Teatrul Republican „Luceafărul"</h4>
-                                <div class="d-flex align-items-center">
-                                    <i class="mdi mdi-map-marker text-muted"></i>
-                                    <span class="text-muted ml-1">str. Veronica Micle 7, Chișinău</span>
-                                </div>
-                            </div>
-                            <div class="event-count bg-info text-white px-3 py-2 rounded-bottom">
-                                <strong>26</strong> eveniment
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-sm-6 col-xl-3 filter-item all web illustrator">
-                    <a href="pagina_noua.html" target="_blank" class="custom-card">
-                        <div class="gal-box card shadow-sm">
-                            <img src="~/Content/assets/images/10loc.jpg" class="img-fluid" alt="work-thumbnail">
-                            <div class="gall-info p-3">
-                                <h4 class="font-16 mt-0">Palatul Național „Nicolae Sulac”</h4>
-                                <div class="d-flex align-items-center">
-                                    <i class="mdi mdi-map-marker text-muted"></i>
-                                    <span class="text-muted ml-1">str. Pușkin 21, Chișinău</span>
-                                </div>
-                            </div>
-                            <div class="event-count bg-info text-white px-3 py-2 rounded-bottom">
-                                <strong>26</strong> eveniment
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-sm-6 col-xl-3 filter-item all web illustrator">
-                    <a href="pagina_noua.html" target="_blank" class="custom-card">
-                        <div class="gal-box card shadow-sm">
-                            <img src="~/Content/assets/images/11loc.jpg" class="img-fluid" alt="work-thumbnail">
-                            <div class="gall-info p-3">
-                                <h4 class="font-16 mt-0">Stadionul Zimbru</h4>
-                                <div class="d-flex align-items-center">
-                                    <i class="mdi mdi-map-marker text-muted"></i>
-                                    <span class="text-muted ml-1">Bulevardul Dacia 45, Chișinău</span>
-                                </div>
-                            </div>
-                            <div class="event-count bg-info text-white px-3 py-2 rounded-bottom">
-                                <strong>26</strong> eveniment
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-sm-6 col-xl-3 filter-item all web illustrator">
-                    <a href="pagina_noua.html" target="_blank" class="custom-card">
-                        <div class="gal-box card shadow-sm">
-                            <img src="~/Content/assets/images/12loc.jpg" class="img-fluid" alt="work-thumbnail">
-                            <div class="gall-info p-3">
-                                <h4 class="font-16 mt-0">“Planeta Clounella” - Teatrul Independent pentru Copii si Tineret</h4>
-                                <div class="d-flex align-items-center">
-                                    <i class="mdi mdi-map-marker text-muted"></i>
-                                    <span class="text-muted ml-1">str. Mihai Eminescu 55, Chișinău</span>
-                                </div>
-                            </div>
-                            <div class="event-count bg-info text-white px-3 py-2 rounded-bottom">
-                                <strong>26</strong> eveniment
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div> <!-- end container -->
+            <p class="mt-2">Se încarcă detaliile locației...</p>
         </div>
-        
+    `;
+          modal.show();
 
-
-        <!-- end wrapper -->
-        <!-- ============================================================== -->
-        <!-- End Page content -->
-        <!-- ============================================================== -->
-        <!-- Footer Start -->
-        @Html.Partial("_Footer")    
-
-
-        <!-- Vendor js -->
-        <script src="~/Content/assets/js/vendor.min.js"></script>
-
-        <!-- Magnific Popup-->
-        <script src="~/Content/assets/libs/magnific-popup/jquery.magnific-popup.min.js"></script>
-
-        <!-- Gallery Init-->
-        <script src="~/Content/assets/js/pages/gallery.init.js"></script>
-
-        <!-- App js -->
-        <script src="~/Content/assets/js/app.min.js"></script>
-</body>
-
-</html>
+          // Simulate loading
+          setTimeout(() => {
+               document.getElementById('locationModalBody').innerHTML = `
+            <p>Detaliile locației vor fi afișate aici.</p>
+            <p>Această funcționalitate poate fi extinsă pentru a afișa:</p>
+            <ul>
+                <li>Galerie foto</li>
+                <li>Facilități disponibile</li>
+                <li>Program de lucru</li>
+                <li>Harta cu locația</li>
+                <li>Evenimente viitoare</li>
+            </ul>
+        `;
+          }, 1000);
+     }
+</script>

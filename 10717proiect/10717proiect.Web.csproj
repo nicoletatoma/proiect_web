@@ -740,6 +740,7 @@
     <Content Include="bin\roslyn\vbc.rsp" />
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
     <Content Include="Scripts\AdminScript\Events.js" />
+    <Content Include="Scripts\AdminScript\Location.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -804,6 +805,7 @@
     <Compile Include="Models\Comment\CommentDataModelView.cs" />
     <Compile Include="Models\Event\EventListViewModel.cs" />
     <Compile Include="Models\Location\LocationDataView.cs" />
+    <Compile Include="Models\Location\LocationViewModel.cs" />
     <Compile Include="Models\Reg\UserRegData.cs" />
     <Compile Include="Models\TicketViewModel.cs" />
     <Compile Include="Models\User\UserData.cs" />
@@ -816,7 +818,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Evenimente\Index.cshtml" />
     <Content Include="Views\Locations\Index.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
@@ -827,7 +828,7 @@
     <Content Include="Views\Shared\_HeaderAdmin.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Admin\Events.cshtml" />
-    <Content Include="Views\Admin\Location.cshtml" />
+    <Content Include="Views\Admin\Locations.cshtml" />
     <Content Include="Views\Admin\Transactions.cshtml" />
     <Content Include="Views\Shared\_SideBar.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
@@ -837,6 +838,7 @@
     <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\Events\Index.cshtml" />
     <Content Include="Views\Events\Details.cshtml" />
+    <Content Include="Views\Home\Profil.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -850,6 +852,7 @@
     <Folder Include="Views\Account\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\ContulMeu\" />
+    <Folder Include="Views\Search\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\10717proiect.BusinessLogic\10717proiect.BusinessLogic.csproj">

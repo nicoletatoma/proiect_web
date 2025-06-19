@@ -13,7 +13,7 @@ namespace _10717proiect.BusinessLogic.DBContext
      {
           public LocationContext() : base("name=10717proiect")
           {
-               Database.SetInitializer(new CreateDatabaseIfNotExists<LocationContext>());
+               
           }
 
           public virtual DbSet<LocationDbTable> Locations { get; set; }

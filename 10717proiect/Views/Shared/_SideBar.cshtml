@@ -1,28 +1,27 @@
-﻿
-<div id="sidebar" class="d-flex flex-column flex-shrink-0 p-3 bg-light">
+﻿<div id="sidebar" class="d-flex flex-column flex-shrink-0 p-3 bg-light">
      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
           <span class="fs-4">Ticket Express - Admin</span>
      </a>
      <hr>
      <ul class="nav nav-pills flex-column mb-auto">
           <li class="nav-item">
-               <a href="@Url.Action("Index", "Admin")" class="nav-link @(ViewContext.RouteData.Values["action"].ToString() == "Index" ? "active" : "link-dark")">
+               <a href="@Url.Action("Index", "Admin")" class="nav-link @(ViewContext.RouteData.Values["action"].ToString() == "Index" && ViewContext.RouteData.Values["controller"].ToString() == "Admin" ? "active" : "link-dark")">
                     <i class="bi bi-speedometer2" width="16" height="16"></i>&nbsp;&nbsp;&nbsp;Dashboard
                </a>
           </li>
           <li>
-               <a href="@Url.Action("Events", "Admin")" class="nav-link @(ViewContext.RouteData.Values["action"].ToString() == "Index" ? "active" : "link-dark")">
+               <a href="@Url.Action("Events", "Admin")" class="nav-link @(ViewContext.RouteData.Values["action"].ToString() == "Events" ? "active" : "link-dark")">
                     <i class="bi bi-ticket-detailed" width="16" height="16"></i>&nbsp;&nbsp;&nbsp;Evenimente
                </a>
           </li>
           <li>
-               <a href="@Url.Action("Location", "Admin")" class="nav-link @(ViewContext.RouteData.Values["action"].ToString() == "Agenda" ? "active" : "link-dark")">
-                    <i class="bi  bi-geo" width="16" height="16"></i>&nbsp;&nbsp;&nbsp;Locatii
+               <a href="@Url.Action("Locations", "Admin")" class="nav-link @(ViewContext.RouteData.Values["action"].ToString() == "Locations" ? "active" : "link-dark")">
+                    <i class="bi bi-geo" width="16" height="16"></i>&nbsp;&nbsp;&nbsp;Locații
                </a>
           </li>
           <li>
-               <a href="@Url.Action("Transactions", "Admin")" class="nav-link @(ViewContext.RouteData.Values["action"].ToString() == "Messages" ? "active" : "link-dark")">
-                    <i class="bi bi-graph-up-arrow" width="16" height="16"></i>&nbsp;&nbsp;&nbsp;Tranzactii
+               <a href="@Url.Action("Transactions", "Admin")" class="nav-link @(ViewContext.RouteData.Values["action"].ToString() == "Transactions" ? "active" : "link-dark")">
+                    <i class="bi bi-graph-up-arrow" width="16" height="16"></i>&nbsp;&nbsp;&nbsp;Tranzacții
                </a>
           </li>
      </ul>

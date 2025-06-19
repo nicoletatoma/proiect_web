@@ -11,10 +11,29 @@ namespace _10717proiect.BusinessLogic.BL_Struct
 {
      public class LocationBL : LocationAPI, ILocation
      {
-          public string AddLocation(LocationData data) 
+          public string AddLocation(LocationData data)
           {
                return AddLocationAction(data);
           }
 
+          public bool UpdateLocation(LocationData data)
+          {
+               return UpdateLocationAction(data);
+          }
+
+          public bool DeleteLocation(int locationId)
+          {
+               return DeleteLocationAction(locationId);
+          }
+
+          public LocationData GetLocationById(int locationId)
+          {
+               return GetLocationByIdAction(locationId);
+          }
+
+          public List<LocationData> GetAllLocations()
+          {
+               return GetAllLocationsAction();
+          }
      }
 }
