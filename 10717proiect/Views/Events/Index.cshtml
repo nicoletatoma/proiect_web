@@ -39,52 +39,7 @@
                                    <li class="hidden"><label><input type="radio" name="category" value="film" @(ViewBag.SelectedCategory == "film" ? "checked" : "")> Film</label></li>
                                    <li class="hidden"><label><input type="radio" name="category" value="altele" @(ViewBag.SelectedCategory == "altele" ? "checked" : "")> Altele</label></li>
                               </ul>
-                              <button class="toggle-btn filters-btn" onclick="toggleOptions(this)">Afișează mai mult</button>
-                         </section>
 
-                         <!-- Location filter -->
-                         <section>
-                              <h3>Locația</h3>
-                              <ul>
-                                   <li><label><input type="radio" name="location" value="toate" @(string.IsNullOrEmpty(ViewBag.SelectedLocation) || ViewBag.SelectedLocation == "toate" ? "checked" : "")> Toate locațiile</label></li>
-                                   <li><label><input type="radio" name="location" value="chisinau" @(ViewBag.SelectedLocation == "chisinau" ? "checked" : "")> Chișinău</label></li>
-                                   <li><label><input type="radio" name="location" value="balti" @(ViewBag.SelectedLocation == "balti" ? "checked" : "")> Bălți</label></li>
-                                   <li><label><input type="radio" name="location" value="cahul" @(ViewBag.SelectedLocation == "cahul" ? "checked" : "")> Cahul</label></li>
-                                   <li><label><input type="radio" name="location" value="orhei" @(ViewBag.SelectedLocation == "orhei" ? "checked" : "")> Orhei</label></li>
-                                   <li><label><input type="radio" name="location" value="soroca" @(ViewBag.SelectedLocation == "soroca" ? "checked" : "")> Soroca</label></li>
-                                   <li class="hidden"><label><input type="radio" name="location" value="ungheni" @(ViewBag.SelectedLocation == "ungheni" ? "checked" : "")> Ungheni</label></li>
-                                   <li class="hidden"><label><input type="radio" name="location" value="comrat" @(ViewBag.SelectedLocation == "comrat" ? "checked" : "")> Comrat</label></li>
-                                   <li class="hidden"><label><input type="radio" name="location" value="anenii-noi" @(ViewBag.SelectedLocation == "anenii-noi" ? "checked" : "")> Anenii Noi</label></li>
-                                   <li class="hidden"><label><input type="radio" name="location" value="basarabeasca" @(ViewBag.SelectedLocation == "basarabeasca" ? "checked" : "")> Basarabeasca</label></li>
-                                   <li class="hidden"><label><input type="radio" name="location" value="briceni" @(ViewBag.SelectedLocation == "briceni" ? "checked" : "")> Briceni</label></li>
-                                   <li class="hidden"><label><input type="radio" name="location" value="cantemir" @(ViewBag.SelectedLocation == "cantemir" ? "checked" : "")> Cantemir</label></li>
-                                   <li class="hidden"><label><input type="radio" name="location" value="calarasi" @(ViewBag.SelectedLocation == "calarasi" ? "checked" : "")> Călărași</label></li>
-                                   <li class="hidden"><label><input type="radio" name="location" value="causeni" @(ViewBag.SelectedLocation == "causeni" ? "checked" : "")> Căușeni</label></li>
-                                   <li class="hidden"><label><input type="radio" name="location" value="cimislia" @(ViewBag.SelectedLocation == "cimislia" ? "checked" : "")> Cimișlia</label></li>
-                                   <li class="hidden"><label><input type="radio" name="location" value="criuleni" @(ViewBag.SelectedLocation == "criuleni" ? "checked" : "")> Criuleni</label></li>
-                                   <li class="hidden"><label><input type="radio" name="location" value="donduseni" @(ViewBag.SelectedLocation == "donduseni" ? "checked" : "")> Dondușeni</label></li>
-                                   <li class="hidden"><label><input type="radio" name="location" value="drochia" @(ViewBag.SelectedLocation == "drochia" ? "checked" : "")> Drochia</label></li>
-                                   <li class="hidden"><label><input type="radio" name="location" value="dubasari" @(ViewBag.SelectedLocation == "dubasari" ? "checked" : "")> Dubăsari</label></li>
-                                   <li class="hidden"><label><input type="radio" name="location" value="edinet" @(ViewBag.SelectedLocation == "edinet" ? "checked" : "")> Edineț</label></li>
-                                   <li class="hidden"><label><input type="radio" name="location" value="falesti" @(ViewBag.SelectedLocation == "falesti" ? "checked" : "")> Fălești</label></li>
-                                   <li class="hidden"><label><input type="radio" name="location" value="floresti" @(ViewBag.SelectedLocation == "floresti" ? "checked" : "")> Florești</label></li>
-                                   <li class="hidden"><label><input type="radio" name="location" value="glodeni" @(ViewBag.SelectedLocation == "glodeni" ? "checked" : "")> Glodeni</label></li>
-                                   <li class="hidden"><label><input type="radio" name="location" value="hincesti" @(ViewBag.SelectedLocation == "hincesti" ? "checked" : "")> Hîncești</label></li>
-                                   <li class="hidden"><label><input type="radio" name="location" value="ialoveni" @(ViewBag.SelectedLocation == "ialoveni" ? "checked" : "")> Ialoveni</label></li>
-                                   <li class="hidden"><label><input type="radio" name="location" value="leova" @(ViewBag.SelectedLocation == "leova" ? "checked" : "")> Leova</label></li>
-                                   <li class="hidden"><label><input type="radio" name="location" value="nisporeni" @(ViewBag.SelectedLocation == "nisporeni" ? "checked" : "")> Nisporeni</label></li>
-                                   <li class="hidden"><label><input type="radio" name="location" value="ocnita" @(ViewBag.SelectedLocation == "ocnita" ? "checked" : "")> Ocnița</label></li>
-                                   <li class="hidden"><label><input type="radio" name="location" value="rezina" @(ViewBag.SelectedLocation == "rezina" ? "checked" : "")> Rezina</label></li>
-                                   <li class="hidden"><label><input type="radio" name="location" value="riscani" @(ViewBag.SelectedLocation == "riscani" ? "checked" : "")> Rîșcani</label></li>
-                                   <li class="hidden"><label><input type="radio" name="location" value="singerei" @(ViewBag.SelectedLocation == "singerei" ? "checked" : "")> Sîngerei</label></li>
-                                   <li class="hidden"><label><input type="radio" name="location" value="soldanesti" @(ViewBag.SelectedLocation == "soldanesti" ? "checked" : "")> Șoldănești</label></li>
-                                   <li class="hidden"><label><input type="radio" name="location" value="stefan-voda" @(ViewBag.SelectedLocation == "stefan-voda" ? "checked" : "")> Ștefan Vodă</label></li>
-                                   <li class="hidden"><label><input type="radio" name="location" value="straseni" @(ViewBag.SelectedLocation == "straseni" ? "checked" : "")> Strășeni</label></li>
-                                   <li class="hidden"><label><input type="radio" name="location" value="taraclia" @(ViewBag.SelectedLocation == "taraclia" ? "checked" : "")> Taraclia</label></li>
-                                   <li class="hidden"><label><input type="radio" name="location" value="telenesti" @(ViewBag.SelectedLocation == "telenesti" ? "checked" : "")> Telenești</label></li>
-                                   <li class="hidden"><label><input type="radio" name="location" value="gagauzia" @(ViewBag.SelectedLocation == "gagauzia" ? "checked" : "")> UTA Găgăuzia</label></li>
-                              </ul>
-                              <button class="toggle-btn filters-btn" onclick="toggleOptions(this)">Afișează mai mult</button>
                          </section>
 
                          <!-- Date filter -->

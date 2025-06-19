@@ -3,14 +3,41 @@ let debounceTimer;
 let allEvents = [];
 
 document.addEventListener('DOMContentLoaded', function () {
-     // Initialize filters
-     initializeFilters();
+     // Delay initialization to ensure DOM is fully loaded
+     setTimeout(() => {
+          console.log('Initializing filters...');
 
-     // Store initial events data
-     storeEventsData();
+          // Check if all required elements exist
+          const requiredElements = {
+               searchInput: document.getElementById('searchInput'),
+               categoryRadios: document.querySelectorAll('input[name="category"]'),
+               dateFilter: document.getElementById('dateFilter'),
+               priceMin: document.getElementById('price-min'),
+               priceMax: document.getElementById('price-max'),
+               eventsGrid: document.getElementById('eventsGrid')
+          };
 
-     // Set up event listeners
-     setupEventListeners();
+          console.log('Required elements check:', requiredElements);
+
+          // Only proceed if all elements exist
+          if (requiredElements.searchInput && requiredElements.categoryRadios.length > 0 &&
+               requiredElements.dateFilter && requiredElements.priceMin &&
+               requiredElements.priceMax && requiredElements.eventsGrid) {
+
+               // Initialize filters
+               initializeFilters();
+
+               // Store initial events data
+               storeEventsData();
+
+               // Set up event listeners
+               setupEventListeners();
+
+               console.log('Filters initialized successfully');
+          } else {
+               console.error('Missing required elements for filters');
+          }
+     }, 100);
 });
 
 function initializeFilters() {
@@ -53,11 +80,6 @@ function setupEventListeners() {
           radio.addEventListener('change', applyFilters);
      });
 
-     // Location filters
-     document.querySelectorAll('input[name="location"]').forEach(radio => {
-          radio.addEventListener('change', applyFilters);
-     });
-
      // Date filter
      const dateFilter = document.getElementById('dateFilter');
      if (dateFilter) {
@@ -84,13 +106,36 @@ function setupEventListeners() {
 }
 
 function applyFilters() {
-     // Get filter values
-     const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-     const selectedCategory = document.querySelector('input[name="category"]:checked').value;
-     const selectedLocation = document.querySelector('input[name="location"]:checked').value;
-     const selectedDate = document.getElementById('dateFilter').value;
-     const minPrice = parseFloat(document.getElementById('price-min').value) || 0;
-     const maxPrice = parseFloat(document.getElementById('price-max').value) || Infinity;
+     console.log('applyFilters called');
+
+     // Get filter values with null checks
+     const searchInput = document.getElementById('searchInput');
+     const categoryChecked = document.querySelector('input[name="category"]:checked');
+     const dateFilter = document.getElementById('dateFilter');
+     const priceMinInput = document.getElementById('price-min');
+     const priceMaxInput = document.getElementById('price-max');
+     const eventsCountElement = document.getElementById('eventsCount');
+
+     // Debug log
+     console.log('Elements found:', {
+          searchInput: !!searchInput,
+          categoryChecked: !!categoryChecked,
+          dateFilter: !!dateFilter,
+          priceMinInput: !!priceMinInput,
+          priceMaxInput: !!priceMaxInput,
+          eventsCountElement: !!eventsCountElement
+     });
+
+     if (!searchInput || !categoryChecked || !dateFilter || !priceMinInput || !priceMaxInput) {
+          console.error('Some filter elements not found - aborting filter');
+          return;
+     }
+
+     const searchTerm = searchInput.value.toLowerCase();
+     const selectedCategory = categoryChecked.value;
+     const selectedDate = dateFilter.value;
+     const minPrice = parseFloat(priceMinInput.value) || 0;
+     const maxPrice = parseFloat(priceMaxInput.value) || Infinity;
 
      let filteredEvents = allEvents.filter(event => {
           // Search filter
@@ -100,11 +145,6 @@ function applyFilters() {
 
           // Category filter
           if (selectedCategory !== 'toate' && event.category !== selectedCategory) {
-               return false;
-          }
-
-          // Location filter
-          if (selectedLocation !== 'toate' && event.location !== selectedLocation) {
                return false;
           }
 
@@ -121,6 +161,16 @@ function applyFilters() {
           return true;
      });
 
+     console.log('Filters applied:', {
+          searchTerm,
+          selectedCategory,
+          selectedDate,
+          minPrice,
+          maxPrice,
+          totalEvents: allEvents.length,
+          filteredEvents: filteredEvents.length
+     });
+
      // Show/hide events
      allEvents.forEach(event => {
           event.element.style.display = 'none';
@@ -131,13 +181,15 @@ function applyFilters() {
      });
 
      // Update events count
-     document.getElementById('eventsCount').textContent = filteredEvents.length;
+     if (eventsCountElement) {
+          eventsCountElement.textContent = filteredEvents.length;
+     }
 
      // Show no results message if needed
      showNoResultsMessage(filteredEvents.length === 0);
 
      // Update URL parameters
-     updateURLParameters(searchTerm, selectedCategory, selectedLocation, selectedDate, minPrice, maxPrice);
+     updateURLParameters(searchTerm, selectedCategory, selectedDate, minPrice, maxPrice);
 }
 
 function showNoResultsMessage(show) {
@@ -166,12 +218,11 @@ function showNoResultsMessage(show) {
      }
 }
 
-function updateURLParameters(search, category, location, date, minPrice, maxPrice) {
+function updateURLParameters(search, category, date, minPrice, maxPrice) {
      const params = new URLSearchParams();
 
      if (search) params.set('search', search);
      if (category !== 'toate') params.set('category', category);
-     if (location !== 'toate') params.set('location', location);
      if (date) params.set('date', date);
      if (minPrice > 0) params.set('minPrice', minPrice);
      if (maxPrice < Infinity) params.set('maxPrice', maxPrice);
@@ -227,15 +278,20 @@ function sortEvents(sortBy) {
 }
 
 function resetFilters() {
-     // Reset all form inputs
-     document.getElementById('searchInput').value = '';
-     document.querySelector('input[name="category"][value="toate"]').checked = true;
-     document.querySelector('input[name="location"][value="toate"]').checked = true;
-     document.getElementById('dateFilter').value = '';
-     document.getElementById('price-min').value = '';
-     document.getElementById('price-max').value = '';
+     // Reset all form inputs with null checks
+     const searchInput = document.getElementById('searchInput');
+     const categoryRadio = document.querySelector('input[name="category"][value="toate"]');
+     const dateFilter = document.getElementById('dateFilter');
+     const priceMin = document.getElementById('price-min');
+     const priceMax = document.getElementById('price-max');
 
-     // Reset hidden categories and locations
+     if (searchInput) searchInput.value = '';
+     if (categoryRadio) categoryRadio.checked = true;
+     if (dateFilter) dateFilter.value = '';
+     if (priceMin) priceMin.value = '';
+     if (priceMax) priceMax.value = '';
+
+     // Reset hidden categories
      document.querySelectorAll('.hidden').forEach(item => {
           item.classList.add('hidden');
      });
@@ -309,54 +365,51 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Initialize filters from URL parameters on page load
 document.addEventListener('DOMContentLoaded', function () {
-     const urlParams = new URLSearchParams(window.location.search);
+     setTimeout(() => {
+          const urlParams = new URLSearchParams(window.location.search);
 
-     // Set search term
-     const search = urlParams.get('search');
-     if (search) {
-          document.getElementById('searchInput').value = search;
-     }
-
-     // Set category
-     const category = urlParams.get('category');
-     if (category) {
-          const categoryRadio = document.querySelector(`input[name="category"][value="${category}"]`);
-          if (categoryRadio) {
-               categoryRadio.checked = true;
+          // Set search term
+          const search = urlParams.get('search');
+          if (search) {
+               const searchInput = document.getElementById('searchInput');
+               if (searchInput) searchInput.value = search;
           }
-     }
 
-     // Set location
-     const location = urlParams.get('location');
-     if (location) {
-          const locationRadio = document.querySelector(`input[name="location"][value="${location}"]`);
-          if (locationRadio) {
-               locationRadio.checked = true;
+          // Set category
+          const category = urlParams.get('category');
+          if (category) {
+               const categoryRadio = document.querySelector(`input[name="category"][value="${category}"]`);
+               if (categoryRadio) {
+                    categoryRadio.checked = true;
+               }
           }
-     }
 
-     // Set date
-     const date = urlParams.get('date');
-     if (date) {
-          document.getElementById('dateFilter').value = date;
-     }
+          // Set date
+          const date = urlParams.get('date');
+          if (date) {
+               const dateFilter = document.getElementById('dateFilter');
+               if (dateFilter) dateFilter.value = date;
+          }
 
-     // Set price range
-     const minPrice = urlParams.get('minPrice');
-     if (minPrice) {
-          document.getElementById('price-min').value = minPrice;
-     }
+          // Set price range
+          const minPrice = urlParams.get('minPrice');
+          if (minPrice) {
+               const priceMinInput = document.getElementById('price-min');
+               if (priceMinInput) priceMinInput.value = minPrice;
+          }
 
-     const maxPrice = urlParams.get('maxPrice');
-     if (maxPrice) {
-          document.getElementById('price-max').value = maxPrice;
-     }
+          const maxPrice = urlParams.get('maxPrice');
+          if (maxPrice) {
+               const priceMaxInput = document.getElementById('price-max');
+               if (priceMaxInput) priceMaxInput.value = maxPrice;
+          }
+     }, 200);
 });
 
-// Add smooth scrolling for category/location links
+// Add smooth scrolling for category links
 document.addEventListener('DOMContentLoaded', function () {
      // Smooth scroll to top when filters change
-     const allFilterInputs = document.querySelectorAll('input[name="category"], input[name="location"], #searchInput, #dateFilter, #price-min, #price-max');
+     const allFilterInputs = document.querySelectorAll('input[name="category"], #searchInput, #dateFilter, #price-min, #price-max');
 
      allFilterInputs.forEach(input => {
           input.addEventListener('change', function () {
