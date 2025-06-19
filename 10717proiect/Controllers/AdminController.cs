@@ -65,6 +65,14 @@ namespace _10717proiect.Controllers
                     updatedAt = e.updatedAt
                }).ToList();
 
+               // Adaugă locațiile în ViewBag pentru dropdown
+               var locations = _location.GetAllLocations();
+               ViewBag.Locations = locations.Select(l => new SelectListItem
+               {
+                    Value = l.Name.ToLower().Replace(" ", "-"),
+                    Text = l.Name
+               }).ToList();
+
                return View(eventViewModels);
           }
 
@@ -580,6 +588,26 @@ namespace _10717proiect.Controllers
                }
           }
 
+          [HttpGet]
+          public JsonResult GetAvailableLocations()
+          {
+               try
+               {
+                    var locations = _location.GetAllLocations();
+                    var locationList = locations.Select(l => new
+                    {
+                         value = l.Name.ToLower().Replace(" ", "-"),
+                         text = l.Name
+                    }).ToList();
+
+                    return Json(new { success = true, locations = locationList }, JsonRequestBehavior.AllowGet);
+               }
+               catch (Exception ex)
+               {
+                    System.Diagnostics.Debug.WriteLine($"Error in GetAvailableLocations: {ex.Message}");
+                    return Json(new { success = false, message = "Eroare la încărcarea locațiilor." }, JsonRequestBehavior.AllowGet);
+               }
+          }
           #endregion
 
           #region EXISTING METHODS

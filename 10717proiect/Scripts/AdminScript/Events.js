@@ -4,6 +4,9 @@ function showEventForm() {
      document.getElementById('eventForm').classList.remove('d-none');
      document.getElementById('eventName').focus();
 
+     // Refresh locations dropdown
+     refreshLocationDropdown();
+
      // Only reset form if it's not an edit operation
      if (!editingEventId) {
           // Reset form for new event
@@ -19,6 +22,39 @@ function showEventForm() {
      }
 }
 
+// Adaugă această funcție în Events.js pentru a reîncărca locațiile
+function refreshLocationDropdown() {
+     fetch('/Admin/GetAvailableLocations', {
+          method: 'GET',
+          headers: {
+               'Content-Type': 'application/json'
+          }
+     })
+          .then(response => response.json())
+          .then(data => {
+               if (data.success) {
+                    const locationSelect = document.getElementById('eventLocation');
+                    const currentValue = locationSelect.value;
+
+                    // Clear current options (except the first placeholder)
+                    locationSelect.innerHTML = '<option value="" selected disabled>Selectează locația</option>';
+
+                    // Add new options
+                    data.locations.forEach(location => {
+                         const option = document.createElement('option');
+                         option.value = location.value;
+                         option.textContent = location.text;
+                         if (location.value === currentValue) {
+                              option.selected = true;
+                         }
+                         locationSelect.appendChild(option);
+                    });
+               }
+          })
+          .catch(error => {
+               console.error('Error refreshing locations:', error);
+          });
+}
 function hideEventForm() {
      document.getElementById('eventForm').classList.add('d-none');
      clearEventForm();

@@ -41,36 +41,46 @@
                          @Html.AntiForgeryToken()
 
                          <!-- Form for adding/editing event -->
-                         <form class="d-none mb-4" id="eventForm" method="post" action="@Url.Action("AddEvent", "Admin")" enctype="multipart/form-data">
-                              @Html.AntiForgeryToken()
-                              <input type="hidden" id="eventId" name="Id" value="0">
+                    <form class="d-none mb-4" id="eventForm" method="post" action="@Url.Action("AddEvent", "Admin")" enctype="multipart/form-data">
+                         @Html.AntiForgeryToken()
+                         <input type="hidden" id="eventId" name="Id" value="0">
 
-                              <!-- Numele Evenimentului -->
-                              <div class="row">
-                                   <div class="col-12 mb-3">
-                                        <label for="eventName" class="form-label">Numele Evenimentului *</label>
-                                        <input type="text" class="form-control" id="eventName" name="eventName" placeholder="Introduceți numele evenimentului" required>
-                                   </div>
+                         <!-- Numele Evenimentului -->
+                         <div class="row">
+                              <div class="col-12 mb-3">
+                                   <label for="eventName" class="form-label">Numele Evenimentului *</label>
+                                   <input type="text" class="form-control" id="eventName" name="eventName" placeholder="Introduceți numele evenimentului" required>
                               </div>
+                         </div>
 
-                              <!-- Descriere -->
-                              <div class="row">
-                                   <div class="col-12 mb-3">
-                                        <label for="eventDescription" class="form-label">Descriere</label>
-                                        <textarea class="form-control" id="eventDescription" name="eventDescription" rows="4" placeholder="Descrieți evenimentul..."></textarea>
-                                   </div>
+                         <!-- Descriere -->
+                         <div class="row">
+                              <div class="col-12 mb-3">
+                                   <label for="eventDescription" class="form-label">Descriere</label>
+                                   <textarea class="form-control" id="eventDescription" name="eventDescription" rows="4" placeholder="Descrieți evenimentul..."></textarea>
                               </div>
+                         </div>
 
-                              <!-- Data și Locația -->
-                              <div class="row">
-                                   <div class="col-12 col-md-6 mb-3">
-                                        <label for="eventDate" class="form-label">Data Evenimentului *</label>
-                                        <input type="datetime-local" class="form-control" id="eventDate" name="eventDate" required>
-                                   </div>
-                                   <div class="col-12 col-md-6 mb-3">
-                                        <label for="eventLocation" class="form-label">Locația *</label>
-                                        <select class="form-select" id="eventLocation" name="eventLocation" required>
-                                             <option value="" selected disabled>Selectează locația</option>
+                         <!-- Data și Locația -->
+                         <div class="row">
+                              <div class="col-12 col-md-6 mb-3">
+                                   <label for="eventDate" class="form-label">Data Evenimentului *</label>
+                                   <input type="datetime-local" class="form-control" id="eventDate" name="eventDate" required>
+                              </div>
+                              <div class="col-12 col-md-6 mb-3">
+                                   <label for="eventLocation" class="form-label">Locația *</label>
+                                   <select class="form-select" id="eventLocation" name="eventLocation" required>
+                                        <option value="" selected disabled>Selectează locația</option>
+                                        @if (ViewBag.Locations != null)
+                                        {
+                                             foreach (SelectListItem location in ViewBag.Locations)
+                                             {
+                                                  <option value="@location.Value">@location.Text</option>
+                                             }
+                                        }
+                                        else
+                                        {
+                                             <!-- Fallback - locații hardcodate dacă nu sunt locații în baza de date -->
                                              <option value="chisinau">Chișinău</option>
                                              <option value="balti">Bălți</option>
                                              <option value="cahul">Cahul</option>
@@ -78,103 +88,78 @@
                                              <option value="soroca">Soroca</option>
                                              <option value="ungheni">Ungheni</option>
                                              <option value="comrat">Comrat</option>
-                                             <option value="anenii-noi">Anenii Noi</option>
-                                             <option value="basarabeasca">Basarabeasca</option>
-                                             <option value="briceni">Briceni</option>
-                                             <option value="cantemir">Cantemir</option>
-                                             <option value="calarasi">Călărași</option>
-                                             <option value="causeni">Căușeni</option>
-                                             <option value="cimislia">Cimișlia</option>
-                                             <option value="criuleni">Criuleni</option>
-                                             <option value="donduseni">Dondușeni</option>
-                                             <option value="drochia">Drochia</option>
-                                             <option value="dubasari">Dubăsari</option>
-                                             <option value="edinet">Edineț</option>
-                                             <option value="falesti">Fălești</option>
-                                             <option value="floresti">Florești</option>
-                                             <option value="glodeni">Glodeni</option>
-                                             <option value="hincesti">Hîncești</option>
-                                             <option value="ialoveni">Ialoveni</option>
-                                             <option value="leova">Leova</option>
-                                             <option value="nisporeni">Nisporeni</option>
-                                             <option value="ocnita">Ocnița</option>
-                                             <option value="rezina">Rezina</option>
-                                             <option value="riscani">Rîșcani</option>
-                                             <option value="singerei">Sîngerei</option>
-                                             <option value="soldanesti">Șoldănești</option>
-                                             <option value="stefan-voda">Ștefan Vodă</option>
-                                             <option value="straseni">Strășeni</option>
-                                             <option value="taraclia">Taraclia</option>
-                                             <option value="telenesti">Telenești</option>
-                                             <option value="gagauzia">UTA Găgăuzia</option>
-                                        </select>
-                                   </div>
+                                        }
+                                   </select>
+                                   @if (ViewBag.Locations != null && ((List<SelectListItem>)ViewBag.Locations).Count == 0)
+                                   {
+                                        <small class="text-muted">Nu există locații adăugate. <a href="@Url.Action("Locations", "Admin")">Adaugă prima locație</a></small>
+                                   }
                               </div>
-
-                              <!-- Categoria și Prețul -->
-                              <div class="row">
-                                   <div class="col-12 col-md-6 mb-3">
-                                        <label for="eventCategory" class="form-label">Categoria *</label>
-                                        <select class="form-select" id="eventCategory" name="eventCategory" required>
-                                             <option value="" selected disabled>Selectează categoria</option>
-                                             <option value="concert">Concert</option>
-                                             <option value="teatru">Teatru</option>
-                                             <option value="festival">Festival</option>
-                                             <option value="conferinta">Conferință</option>
-                                             <option value="workshop">Workshop</option>
-                                             <option value="sport">Eveniment Sportiv</option>
-                                             <option value="expozitie">Expoziție</option>
-                                             <option value="dans">Dans</option>
-                                             <option value="film">Film</option>
-                                             <option value="altele">Altele</option>
-                                        </select>
-                                   </div>
-                                   <div class="col-12 col-md-6 mb-3">
-                                        <label for="eventPrice" class="form-label">Preț (MDL) *</label>
-                                        <input type="number" class="form-control" id="eventPrice" name="eventPrice" placeholder="Ex: 150" min="0" step="0.01" required>
-                                   </div>
+                         </div>
+                         <!-- Categoria și Prețul -->
+                         <div class="row">
+                              <div class="col-12 col-md-6 mb-3">
+                                   <label for="eventCategory" class="form-label">Categoria *</label>
+                                   <select class="form-select" id="eventCategory" name="eventCategory" required>
+                                        <option value="" selected disabled>Selectează categoria</option>
+                                        <option value="concert">Concert</option>
+                                        <option value="teatru">Teatru</option>
+                                        <option value="festival">Festival</option>
+                                        <option value="conferinta">Conferință</option>
+                                        <option value="workshop">Workshop</option>
+                                        <option value="sport">Eveniment Sportiv</option>
+                                        <option value="expozitie">Expoziție</option>
+                                        <option value="dans">Dans</option>
+                                        <option value="film">Film</option>
+                                        <option value="altele">Altele</option>
+                                   </select>
                               </div>
+                              <div class="col-12 col-md-6 mb-3">
+                                   <label for="eventPrice" class="form-label">Preț (MDL) *</label>
+                                   <input type="number" class="form-control" id="eventPrice" name="eventPrice" placeholder="Ex: 150" min="0" step="0.01" required>
+                              </div>
+                         </div>
 
-                              <!-- Imaginea Evenimentului -->
-                              <div class="row">
-                                   <div class="col-12 mb-3">
-                                        <label for="eventImageFile" class="form-label">Imaginea Evenimentului</label>
-                                        <input type="file" class="form-control" id="eventImageFile" name="eventImageFile" accept="image/*" onchange="previewEventImage(this)">
-                                        <small class="text-muted">Formate acceptate: JPG, PNG, GIF. Mărimea maximă: 5MB.</small>
+                         <!-- Imaginea Evenimentului -->
+                         <div class="row">
+                              <div class="col-12 mb-3">
+                                   <label for="eventImageFile" class="form-label">Imaginea Evenimentului</label>
+                                   <input type="file" class="form-control" id="eventImageFile" name="eventImageFile" accept="image/*" onchange="previewEventImage(this)">
+                                   <small class="text-muted">Formate acceptate: JPG, PNG, GIF. Mărimea maximă: 5MB.</small>
 
-                                        <!-- Preview imagine -->
-                                        <div id="imagePreview" class="mt-3 d-none">
-                                             <div class="card" style="max-width: 300px;">
-                                                  <img id="previewImg" class="card-img-top" style="height: 200px; object-fit: cover;">
-                                                  <div class="card-body p-2">
-                                                       <small class="text-muted">Previzualizare imagine</small>
-                                                  </div>
+                                   <!-- Preview imagine -->
+                                   <div id="imagePreview" class="mt-3 d-none">
+                                        <div class="card" style="max-width: 300px;">
+                                             <img id="previewImg" class="card-img-top" style="height: 200px; object-fit: cover;">
+                                             <div class="card-body p-2">
+                                                  <small class="text-muted">Previzualizare imagine</small>
                                              </div>
                                         </div>
                                    </div>
                               </div>
+                         </div>
 
-                              <!-- Status -->
-                              <div class="row">
-                                   <div class="col-12 col-md-6 mb-3">
-                                        <label for="eventStatus" class="form-label">Status *</label>
-                                        <select class="form-select" id="eventStatus" name="eventStatus" required>
-                                             <option value="0">Draft</option>
-                                             <option value="1">Publicat</option>
-                                        </select>
-                                   </div>
+                         <!-- Status -->
+                         <div class="row">
+                              <div class="col-12 col-md-6 mb-3">
+                                   <label for="eventStatus" class="form-label">Status *</label>
+                                   <select class="form-select" id="eventStatus" name="eventStatus" required>
+                                        <option value="0">Draft</option>
+                                        <option value="1">Publicat</option>
+                                   </select>
                               </div>
+                         </div>
 
-                              <!-- Butoane -->
-                              <div class="row">
-                                   <div class="col-12 mb-3 text-end">
-                                        <button class="btn btn-secondary me-2" type="button" onclick="hideEventForm()">Anulează</button>
-                                        <button class="btn btn-outline-primary me-2" type="button" onclick="saveDraft()">Salvează Draft</button>
-                                        <button type="submit" class="btn btn-success" id="submitEventBtn">Publică Evenimentul</button>
-                                   </div>
+                         <!-- Butoane -->
+                         <div class="row">
+                              <div class="col-12 mb-3 text-end">
+                                   <button class="btn btn-secondary me-2" type="button" onclick="hideEventForm()">Anulează</button>
+                                   <button class="btn btn-outline-primary me-2" type="button" onclick="saveDraft()">Salvează Draft</button>
+                                   <button type="submit" class="btn btn-success" id="submitEventBtn">Publică Evenimentul</button>
                               </div>
-                              <hr class="mb-4">
-                         </form>
+                         </div>
+                         <hr class="mb-4">
+                    </form>
 
                          <!-- Event list -->
                          <div id="eventList" class="row">

@@ -12,11 +12,13 @@ namespace _10717proiect.Controllers
      public class EventsController : BaseController
      {
           private readonly IEventManager _eventManager;
+          private readonly ILocation _location; // Adaugă dependency pentru locații
 
           public EventsController()
           {
                var bl = new BusinessLogic.BusinessLogic();
                _eventManager = bl.GetEventManagerBL();
+               _location = bl.GetLocationBL(); // Injectează dependency-ul
           }
 
           // GET: Events
@@ -67,6 +69,14 @@ namespace _10717proiect.Controllers
                          eventStatus = e.eventStatus,
                          createdAt = e.createdAt,
                          updatedAt = e.updatedAt
+                    }).ToList();
+
+                    // Get locations for filter
+                    var locations = _location.GetAllLocations();
+                    ViewBag.AvailableLocations = locations.Select(l => new
+                    {
+                         Value = l.Name.ToLower().Replace(" ", "-"),
+                         Text = l.Name
                     }).ToList();
 
                     // Store filter values for the view
