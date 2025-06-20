@@ -3,337 +3,506 @@
      ViewBag.Title = Model.eventName;
      Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+     <meta charset="utf-8" />
+     <title>@ViewBag.Title</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1" />
+     <style>
+          /* Reset și bază */
+          *, *::before, *::after {
+               box-sizing: border-box;
+          }
+          body {
+               margin: 0;
+               font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+               background-color: #fff;
+               color: #333;
+               line-height: 1.5;
+          }
+          a {
+               color: #db3056;
+               text-decoration: none;
+          }
+          a:hover {
+               text-decoration: underline;
+          }
+          h1, h3, h4, h5 {
+               margin: 0 0 0.75rem 0;
+               font-weight: 700;
+          }
+          p {
+               margin: 0 0 1rem 0;
+          }
+          strong {
+               font-weight: 700;
+          }
+          /* Container */
+          .Gcustom-container {
+               max-width: 1140px;
+               margin: 6rem auto 4rem auto;
+               padding: 0 15px;
+               background-color: #ebebeb;
+               border-radius: 20px;
+               padding: 20px;
+          }
+          /* Buton inapoi */
+          .Gcustom-back-btn-container {
+               margin-bottom: 1.5rem;
+          }
+          .Gcustom-btn-outline-secondary {
+               display: inline-block;
+               padding: 0.5rem 1rem;
+               font-size: 1rem;
+               font-weight: 500;
+               color: #6c757d;
+               border: 1.5px solid #6c757d;
+               border-radius: 0.375rem;
+               background-color: transparent;
+               cursor: pointer;
+               user-select: none;
+               transition: background-color 0.3s ease, color 0.3s ease;
+          }
+          .Gcustom-btn-outline-secondary:hover,
+          .Gcustom-btn-outline-secondary:focus {
+               background-color: #6c757d;
+               color: #fff;
+               outline: none;
+          }
+          /* Header eveniment */
+          .Gcustom-event-header {
+               margin-bottom: 1.5rem;
+          }
 
-<div class="container">
-     <!-- Back button -->
-     <div class="row mb-3">
-          <div class="col-12">
-               <a href="@Url.Action("Index", "Events")" class="btn btn-outline-secondary">
-                    <i class="bi bi-arrow-left me-2"></i>Înapoi la evenimente
+          .navbar-custom{
+               top: 0;
+               font-weight:600;
+          }
+               .navbar-custom .topnav-menu .nav-link {
+                    padding: 0 15px;
+                    margin: -5px 2px;
+                    font-weight: 600;
+                    color: #000000;
+                    border-radius: 20px;
+                    min-width: 32px;
+                    display: flex;
+                    line-height: 65px;
+                    text-align: center;
+                    max-height: 60px;
+                    align-items: center;
+                    align-content: center;
+                    justify-content: center;
+                    font-size: 20px;
+               }
+
+               .Gcustom-header-flex {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    align-items: flex-start;
+                    gap: 1rem;
+               }
+          .Gcustom-event-title {
+               font-size: 2.5rem;
+               font-weight: 700;
+               color: #333333;
+          }
+          .Gcustom-event-meta {
+               display: flex;
+               flex-wrap: wrap;
+               gap: 0.75rem;
+               margin-top: 0.5rem;
+               font-size: 0.95rem;
+               color: #6c757d;
+          }
+          .Gcustom-event-meta i {
+               vertical-align: middle;
+          }
+          /* badge categorie */
+          .Gcustom-badge-primary {
+               display: inline-block;
+               background-color: #db3056;
+               color: #fff;
+               padding: 0.3rem 0.8rem;
+               border-radius: 0.75rem;
+               font-size: 0.85rem;
+               font-weight: 600;
+               line-height: 1;
+               user-select: none;
+          }
+          /* pret badge */
+          .Gcustom-price-badge {
+               background: linear-gradient(135deg, #db3056, #e94570);
+               color: white;
+               padding: 0.75rem 1.5rem;
+               border-radius: 50px;
+               font-size: 1.25rem;
+               font-weight: 700;
+               box-shadow: 0 4px 15px rgba(219, 48, 86, 0.3);
+               white-space: nowrap;
+               align-self: center;
+          }
+          /* Layout row */
+          .Grow {
+               display: flex;
+               flex-wrap: wrap;
+               margin-left: -15px;
+               margin-right: -15px;
+          }
+          /* Col - 8 / 4 */
+          .Gcol-lg-8, .Gcol-lg-4 {
+               padding-left: 15px;
+               padding-right: 15px;
+          }
+          .Gcol-lg-8 {
+               flex: 0 0 66.66667%;
+               max-width: 66.66667%;
+               margin-bottom: 1.5rem;
+          }
+          .Gcol-lg-4 {
+               flex: 0 0 33.33333%;
+               max-width: 33.33333%;
+               margin-bottom: 1.5rem;
+          }
+          /* Responsive for smaller screens */
+          
+          }
+          /* imagine container */
+          .Gcustom-image-container {
+               position: relative;
+               overflow: hidden;
+               border-radius: 12px;
+               margin-bottom: 1.5rem;
+          }
+          .Gcustom-image-container img {
+               width: 100%;
+               max-height: 400px;
+               object-fit: cover;
+               border-radius: 12px;
+               transition: transform 0.4s ease;
+               display: block;
+          }
+          .Gimg-hover-zoom:hover img {
+               transform: scale(1.05);
+          }
+          /* card */
+          .Gcustom-card {
+               background-color: white;
+               box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+               border-radius: 12px;
+               margin-bottom: 1.5rem;
+          }
+          .Gx {
+               background-color: #ffffffc7;
+               border-radius: 15px;
+          }
+          .Gcustom-border-0 {
+               border: none;
+          }
+          .Gcustom-shadow-sm {
+               box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+          }
+          .Gcustom-rounded-4 {
+               border-radius: 1rem;
+          }
+          .Gcustom-card-body {
+               padding: 1rem 1.5rem;
+          }
+          /* text muted */
+          .Gcustom-text-muted {
+               color: #6c757d;
+          }
+          /* etichete detalii */
+          .Gcustom-detail-label {
+               margin-bottom: 0.25rem;
+               font-weight: 600;
+               color: #212529;
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               gap: 20px;
+          }
+          .Gcustom-detail-label i {
+               color: #db3056;
+               margin-right: 0.5rem;
+               font-size: 1.2rem;
+          }
+          .Gcustom-detail-value {
+               margin-left: 2rem;
+               color: #444;
+               white-space: pre-line;
+          }
+          /* sidebar rezervare */
+          .Gcustom-current-price {
+               font-size: 2rem;
+               color: #db3056;
+               font-weight: 700;
+          }
+          .Gcustom-price-currency {
+               font-size: 1rem;
+               font-weight: 400;
+          }
+          .Gcustom-bg-light {
+               background-color: #f8f9fa;
+               border-radius: 0.375rem;
+          }
+          .Gcustom-event-quick-info {
+               font-size: 0.9rem;
+               color: #6c757d;
+          }
+          .Gcustom-event-quick-info > div {
+               margin-bottom: 0.5rem;
+               display: flex;
+               align-items: center;
+          }
+          .Gcustom-event-quick-info i {
+               margin-right: 0.5rem;
+               font-size: 1.2rem;
+          }
+          /* butoane mici de share */
+          .Gbtn {
+               display: inline-block;
+               font-weight: 600;
+               padding: 0.375rem 0.75rem;
+               font-size: 0.875rem;
+               line-height: 1.5;
+               border-radius: 0.375rem;
+               cursor: pointer;
+               user-select: none;
+               border: 1.5px solid transparent;
+               transition: background-color 0.3s ease, border-color 0.3s ease;
+               white-space: nowrap;
+          }
+          .Gbtn-sm {
+               padding: 0.25rem 0.5rem;
+               font-size: 0.75rem;
+          }
+          .Gbtn-outline-primary {
+               color: #0d6efd;
+               border-color: #0d6efd;
+               background-color: transparent;
+          }
+          .Gbtn-outline-primary:hover {
+               color: white;
+               background-color: #0d6efd;
+          }
+          .Gbtn-outline-info {
+               color: #0dcaf0;
+               border-color: #0dcaf0;
+               background-color: transparent;
+          }
+          .Gbtn-outline-info:hover {
+               color: white;
+               background-color: #0dcaf0;
+          }
+          .Gbtn-outline-success {
+               color: #198754;
+               border-color: #198754;
+               background-color: transparent;
+          }
+          .Gbtn-outline-success:hover {
+               color: white;
+               background-color: #198754;
+          }
+          .Gbtn-outline-secondary {
+               color: #6c757d;
+               border-color: #6c757d;
+               background-color: transparent;
+          }
+          .Gbtn-outline-secondary:hover {
+               color: white;
+               background-color: #6c757d;
+          }
+          /* buton rezervare mare */
+          .Gbtn-danger {
+               display: block;
+               width: 100%;
+               background-color: #db3056;
+               border: none;
+               color: white;
+               font-weight: 700;
+               padding: 0.75rem 1rem;
+               border-radius: 0.375rem;
+               font-size: 1.125rem;
+               cursor: pointer;
+               user-select: none;
+               transition: background-color 0.3s ease;
+               text-align: center;
+          }
+          .Gbtn-danger:hover {
+               background-color: #b52a47;
+          }
+          /* input grupe */
+          .Ginput-group {
+               display: flex;
+               align-items: center;
+               border: 1.5px solid #6c757d;
+               border-radius: 0.375rem;
+               overflow: hidden;
+               width: 100%;
+               max-width: 220px;
+          }
+          .Ginput-group button {
+               background: transparent;
+               border: none;
+               color: #6c757d;
+               font-weight: 700;
+               font-size: 1.25rem;
+               width: 36px;
+               height: 36px;
+               cursor: pointer;
+               user-select: none;
+               transition: background-color 0.3s ease;
+          }
+          .Ginput-group button:hover {
+               background-color: #6c757d;
+               color: white;
+          }
+          .Ginput-group input[type=number] {
+               -moz-appearance: textfield;
+               -webkit-appearance: none;
+               appearance: none;
+               border: none;
+               outline: none;
+               text-align: center;
+               font-size: 1rem;
+               width: 160px;
+               padding: 0.3rem 0;
+               user-select: none;
+          }
+          /* Responsive typography smaller */
+          
+          }
+     </style>
+</head>
+<body>
+     <div class="Gcustom-container">
+          <!-- Buton Înapoi -->
+          <div class="Gcustom-back-btn-container">
+               <a href="@Url.Action("Index", "Events")" class="Gcustom-btn-outline-secondary">
+                    <i class="bi bi-arrow-left me-2"></i> Înapoi la evenimente
                </a>
           </div>
-     </div>
 
-     <!-- Event header -->
-     <div class="row mb-4">
-          <div class="col-12">
-               <div class="d-flex justify-content-between align-items-start flex-wrap">
+          <!-- Header eveniment -->
+          <div class="Gcustom-event-header">
+               <div class="Gcustom-header-flex">
                     <div>
-                         <h1 class="event-title fw-bold">@Model.eventName</h1>
-                         <div class="event-meta-info">
-                              <span class="badge bg-primary me-2">@Model.eventCategory</span>
-                              <span class="text-muted">
-                                   <i class="bi bi-calendar3 me-1"></i>
-                                   @Model.eventDate.ToString("dd MMMM yyyy, HH:mm")
-                              </span>
-                              <span class="text-muted ms-3">
-                                   <i class="bi bi-geo-alt me-1"></i>
-                                   @Model.eventLocation
-                              </span>
+                         <h1 class="Gcustom-event-title">@Model.eventName</h1>
+                         <div class="Gcustom-event-meta">
+                              <span class="Gcustom-badge-primary">@Model.eventCategory</span>
+                              <span class="Gcustom-text-muted"><i class="bi bi-calendar3 me-1"></i> @Model.eventDate.ToString("dd MMMM yyyy, HH:mm")</span>
+                              <span class="Gcustom-text-muted" style="margin-left: 1rem;"><i class="bi bi-geo-alt me-1"></i> @Model.eventLocation</span>
                          </div>
                     </div>
-                    <div class="event-price-display">
-                         <div class="price-badge">
-                              @Model.eventPrice MDL
-                         </div>
-                    </div>
+                    <div class="Gcustom-price-badge">@Model.eventPrice MDL</div>
                </div>
           </div>
-     </div>
 
-     <!-- Event content -->
-     <div class="row">
-          <!-- Event image and description -->
-          <div class="col-lg-8 mb-4">
-               <!-- Event image -->
-               @if (!string.IsNullOrEmpty(Model.eventImage))
-               {
-                    <div class="event-image-container mb-4">
-                         <img src="@Url.Content(Model.eventImage)" class="img-fluid rounded shadow" alt="@Model.eventName">
+          <div class="Grow">
+               <!-- Imagine și descriere -->
+               <div class="Gcol-lg-8">
+                    <div class="Gcustom-image-container Gimg-hover-zoom">
+                         <img src="@(!string.IsNullOrEmpty(Model.eventImage) ? Url.Content(Model.eventImage) : Url.Content("~/Resources/Home/event.png"))"
+                              alt="@Model.eventName" />
                     </div>
-               }
-               else
-               {
-                    <div class="event-image-container mb-4">
-                         <img src="~/Resources/Home/event.png" class="img-fluid rounded shadow" alt="@Model.eventName">
-                    </div>
-               }
 
-               <!-- Event description -->
-               <div class="card border-0 shadow-sm rounded-4 mb-4">
-                    <div class="card-body p-4">
-                         <h3 class="mb-3 fw-bold">Despre eveniment</h3>
-                         <div class="event-description-content">
+                    <div class="Gcustom-card Gx Gcustom-border-0  Gcustom-shadow-sm Gcustom-rounded-4">
+                         <div class="Gcustom-card-body">
+                              <h3 class="fw-bold">Despre eveniment</h3>
                               @if (!string.IsNullOrEmpty(Model.eventDescription))
                               {
                                    @Html.Raw(Model.eventDescription.Replace("\n", "<br>"))
                               }
                               else
                               {
-                                   <p class="text-muted">Nu există o descriere disponibilă pentru acest eveniment.</p>
+                                   <p class="Gcustom-text-muted">Nu există o descriere disponibilă.</p>
                               }
                          </div>
                     </div>
-               </div>
 
-               <!-- Event details -->
-               <div class="card border-0 shadow-sm rounded-4">
-                    <div class="card-body p-4">
-                         <h3 class="mb-3 fw-bold">Detalii eveniment</h3>
-                         <div class="row">
-                              <div class="col-md-6">
-                                   <div class="detail-item mb-3">
-                                        <div class="detail-label">
-                                             <i class="bi bi-calendar3 me-2 text-primary"></i>
-                                             <strong>Data și ora</strong>
-                                        </div>
-                                        <div class="detail-value">
-                                             @Model.eventDate.ToString("dddd, dd MMMM yyyy")
-                                             <br>
+                    <div class="Gcustom-card Gx Gcustom-border-0 Gcustom-shadow-sm Gcustom-rounded-4">
+                         <div class="Gcustom-card-body">
+                              <h3 class="fw-bold">Detalii eveniment</h3>
+                              <div class="Grow">
+                                   <div class="Gcol-md-6" style="margin-bottom:1.5rem; border-bottom: 1px solid #ddd; padding-bottom: 1rem;">
+                                        <div class="Gcustom-detail-label"><i class="bi bi-calendar3 me-2"></i><strong>Data și ora</strong></div>
+                                        <div class="Gcustom-detail-value">
+                                             @Model.eventDate.ToString("dddd, dd MMMM yyyy")<br />
                                              Ora: @Model.eventDate.ToString("HH:mm")
                                         </div>
                                    </div>
-                              </div>
-                              <div class="col-md-6">
-                                   <div class="detail-item mb-3">
-                                        <div class="detail-label">
-                                             <i class="bi bi-geo-alt me-2 text-primary"></i>
-                                             <strong>Locația</strong>
-                                        </div>
-                                        <div class="detail-value">
-                                             @Model.eventLocation
-                                        </div>
+                                   <div class="Gcol-md-6" style="margin-bottom:1.5rem; border-bottom: 1px solid #ddd; padding-bottom: 1rem;">
+                                        <div class="Gcustom-detail-label"><i class="bi bi-geo-alt me-2"></i><strong>Locația</strong></div>
+                                        <div class="Gcustom-detail-value">@Model.eventLocation</div>
                                    </div>
-                              </div>
-                              <div class="col-md-6">
-                                   <div class="detail-item mb-3">
-                                        <div class="detail-label">
-                                             <i class="bi bi-tag me-2 text-primary"></i>
-                                             <strong>Categoria</strong>
-                                        </div>
-                                        <div class="detail-value">
-                                             @Model.eventCategory
-                                        </div>
+                                   <div class="Gcol-md-6" style="margin-bottom:1.5rem; border-bottom: 1px solid #ddd; padding-bottom: 1rem;">
+                                        <div class="Gcustom-detail-label"><i class="bi bi-tag me-2"></i><strong>Categoria</strong></div>
+                                        <div class="Gcustom-detail-value">@Model.eventCategory</div>
                                    </div>
-                              </div>
-                              <div class="col-md-6">
-                                   <div class="detail-item mb-3">
-                                        <div class="detail-label">
-                                             <i class="bi bi-currency-exchange me-2 text-primary"></i>
-                                             <strong>Preț</strong>
-                                        </div>
-                                        <div class="detail-value">
-                                             @Model.eventPrice MDL
-                                        </div>
+                                   <div class="Gcol-md-6" style="margin-bottom:1.5rem;">
+                                        <div class="Gcustom-detail-label"><i class="bi bi-currency-exchange me-2"></i><strong>Preț</strong></div>
+                                        <div class="Gcustom-detail-value">@Model.eventPrice MDL</div>
                                    </div>
                               </div>
                          </div>
                     </div>
+
                </div>
-          </div>
 
-          <!-- Booking sidebar -->
-          <div class="col-lg-4">
-               <div class="card border-0 shadow-sm rounded-4 sticky-top" style="top: 20px;">
-                    <div class="card-body p-4">
-                         <h4 class="mb-3 fw-bold text-center">Rezervă bilet</h4>
+               <!-- Sidebar rezervare -->
+               <div class="Gcol-lg-4">
+                    <div class="Gcustom-card Gx Gcustom-border-0 Gcustom-shadow-sm Gcustom-rounded-4" style=" top: 20px;">
+                         <div class="Gcustom-card-body">
+                              <h4 class="text-center fw-bold" style="margin-bottom: 1rem;">Rezervă bilet</h4>
 
-                         <!-- Price display -->
-                         <div class="price-section text-center mb-4">
-                              <div class="current-price">
-                                   <span class="price-amount">@Model.eventPrice</span>
-                                   <span class="price-currency">MDL</span>
+                              <div class="text-center" style="margin-bottom: 1.5rem;">
+                                   <div class="Gcustom-current-price">@Model.eventPrice <span class="Gcustom-price-currency">MDL</span></div>
+                                   <small class="Gcustom-text-muted">per bilet</small>
                               </div>
-                              <small class="text-muted">per bilet</small>
-                         </div>
 
-                         <!-- Ticket quantity -->
-                         <div class="mb-3">
-                              <label class="form-label fw-medium">Numărul de bilete</label>
-                              <div class="input-group">
-                                   <button class="btn btn-outline-secondary" type="button" id="decreaseBtn">-</button>
-                                   <input type="number" class="form-control text-center" id="ticketQuantity" value="1" min="1" max="10">
-                                   <button class="btn btn-outline-secondary" type="button" id="increaseBtn">+</button>
+                              <div style="margin-bottom: 1.5rem;">
+                                   <label class="form-label fw-medium">Număr bilete</label>
+                                   <div class="Ginput-group">
+                                        <button type="button" id="decreaseBtn">-</button>
+                                        <input type="number" id="ticketQuantity" value="1" min="1" max="10" />
+                                        <button type="button" id="increaseBtn">+</button>
+                                   </div>
                               </div>
-                         </div>
 
-                         <!-- Total price -->
-                         <div class="total-section mb-4 p-3 bg-light rounded">
-                              <div class="d-flex justify-content-between align-items-center">
-                                   <span class="fw-medium">Total:</span>
-                                   <span class="total-price fw-bold" id="totalPrice">@Model.eventPrice MDL</span>
+                              <div class="Gcustom-bg-light p-3 rounded" style="margin-bottom: 1.5rem; display: flex; justify-content: space-between;">
+                                   <span>Total:</span>
+                                   <span class="fw-bold" id="totalPrice">@Model.eventPrice MDL</span>
                               </div>
-                         </div>
 
-                         <!-- Book button -->
-                         <button class="btn-31 booking-btn mb-3" onclick="bookTickets()">
-                              <span class="text-container">
-                                   <span class="text">
-                                        <i class="bi bi-ticket-perforated me-2"></i>Rezervă bilete
-                                   </span>
-                              </span>
-                         </button>
+                              <button class="Gbtn Gbtn-danger" onclick="bookTickets()">
+                                   <i class="bi bi-ticket-perforated me-2"></i> Rezervă bilete
+                              </button>
 
-                         <!-- Event info -->
-                         <div class="event-quick-info">
-                              <div class="info-item mb-2">
-                                   <i class="bi bi-clock me-2 text-muted"></i>
-                                   <span class="text-muted">Eveniment de @(((DateTime.Now - Model.eventDate).TotalDays < 0) ? Math.Abs((DateTime.Now - Model.eventDate).TotalDays).ToString("F0") + " zile" : "astăzi")</span>
-                              </div>
-                              <div class="info-item mb-2">
-                                   <i class="bi bi-people me-2 text-muted"></i>
-                                   <span class="text-muted">Bilete disponibile</span>
-                              </div>
-                              <div class="info-item">
-                                   <i class="bi bi-shield-check me-2 text-muted"></i>
-                                   <span class="text-muted">Plată securizată</span>
+                              <div class="Gcustom-event-quick-info event-quick-info Gcustom-text-muted" style="margin-top: 1rem;">
+                                   <div><i class="bi bi-clock me-2"></i> Eveniment de @(((DateTime.Now - Model.eventDate).TotalDays < 0) ? Math.Abs((DateTime.Now - Model.eventDate).TotalDays).ToString("F0") + " zile" : "astăzi")</div>
+                                   <div><i class="bi bi-people me-2"></i> Bilete disponibile</div>
+                                   <div><i class="bi bi-shield-check me-2"></i> Plată securizată</div>
                               </div>
                          </div>
                     </div>
-               </div>
 
-               <!-- Share section -->
-               <div class="card border-0 shadow-sm rounded-4 mt-4">
-                    <div class="card-body p-4">
-                         <h5 class="mb-3 fw-bold">Distribuie evenimentul</h5>
-                         <div class="share-buttons">
-                              <button class="btn btn-outline-primary btn-sm me-2 mb-2" onclick="shareOnFacebook()">
-                                   <i class="bi bi-facebook me-1"></i>Facebook
-                              </button>
-                              <button class="btn btn-outline-info btn-sm me-2 mb-2" onclick="shareOnTwitter()">
-                                   <i class="bi bi-twitter me-1"></i>Twitter
-                              </button>
-                              <button class="btn btn-outline-success btn-sm me-2 mb-2" onclick="shareOnWhatsApp()">
-                                   <i class="bi bi-whatsapp me-1"></i>WhatsApp
-                              </button>
-                              <button class="btn btn-outline-secondary btn-sm mb-2" onclick="copyLink()">
-                                   <i class="bi bi-link-45deg me-1"></i>Copiază link
-                              </button>
+                    <div class="Gcustom-card Gx Gcustom-border-0 Gcustom-shadow-sm Gcustom-rounded-4">
+                         <div class="Gcustom-card-body">
+                              <h5 class="fw-bold" style="margin-bottom: 1rem;">Distribuie</h5>
+                              <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                                   <button class="Gbtn Gbtn-outline-primary Gbtn-sm" onclick="shareOnFacebook()"><i class="bi bi-facebook me-1"></i> Facebook</button>
+                                   <button class="Gbtn Gbtn-outline-info Gbtn-sm" onclick="shareOnTwitter()"><i class="bi bi-twitter me-1"></i> Twitter</button>
+                                   <!-- Continuă dacă mai ai alte butoane share -->
+                              </div>
                          </div>
                     </div>
                </div>
           </div>
      </div>
 
-     <!-- Related events -->
-     <div class="row mt-5">
-          <div class="col-12">
-               <h3 class="mb-4 fw-bold">Evenimente similare</h3>
-               <div class="row" id="relatedEvents">
-                    <!-- Related events will be loaded here -->
-                    <div class="col-12 text-center py-4">
-                         <div class="spinner-border" role="status">
-                              <span class="visually-hidden">Se încarcă evenimente similare...</span>
-                         </div>
-                    </div>
-               </div>
-          </div>
-     </div>
-</div>
-
-<style>
-.event-title {
-    font-size: 2.5rem;
-    color: #333;
-    margin-bottom: 1rem;
-}
-
-.event-meta-info {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-}
-
-.event-image-container {
-    position: relative;
-    overflow: hidden;
-    border-radius: 12px;
-}
-
-.event-image-container img {
-    width: 100%;
-    max-height: 400px;
-    object-fit: cover;
-}
-
-.price-badge {
-    background: linear-gradient(135deg, #db3056, #e94570);
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 50px;
-    font-size: 1.5rem;
-    font-weight: bold;
-    text-align: center;
-    box-shadow: 0 4px 15px rgba(219, 48, 86, 0.3);
-}
-
-.current-price {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #db3056;
-}
-
-.price-amount {
-    font-size: 2.5rem;
-}
-
-.price-currency {
-    font-size: 1.2rem;
-    color: #666;
-}
-
-.total-price {
-    color: #db3056;
-    font-size: 1.25rem;
-}
-
-.detail-item {
-    padding: 0.75rem 0;
-}
-
-.detail-label {
-    display: flex;
-    align-items: center;
-    margin-bottom: 0.5rem;
-    color: #555;
-}
-
-.detail-value {
-    color: #333;
-    margin-left: 1.75rem;
-}
-
-.share-buttons .btn {
-    border-radius: 25px;
-    padding: 0.5rem 1rem;
-}
-
-.event-quick-info .info-item {
-    display: flex;
-    align-items: center;
-    font-size: 0.9rem;
-}
-
-@@media (max-width: 768px) {
-    .event-title {
-        font-size: 1.75rem;
-    }
-
-    .event-meta-info {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .price-badge {
-        font-size: 1.25rem;
-        padding: 0.5rem 1rem;
-    }
-}
-</style>
-
-<script>
+     <script>
 document.addEventListener('DOMContentLoaded', function() {
     const ticketQuantity = document.getElementById('ticketQuantity');
     const decreaseBtn = document.getElementById('decreaseBtn');
@@ -423,4 +592,6 @@ function loadRelatedEvents() {
         `;
     }, 1000);
 }
-</script>
+     </script>
+</body>
+</html>
