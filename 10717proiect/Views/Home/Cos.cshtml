@@ -1,196 +1,385 @@
-﻿@{
+﻿@model List<_10717proiect.Models.Cart.CartItem>
+@{
      ViewBag.Title = "Coșul Meu";
-
-     var produse = new List<dynamic> {
-        new { ProductName = "Bilet Concert", Quantity = 2, Price = 350M, ImageUrl = "~/Content/assets/images/carbon.jpg" },
-        new { ProductName = "Bilet Film", Quantity = 1, Price = 100M, ImageUrl = "~/Content/assets/images/carbon.jpg" },
-        new { ProductName = "Bilet Teatru", Quantity = 3, Price = 250M, ImageUrl = "~/Content/assets/images/carbon.jpg" }
-    };
 }
 @using System.Web.Optimization
 @Html.Partial("_Header")
 
 <div class="container mt-5">
-     <div class="row justify-content-center">
-          <!-- Lista produse -->
-          <div class="col-md-8">
-               <div class="card shadow rounded-5 p-4">
-                    <h4 class="mb-4">Produse în Coș</h4>
+     <!-- Anti-forgery token pentru AJAX -->
+     @Html.AntiForgeryToken()
 
-                    <!-- Produs 1 -->
-                    <div class="d-flex align-items-center border rounded-5 p-4 mb-4 shadow-sm bg-white">
-                         <img src="@Url.Content(produse[0].ImageUrl)" alt="@produse[0].ProductName" style="width: 130px; height: 100px; object-fit: cover;" class="rounded-4 me-3;" />
-                         <div class="flex-grow-1" style="margin-left: 15px;">
-
-
-                              <h5 class="mb-1">@produse[0].ProductName</h5>
-                              <p class="text-muted mb-2">Preț: <strong>@produse[0].Price</strong> lei</p>
-                              <div class="d-flex align-items-center">
-                                   <button class="btn btn-outline-secondary btn-sm me-2">-</button>
-                                   <span class="mx-2">@produse[0].Quantity</span>
-                                   <button class="btn btn-outline-secondary btn-sm ms-2">+</button>
-                              </div>
-                         </div>
-                         <div class="text-end ms-3">
-                              <strong>Total:</strong><br />
-                              @(produse[0].Price * produse[0].Quantity) lei
-                         </div>
-                    </div>
-
-                    <!-- Produs 2 -->
-                    <div class="d-flex align-items-center border rounded-5 p-4 mb-4 shadow-sm bg-white">
-                         <img src="@Url.Content(produse[1].ImageUrl)" alt="@produse[1].ProductName" style="width: 130px; height: 100px; object-fit: cover;" class="rounded-4 me-3" />
-                         <div class="flex-grow-1" style="margin-left: 15px;">
-                              <h5 class="mb-1">@produse[1].ProductName</h5>
-                              <p class="text-muted mb-2">Preț: <strong>@produse[1].Price</strong> lei</p>
-                              <div class="d-flex align-items-center">
-                                   <button class="btn btn-outline-secondary btn-sm me-2">-</button>
-                                   <span class="mx-2">@produse[1].Quantity</span>
-                                   <button class="btn btn-outline-secondary btn-sm ms-2">+</button>
-                              </div>
-                         </div>
-                         <div class="text-end ms-3">
-                              <strong>Total:</strong><br />
-                              @(produse[1].Price * produse[1].Quantity) lei
-                         </div>
-                    </div>
-
-                    <!-- Produs 3 -->
-                    <div class="d-flex align-items-center border rounded-5 p-4 mb-4 shadow-sm bg-white">
-                         <img src="@Url.Content(produse[2].ImageUrl)" alt="@produse[2].ProductName" style="width: 130px; height: 100px; object-fit: cover;" class="rounded-4 me-3" />
-                         <div class="flex-grow-1" style="margin-left: 15px;">
-                              <h5 class="mb-1">@produse[2].ProductName</h5>
-                              <p class="text-muted mb-2">Preț: <strong>@produse[2].Price</strong> lei</p>
-                              <div class="d-flex align-items-center">
-                                   <button class="btn btn-outline-secondary btn-sm me-2">-</button>
-                                   <span class="mx-2">@produse[2].Quantity</span>
-                                   <button class="btn btn-outline-secondary btn-sm ms-2">+</button>
-                              </div>
-                         </div>
-                         <div class="text-end ms-3">
-                              <strong>Total:</strong><br />
-                              @(produse[2].Price * produse[2].Quantity) lei
-                         </div>
-                    </div>
-
-               </div>
+     <!-- Mesaje de succes/eroare -->
+     <div id="messageContainer" style="display: none;">
+          <div id="messageAlert" class="alert alert-dismissible fade show" role="alert">
+               <span id="messageText"></span>
+               <button type="button" class="btn-close" onclick="hideMessage()"></button>
           </div>
-
-          <!-- Metoda de plata -->
-          <div class="col-md-4">
-               <div class="card shadow rounded-5 p-4 bg-light border-0" style="background: linear-gradient(135deg, #f8f9fa, #e9ecef);">
-                    <h5 class="mb-3 text-center fw-bold">Metodă de Plată</h5>
-                    <p class="text-muted text-center">
-                         Alege metoda preferată și finalizează comanda în siguranță.
-                    </p>
-
-                    <!-- Cec Rezumat -->
-                    <div class="bg-white rounded-4 p-3 mb-4 shadow-sm">
-                         <h6 class="fw-bold mb-3 text-center">Rezumat Comandă</h6>
-                         <ul class="list-unstyled small">
-                              <li class="d-flex justify-content-between mb-1">
-                                   <span>Bilet Concert x2</span>
-                                   <span>@(produse[0].Price * produse[0].Quantity) lei</span>
-                              </li>
-                              <li class="d-flex justify-content-between mb-1">
-                                   <span>Bilet Film x1</span>
-                                   <span>@(produse[1].Price * produse[1].Quantity) lei</span>
-                              </li>
-                              <li class="d-flex justify-content-between mb-2">
-                                   <span>Bilet Teatru x3</span>
-                                   <span>@(produse[2].Price * produse[2].Quantity) lei</span>
-                              </li>
-                              <li class="border-top pt-2 d-flex justify-content-between fw-bold">
-                                   <span>Total</span>
-                                   <span>
-                                        @(
-                                   produse[0].Price * produse[0].Quantity +
-                                   produse[1].Price * produse[1].Quantity +
-                                   produse[2].Price * produse[2].Quantity
-                               ) lei
-                                   </span>
-                              </li>
-                         </ul>
-                    </div>
-
-                    <!-- Metode de plata -->
-                    <div class="d-flex justify-content-center flex-wrap gap-3 mb-4">
-                         <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa" style="height: 32px;" title="Visa" />
-                         <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" style="height: 32px;" title="Mastercard" />
-                         <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" style="height: 32px;" title="PayPal" />
-                         <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple Pay" style="height: 32px;" title="Apple Pay" />
-                    </div>
-
-                    <a href="/Plata" class="btn btn-success w-100 rounded-4 py-2 d-flex align-items-center justify-content-center shadow-sm">
-                         <i class="bi bi-credit-card-fill me-2"></i>
-                         <span class="fw-semibold">Mergi la Plată</span>
-                    </a>
-               </div>
-          </div>
-          <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const produsElements = document.querySelectorAll(".d-flex.align-items-center.border");
-
-        produsElements.forEach(function (produs, index) {
-            const minusBtn = produs.querySelector("button.btn-outline-secondary:nth-child(1)");
-            const plusBtn = produs.querySelector("button.btn-outline-secondary:nth-child(3)");
-            const qtySpan = produs.querySelector("span.mx-2");
-            const totalDiv = produs.querySelector(".text-end strong + br + span, .text-end");
-            const priceText = produs.querySelector("p.text-muted strong").innerText;
-            const price = parseFloat(priceText);
-
-            function updateTotal() {
-                const quantity = parseInt(qtySpan.innerText);
-                const total = price * quantity;
-                totalDiv.innerHTML = "Total:<br />" + total.toFixed(2) + " lei";
-
-                // actualizeaza si totalul general din rezumat
-                updateTotalGeneral();
-            }
-
-            plusBtn.addEventListener("click", function () {
-                let qty = parseInt(qtySpan.innerText);
-                qtySpan.innerText = ++qty;
-                updateTotal();
-            });
-
-            minusBtn.addEventListener("click", function () {
-                let qty = parseInt(qtySpan.innerText);
-                if (qty > 1) {
-                    qtySpan.innerText = --qty;
-                    updateTotal();
-                }
-            });
-        });
-
-        function updateTotalGeneral() {
-            let totalGeneral = 0;
-            document.querySelectorAll(".d-flex.align-items-center.border").forEach(function (produs) {
-                const qty = parseInt(produs.querySelector("span.mx-2").innerText);
-                const price = parseFloat(produs.querySelector("p.text-muted strong").innerText);
-                totalGeneral += qty * price;
-            });
-
-            // update totalul din cardul Rezumat Comandă
-            const totalRow = document.querySelector(".bg-white ul li.border-top span:last-child");
-            if (totalRow) {
-                totalRow.innerText = totalGeneral.toFixed(2) + " lei";
-            }
-
-            // update individual in rezumat
-            const summaryItems = document.querySelectorAll(".bg-white ul li:not(.border-top)");
-            const produseNames = ["Bilet Concert", "Bilet Film", "Bilet Teatru"];
-            summaryItems.forEach((item, idx) => {
-                const qty = document.querySelectorAll(".d-flex.align-items-center.border")[idx]
-                    .querySelector("span.mx-2").innerText;
-                const price = document.querySelectorAll(".d-flex.align-items-center.border")[idx]
-                    .querySelector("p.text-muted strong").innerText;
-                item.innerHTML = `<span>${produseNames[idx]} x${qty}</span><span>${(qty * price).toFixed(2)} lei</span>`;
-            });
-        }
-    });
-          </script>
-
-
      </div>
+
+     @if (Model != null && Model.Any())
+     {
+          <div class="row justify-content-center">
+               <!-- Lista produse -->
+               <div class="col-md-8">
+                    <div class="card shadow rounded-5 p-4">
+                         <div class="d-flex justify-content-between align-items-center mb-4">
+                              <h4>Produse în Coș</h4>
+                              <button class="btn btn-outline-danger btn-sm" onclick="clearCart()">
+                                   <i class="bi bi-trash"></i> Golește coșul
+                              </button>
+                         </div>
+
+                         <div id="cartItemsContainer">
+                              @foreach (var item in Model)
+                              {
+                                   <div class="cart-item d-flex align-items-center border rounded-5 p-4 mb-4 shadow-sm bg-white" data-event-id="@item.EventId">
+                                        <img src="@(!string.IsNullOrEmpty(item.EventImage) ? Url.Content(item.EventImage) : "~/Content/assets/images/carbon.jpg")"
+                                             alt="@item.EventName"
+                                             style="width: 130px; height: 100px; object-fit: cover;"
+                                             class="rounded-4 me-3;" />
+
+                                        <div class="flex-grow-1" style="margin-left: 15px;">
+                                             <h5 class="mb-1">@item.EventName</h5>
+                                             <p class="text-muted mb-1">
+                                                  <i class="bi bi-calendar"></i> @item.FormattedEventDate
+                                             </p>
+                                             <p class="text-muted mb-1">
+                                                  <i class="bi bi-geo-alt"></i> @item.EventLocation
+                                             </p>
+                                             <p class="text-muted mb-2">
+                                                  Preț: <strong class="item-price">@item.FormattedPrice</strong>
+                                             </p>
+                                             <div class="d-flex align-items-center">
+                                                  <button class="btn btn-outline-secondary btn-sm me-2" onclick="updateQuantity(@item.EventId, @item.Quantity - 1)">-</button>
+                                                  <span class="mx-2 quantity-display">@item.Quantity</span>
+                                                  <button class="btn btn-outline-secondary btn-sm ms-2" onclick="updateQuantity(@item.EventId, @item.Quantity + 1)">+</button>
+                                                  <button class="btn btn-outline-danger btn-sm ms-3" style="margin-left: 5px;" onclick="removeFromCart(@item.EventId)">
+                                                       <i class="bi bi-trash">Sterge</i>
+                                                  </button>
+                                             </div>
+                                        </div>
+                                        <div class="text-end ms-3">
+                                             <strong>Total:</strong><br />
+                                             <span class="item-total">@item.FormattedTotalPrice</span>
+                                        </div>
+                                   </div>
+                              }
+                         </div>
+                    </div>
+               </div>
+
+               <!-- Metoda de plata -->
+               <div class="col-md-4">
+                    <div class="card shadow rounded-5 p-4 bg-light border-0" style="background: linear-gradient(135deg, #f8f9fa, #e9ecef);">
+                         <h5 class="mb-3 text-center fw-bold">Metodă de Plată</h5>
+                         <p class="text-muted text-center">
+                              Alege metoda preferată și finalizează comanda în siguranță.
+                         </p>
+
+                         <!-- Rezumat Comandă -->
+                         <div class="bg-white rounded-4 p-3 mb-4 shadow-sm">
+                              <h6 class="fw-bold mb-3 text-center">Rezumat Comandă</h6>
+                              <div id="orderSummary">
+                                   @foreach (var item in Model)
+                                   {
+                                        <div class="d-flex justify-content-between mb-1 summary-item" data-event-id="@item.EventId">
+                                             <span class="summary-name">@item.EventName x<span class="summary-quantity">@item.Quantity</span></span>
+                                             <span class="summary-total">@item.FormattedTotalPrice</span>
+                                        </div>
+                                   }
+                              </div>
+                              <div class="border-top pt-2 d-flex justify-content-between fw-bold">
+                                   <span>Total</span>
+                                   <span id="grandTotal">@(Model.Sum(x => x.TotalPrice).ToString("0")) lei</span>
+                              </div>
+                         </div>
+
+                         <!-- Metode de plata -->
+                         <div class="d-flex justify-content-center flex-wrap gap-3 mb-4">
+                              <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa" style="height: 32px;" title="Visa" />
+                              <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" style="height: 32px;" title="Mastercard" />
+                              <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" style="height: 32px;" title="PayPal" />
+                              <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple Pay" style="height: 32px;" title="Apple Pay" />
+                         </div>
+
+                         <button class="btn btn-success w-100 rounded-4 py-2 d-flex align-items-center justify-content-center shadow-sm" onclick="proceedToPayment()">
+                              <i class="bi bi-credit-card-fill me-2"></i>
+                              <span class="fw-semibold">Mergi la Plată</span>
+                         </button>
+                    </div>
+               </div>
+          </div>
+     }
+     else
+     {
+          <!-- Coș gol -->
+          <div class="row x  justify-content-center ">
+               <div class="col-md-8 x text-center">
+                    <div class="card shadow rounded-5 p-5">
+                         <i class="bi bi-cart-x" style="font-size: 4rem; color: #6c757d; margin-bottom: 1rem;"></i>
+                         <h3 class="mb-3">Coșul tău este gol</h3>
+                         <p class="text-muted mb-4">Nu ai adăugat încă niciun bilet în coș.</p>
+                         <a href="@Url.Action("Index", "Events")" class="btn btn-primary btn-lg">
+                              <i class="bi bi-search me-2">Sterge</i>Explorează evenimente
+                         </a>
+                    </div>
+               </div>
+          </div>
+     }
 </div>
+
+<style>
+
+     .navbar-custom{
+          top: 0;
+     }
+
+     .x{
+          margin-top: 90px;
+     }
+
+     .cart-item {
+          transition: all 0.3s ease;
+     }
+
+          .cart-item:hover {
+               transform: translateY(-2px);
+               box-shadow: 0 8px 25px rgba(0,0,0,0.1) !important;
+          }
+
+     .btn-outline-secondary:hover,
+     .btn-outline-danger:hover {
+          transform: scale(1.05);
+     }
+
+     .summary-item {
+          font-size: 0.9rem;
+     }
+
+     .loading {
+          opacity: 0.6;
+          pointer-events: none;
+     }
+
+     .fade-out {
+          opacity: 0;
+          transform: translateX(-100%);
+          transition: all 0.5s ease;
+     }
+</style>
+
+<script>
+     // Obține token-ul CSRF
+     function getCSRFToken() {
+          return document.querySelector('input[name="__RequestVerificationToken"]').value;
+     }
+
+     // Funcție pentru actualizarea cantității
+     function updateQuantity(eventId, newQuantity) {
+          if (newQuantity < 0) return;
+
+          const formData = new FormData();
+          formData.append('eventId', eventId);
+          formData.append('quantity', newQuantity);
+          formData.append('__RequestVerificationToken', getCSRFToken());
+
+          fetch('/Cart/UpdateQuantity', {
+               method: 'POST',
+               body: formData
+          })
+               .then(response => response.json())
+               .then(data => {
+                    if (data.success) {
+                         if (newQuantity === 0) {
+                              // Elimină elementul din DOM
+                              const cartItem = document.querySelector(`[data-event-id="${eventId}"]`);
+                              cartItem.classList.add('fade-out');
+                              setTimeout(() => {
+                                   cartItem.remove();
+                                   checkEmptyCart();
+                              }, 500);
+
+                              // Elimină din rezumat
+                              const summaryItem = document.querySelector(`.summary-item[data-event-id="${eventId}"]`);
+                              if (summaryItem) summaryItem.remove();
+                         } else {
+                              // Actualizează cantitatea în interfață
+                              const cartItem = document.querySelector(`[data-event-id="${eventId}"]`);
+                              cartItem.querySelector('.quantity-display').textContent = newQuantity;
+                              cartItem.querySelector('.item-total').textContent = data.itemTotal.toFixed(0) + ' lei';
+
+                              // Actualizează rezumatul
+                              const summaryItem = document.querySelector(`.summary-item[data-event-id="${eventId}"]`);
+                              if (summaryItem) {
+                                   summaryItem.querySelector('.summary-quantity').textContent = newQuantity;
+                                   summaryItem.querySelector('.summary-total').textContent = data.itemTotal.toFixed(0) + ' lei';
+                              }
+                         }
+
+                         // Actualizează totalul general
+                         document.getElementById('grandTotal').textContent = data.cartTotal.toFixed(0) + ' lei';
+
+                         showMessage('success', 'Cantitatea a fost actualizată!');
+                    } else {
+                         showMessage('error', data.message);
+                    }
+               })
+               .catch(error => {
+                    console.error('Error:', error);
+                    showMessage('error', 'A apărut o eroare la actualizarea cantității.');
+               });
+     }
+
+     // Funcție pentru eliminarea din coș
+     function removeFromCart(eventId) {
+          if (!confirm('Sigur dorești să elimini acest bilet din coș?')) {
+               return;
+          }
+
+          const formData = new FormData();
+          formData.append('eventId', eventId);
+          formData.append('__RequestVerificationToken', getCSRFToken());
+
+          fetch('/Cart/RemoveFromCart', {
+               method: 'POST',
+               body: formData
+          })
+               .then(response => response.json())
+               .then(data => {
+                    if (data.success) {
+                         // Animație de eliminare
+                         const cartItem = document.querySelector(`[data-event-id="${eventId}"]`);
+                         cartItem.classList.add('fade-out');
+
+                         setTimeout(() => {
+                              cartItem.remove();
+
+                              // Elimină din rezumat
+                              const summaryItem = document.querySelector(`.summary-item[data-event-id="${eventId}"]`);
+                              if (summaryItem) summaryItem.remove();
+
+                              // Recalculează totalul
+                              updateGrandTotal();
+
+                              // Verifică dacă coșul este gol
+                              checkEmptyCart();
+                         }, 500);
+
+                         showMessage('success', data.message);
+                    } else {
+                         showMessage('error', data.message);
+                    }
+               })
+               .catch(error => {
+                    console.error('Error:', error);
+                    showMessage('error', 'A apărut o eroare la eliminarea din coș.');
+               });
+     }
+
+     // Funcție pentru golirea coșului
+     function clearCart() {
+          if (!confirm('Sigur dorești să golești întregul coș?')) {
+               return;
+          }
+
+          const formData = new FormData();
+          formData.append('__RequestVerificationToken', getCSRFToken());
+
+          fetch('/Cart/ClearCart', {
+               method: 'POST',
+               body: formData
+          })
+               .then(response => response.json())
+               .then(data => {
+                    if (data.success) {
+                         // Reîncarcă pagina pentru a afișa coșul gol
+                         location.reload();
+                    } else {
+                         showMessage('error', data.message);
+                    }
+               })
+               .catch(error => {
+                    console.error('Error:', error);
+                    showMessage('error', 'A apărut o eroare la golirea coșului.');
+               });
+     }
+
+     // Funcție pentru continuarea la plată
+     function proceedToPayment() {
+          // Aici poți adăuga logica pentru redirecționarea către plată
+          showMessage('info', 'Funcționalitatea de plată va fi implementată în curând!');
+     }
+
+     // Funcții helper
+     function updateGrandTotal() {
+          let total = 0;
+          document.querySelectorAll('.summary-item').forEach(item => {
+               const totalText = item.querySelector('.summary-total').textContent;
+               const value = parseFloat(totalText.replace(' lei', ''));
+               total += value;
+          });
+          document.getElementById('grandTotal').textContent = total.toFixed(0) + ' lei';
+     }
+
+     function checkEmptyCart() {
+          const cartItems = document.querySelectorAll('.cart-item');
+          if (cartItems.length === 0) {
+               // Reîncarcă pagina pentru a afișa mesajul de coș gol
+               setTimeout(() => {
+                    location.reload();
+               }, 1000);
+          }
+     }
+
+     function showMessage(type, message) {
+          const container = document.getElementById('messageContainer');
+          const alert = document.getElementById('messageAlert');
+          const text = document.getElementById('messageText');
+
+          // Setează tipul și mesajul
+          alert.className = `alert alert-${type === 'success' ? 'success' : type === 'error' ? 'danger' : 'info'} alert-dismissible fade show`;
+          text.textContent = message;
+
+          // Afișează mesajul
+          container.style.display = 'block';
+
+          // Ascunde după 5 secunde
+          setTimeout(() => {
+               hideMessage();
+          }, 5000);
+     }
+
+     function hideMessage() {
+          document.getElementById('messageContainer').style.display = 'none';
+     }
+
+     // Inițializare când se încarcă pagina
+     document.addEventListener('DOMContentLoaded', function () {
+          console.log('Cart page loaded');
+
+          // Actualizează contorul din header dacă există
+          const cartItems = document.querySelectorAll('.cart-item');
+          let totalQuantity = 0;
+          cartItems.forEach(item => {
+               const quantity = parseInt(item.querySelector('.quantity-display').textContent);
+               totalQuantity += quantity;
+          });
+
+          // Actualizează contorul din header
+          updateCartCounter(totalQuantity);
+     });
+
+     // Funcție pentru actualizarea contorului din header
+     function updateCartCounter(count) {
+          const cartCounters = document.querySelectorAll('.cart-counter');
+          cartCounters.forEach(counter => {
+               counter.textContent = count;
+               if (count > 0) {
+                    counter.style.display = 'inline';
+               } else {
+                    counter.style.display = 'none';
+               }
+          });
+     }
+</script>

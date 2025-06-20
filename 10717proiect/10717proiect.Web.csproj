@@ -791,6 +791,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -802,6 +803,7 @@
     <Compile Include="LogicHelper\Attributes\IsAdminAttribute.cs" />
     <Compile Include="LogicHelper\HttpContextExtensions.cs" />
     <Compile Include="Models\Auth\UserDataLogin.cs" />
+    <Compile Include="Models\Cart\CardItem.cs" />
     <Compile Include="Models\Comment\CommentDataModelView.cs" />
     <Compile Include="Models\Event\EventListViewModel.cs" />
     <Compile Include="Models\Location\LocationDataView.cs" />
@@ -851,6 +853,7 @@
     <Folder Include="Content\Images\Location\" />
     <Folder Include="Views\Account\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Cart\" />
     <Folder Include="Views\ContulMeu\" />
     <Folder Include="Views\Search\" />
   </ItemGroup>

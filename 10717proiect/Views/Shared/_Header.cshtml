@@ -1,137 +1,172 @@
 ﻿<!-- Navigation Bar-->
 <header id="topnav">
 
-    <!-- Topbar Start -->
-    <div class="navbar-custom">
-        <div class="container-fluid">
+     <!-- Topbar Start -->
+     <div class="navbar-custom">
+          <div class="container-fluid">
 
-            <ul class="list-unstyled topnav-menu float-right mb-0">
+               <ul class="list-unstyled topnav-menu float-right mb-0">
 
-                <li class="d-none d-sm-block">
-                    <form class="app-search bara-cautare" action="/Events" method="post">
-                        <div class="app-search-box">
-                            <div class="input-group bara-cautare">
+                    <li class="d-none d-sm-block">
+                         <form class="app-search bara-cautare" action="/Events" method="post">
+                              <div class="app-search-box">
+                                   <div class="input-group bara-cautare">
 
-                                <input type="text" name="NumeEveniment" class="form-control" placeholder="Search...">
-                                <div class="input-group-append">
-                                    <button class="btn" type="submit">
-                                        <i class="fe-search"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </li>
-
-                <li class="dropdown notification-list">
-                    <a href="~/Home/Index" class=" nav-link waves-effect waves-light">
-                        <i class="remixicon-home-5-line"></i>
-                        &nbsp Home
-                    </a>
-                </li>
-
-                <div class="linie-herticala"></div>
-
-                <li class="dropdown notification-list">
-                    <a href="~/Events/Index" class=" nav-link waves-effect waves-light">
-                        <i class="remixicon-coupon-line"></i>
-                        &nbsp Evenimente
-                    </a>
-                </li>
-
-                <div class="linie-herticala"></div>
-
-
-                <li class="dropdown notification-list">
-                    <a href="~/Locations/Index" class=" nav-link waves-effect waves-light">
-                        <i class="remixicon-map-pin-line"></i>
-                        &nbsp Locații
-                    </a>
-                </li>
-
-                <div class="linie-herticala"></div>
-
-                <!-- Păstrează doar un singur element Coș -->
-                <li class="dropdown notification-list">
-                    <a href="~/Home/Cos" class=" nav-link waves-effect waves-light">
-                        <i class="remixicon-shopping-bag-3-line"></i>&nbsp Coș
-                    </a>
-                </li>
-
-                <div class="linie-herticala final"></div>
-
-                @{
-                    var userEmail = Session["UserEmail"] as string;
-                }
-
-                @if (!string.IsNullOrEmpty(userEmail))
-                {
-                    <!-- Bilete mele - doar pentru utilizatorii logați -->
-                   
+                                        <input type="text" name="NumeEveniment" class="form-control" placeholder="Search...">
+                                        <div class="input-group-append">
+                                             <button class="btn" type="submit">
+                                                  <i class="fe-search"></i>
+                                             </button>
+                                        </div>
+                                   </div>
+                              </div>
+                         </form>
+                    </li>
 
                     <li class="dropdown notification-list">
-                        <a href="~/Events/Profil" class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown">
-                            <i class="remixicon-user-3-line"></i> Contul meu
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            @*<a class="dropdown-item" href="#">
-                                <i class="remixicon-user-line me-1"></i> Profil
-                            </a>
-                            <a class="dropdown-item" href="~/Ticket/Index">
-                                <i class="remixicon-ticket-line me-1"></i> Bilete mele
-                            </a>*@
-                           
-                            <a class="dropdown-item" href="~/Auth/Logout">
-                                <i class="remixicon-logout-circle-line me-1"></i> Logout
-                            </a>
-                        </div>
-                    </li>
-                }
-                else
-                {
-                    <li class="dropdown notification-list ">
-                        <a href="~/Auth/SignIn" class="nav-link waves-effect waves-light log_in">
-                            Log In
-                        </a>
+                         <a href="~/Home/Index" class=" nav-link waves-effect waves-light">
+                              <i class="remixicon-home-5-line"></i>
+                              &nbsp Home
+                         </a>
                     </li>
 
-                    <li class="dropdown notification-list ">
-                        <a href="~/Register/Index" class=" nav-link waves-effect waves-light sing_up">
-                            Sign Up
-                        </a>
+                    <div class="linie-herticala"></div>
+
+                    <li class="dropdown notification-list">
+                         <a href="~/Events/Index" class=" nav-link waves-effect waves-light">
+                              <i class="remixicon-coupon-line"></i>
+                              &nbsp Evenimente
+                         </a>
                     </li>
-                }
 
-            </ul>
+                    <div class="linie-herticala"></div>
 
-            <!-- LOGO -->
-            <div class="logo-box">
-                <a href="~/Home/Index" class="logo text-center">
-                    <span class="logo-lg">
-                        <img class="logo_nagigatie" src="~/Content/assets/images/logo-light.png" alt="" height="110">
-                        <!-- <span class="logo-lg-text-light">Xeria</span> -->
-                    </span>
-                    <span class="logo-sm">
-                        <!-- <span class="logo-sm-text-dark">X</span> -->
-                        <img src="~/Content/assets/images/logo-sm.png" alt="" height="34">
-                    </span>
-                </a>
-            </div>
 
-            <!-- Text dupa logo -->
-            <ul>
-                <a class="text-after-logo" href="~/Home/Index">
-                    Ticket Express
-                </a>
+                    <li class="dropdown notification-list">
+                         <a href="~/Locations/Index" class=" nav-link waves-effect waves-light">
+                              <i class="remixicon-map-pin-line"></i>
+                              &nbsp Locații
+                         </a>
+                    </li>
 
-            </ul>
+                    <div class="linie-herticala"></div>
 
-            <div class="clearfix"></div>
-        </div>
-    </div>
-    <!-- end Topbar -->
-    <!-- end navbar-custom -->
+                    <!-- Coș cu contor -->
+                    <li class="dropdown notification-list">
+                         <a href="~/Cart/Index" class="nav-link waves-effect waves-light position-relative">
+                              <i class="remixicon-shopping-bag-3-line"></i>&nbsp Coș
+                              <span class="cart-counter badge bg-danger rounded-pill position-absolute top-0 start-100 translate-middle"
+                                    style="display: none; font-size: 0.7em; padding: 0.25em 0.5em;">0</span>
+                         </a>
+                    </li>
+
+                    <div class="linie-herticala final"></div>
+
+                    @{
+                         var userEmail = Session["UserEmail"] as string;
+                    }
+
+                    @if (!string.IsNullOrEmpty(userEmail))
+                    {
+                         <!-- Bilete mele - doar pentru utilizatorii logați -->
+
+                         <li class="dropdown notification-list">
+                              <a href="~/Events/Profil" class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown">
+                                   <i class="remixicon-user-3-line"></i> Contul meu
+                              </a>
+                              <div class="dropdown-menu dropdown-menu-right">
+                                   @*<a class="dropdown-item" href="#">
+                                            <i class="remixicon-user-line me-1"></i> Profil
+                                        </a>
+                                        <a class="dropdown-item" href="~/Ticket/Index">
+                                            <i class="remixicon-ticket-line me-1"></i> Bilete mele
+                                        </a>*@
+
+                                   <a class="dropdown-item" href="~/Auth/Logout">
+                                        <i class="remixicon-logout-circle-line me-1"></i> Logout
+                                   </a>
+                              </div>
+                         </li>
+                    }
+                    else
+                    {
+                         <li class="dropdown notification-list ">
+                              <a href="~/Auth/SignIn" class="nav-link waves-effect waves-light log_in">
+                                   Log In
+                              </a>
+                         </li>
+
+                         <li class="dropdown notification-list ">
+                              <a href="~/Register/Index" class=" nav-link waves-effect waves-light sing_up">
+                                   Sign Up
+                              </a>
+                         </li>
+                    }
+
+               </ul>
+
+               <!-- LOGO -->
+               <div class="logo-box">
+                    <a href="~/Home/Index" class="logo text-center">
+                         <span class="logo-lg">
+                              <img class="logo_nagigatie" src="~/Content/assets/images/logo-light.png" alt="" height="110">
+                              <!-- <span class="logo-lg-text-light">Xeria</span> -->
+                         </span>
+                         <span class="logo-sm">
+                              <!-- <span class="logo-sm-text-dark">X</span> -->
+                              <img src="~/Content/assets/images/logo-sm.png" alt="" height="34">
+                         </span>
+                    </a>
+               </div>
+
+               <!-- Text dupa logo -->
+               <ul>
+                    <a class="text-after-logo" href="~/Home/Index">
+                         Ticket Express
+                    </a>
+
+               </ul>
+
+               <div class="clearfix"></div>
+          </div>
+     </div>
+     <!-- end Topbar -->
+     <!-- end navbar-custom -->
 
 </header>
 <!-- End Navigation Bar-->
+
+<script>
+// Funcție pentru actualizarea contorului de coș
+function updateCartCounter(count) {
+    const cartCounters = document.querySelectorAll('.cart-counter');
+    cartCounters.forEach(counter => {
+        counter.textContent = count;
+        if (count > 0) {
+            counter.style.display = 'inline';
+        } else {
+            counter.style.display = 'none';
+        }
+    });
+}
+
+// Încarcă contorul coșului când se încarcă pagina
+document.addEventListener('DOMContentLoaded', function() {
+    // Obține numărul de elemente din coș
+    fetch('/Cart/GetCartCount', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        updateCartCounter(data.count);
+    })
+    .catch(error => {
+        console.log('Could not load cart count:', error);
+    });
+});
+</script>
+
 <!-- ============================================================== -->
